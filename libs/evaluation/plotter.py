@@ -25,11 +25,13 @@ class Plot(object):
         self.curves.append([xdata,ydata,fmt,label])
 
 class Plotter(object):
-    def __init__(self, show = True, save = False, pgf = False, directory = ''):
+    def __init__(self, show = True, save = False, pgf = False, name='',directory = ''):
+        if name == 'nan': name = 'plot'
         self.__global_show = show
         self.__global_save = save
         self.__global_pgf = pgf
         self.__global_dir = directory
+        self.__global_name = name
         self.__reset()
     def new(self, title='', name='', xlabel='x', ylabel='y', xscale='linear', yscale='linear', show='nan', save='nan', pgf='nan', directory='nan'):
         if title == 'nan': title = name
@@ -42,20 +44,20 @@ class Plotter(object):
         if save: self.__nr_save += 1
     def plot(self, xdata, ydata, fmt='+-',label='' ):
         self.__plots[-1].addCurve(xdata, ydata, fmt, label)
-    def make(self, ncols = 2):
+    def make(self, ncols = 2, swindow = (17,10), sfile = (8,3)):
         if self.__nr_show == 1: 
-            f, axarr = p.subplots(1, 1, figsize=(15,10))
+            f, axarr = p.subplots(1, 1, figsize=swindow)
             axarr = np.array([axarr])
         elif self.__nr_show > 1:
             nrows = int(np.ceil(1.*self.__nr_show/ncols))
-            f, axarr = p.subplots(nrows, ncols, figsize=(15,10))
+            f, axarr = p.subplots(nrows, ncols, figsize=swindow)
         nplots = 0
         for n,plot in enumerate(self.__plots):
             if plot.show:
                 self.__show(n,plot,axarr.flatten()[nplots])
                 nplots += 1
             if plot.save: 
-                self.__save(n,plot)
+                self.__save(n,plot,sfile)
         if self.__nr_show > 0:
             f.tight_layout()
             p.show()
@@ -70,8 +72,8 @@ class Plotter(object):
         ax.grid()
         for curve in plot.curves: ax.plot(curve[0], curve[1], curve[2],label=curve[3])
         ax.legend(shadow=0, loc='best',fontsize='small')
-    def __save(self,n,plot):
-        p.figure(figsize=(8,3))
+    def __save(self,n,plot,sfile):
+        p.figure(figsize=sfile)
         p.xlabel(plot.xlabel)
         p.ylabel(plot.ylabel)
         p.xscale(plot.xscale)
@@ -81,7 +83,7 @@ class Plotter(object):
         p.rc('legend', fontsize='small')
         p.legend(shadow=0, loc='best')
         if not plot.dir: plot.dir = './plots/'
-        if not plot.name: plot.name = os.path.splitext(os.path.basename(__file__))[0]+'_%0*i'%(2,n)
+        if not plot.name: plot.name = self.__global_name+'_%0*i'%(2,n)
         if not os.path.isdir(plot.dir): os.mkdir(plot.dir)
         if plot.pgf: p.savefig(plot.dir+plot.name+'.pgf')
         else: p.savefig(plot.dir+plot.name+'.pdf', bbox_inches='tight')
