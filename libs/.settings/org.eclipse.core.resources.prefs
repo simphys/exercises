@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//evaluation/__init__.py=utf-8
+encoding//evaluation/fitter.py=utf-8
+encoding//evaluation/parser.py=utf-8
+encoding//evaluation/plotter.py=utf-8

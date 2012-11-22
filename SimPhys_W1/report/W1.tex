@@ -1,0 +1,184 @@
+%%%%%%%% Klassen-Optionen
+\documentclass[12pt,a4paper]{scrartcl}
+
+%%%%%%%% PAKETE: unverzichtbare Pakete mit Einstellungen
+\usepackage[left=2.5cm, right=2cm, top=3cm, bottom=3cm, a4paper]{geometry} %Seitenrände
+\usepackage[utf8x]{inputenc} % utf8-Kodierung und direkte Eingabe von Sonderzeichen
+\usepackage{fixltx2e} % Verbessert einige Kernkompetenzen von LaTeX2e
+
+%%%%%%%% PAKETE: AMS-Pakete
+\usepackage{amsmath} % Mathe-Erweiterung
+\usepackage{amsfonts} % Schrift-Erweiterung
+\usepackage{amssymb} % Sonderzeichen-Erweiterung
+
+%%%%%%%% PAKETE: Sonstiges
+\usepackage[colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black]{hyperref} % Links
+\usepackage{wrapfig} % ausgeklügekte Floatumgebung
+\usepackage{float} % normale Floatumgebung
+\restylefloat{figure} % ermöglicht die Verwendung von "H" (ist noch stärker als "h!")
+\usepackage[small,it,singlelinecheck=false]{caption} % Bildunterschriften formatieren
+\usepackage{multirow} % ermöglich Verbinden von Tabellenzeilen
+\usepackage{multicol} % ermöglicht Spalten
+\usepackage{fancyhdr} % ermöglicht Kopf- und Fußzeilen
+\usepackage{graphicx} % Einbinden von Bildern möglich
+\usepackage{units} % Einheiten
+\usepackage{subcaption}
+
+%%%%%%%% DEFINITIONEN: Titelseite
+\author{Patrick Kreissl und Sebastian Weber}
+\title{Worksheet 1: Integrators}
+\publishers{University of Stuttgart}
+\date{\today}
+
+%%%%%%%% ANPASSUNGEN: Kopf-und Fußzeile
+\fancypagestyle{plain}{} % redefine the plain pagestyle to match the fancy layout
+\pagestyle{fancy} % aktiviere eigenen Seitenstil
+\fancyhf{} % alle Kopf- und Fußzeilen bereinigen
+\fancyhead[L]{Worksheet 1: Integrators}
+\fancyhead[R]{\today}
+\renewcommand{\headrulewidth}{0.6pt} % obere Trennlinie
+\fancyfoot[L]{Patrick Kreissl und Sebastian Weber}
+\fancyfoot[R]{Seite \thepage}
+\renewcommand{\footrulewidth}{0.6pt} % untere Trennlinie
+
+%%%%%%%% ANPASSUNGEN: Absätze
+\setlength{\parindent}{0em} % keine Absatzeinzüge
+\setlength{\parskip}{0em} % Absatz-Abstand
+
+%%%%%%%% ANPASSUNGEN: Abbildungsverzeichnis
+\usepackage{tocloft} % Zum Anpassen der Verzeichnisse
+\renewcommand{\cftfigpresnum}{Abb. }
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+\setlength{\cftfignumwidth}{2cm}
+\setlength{\cfttabnumwidth}{2cm}
+\setlength{\cftfigindent}{0cm}
+\setlength{\cfttabindent}{0cm}
+
+%%%%%%%% SONSTIGES
+\usepackage{pdfpages}
+\usepackage{pgf}
+
+
+
+% NÜTZLICH: http://truben.no/latex/table/
+
+% Anfang des eigentlichen Dokuments
+\begin{document}
+
+% Anpassungen
+%\renewcommand{\figurename}{Abb.}
+\renewcommand{\tablename}{Tab.}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Cannonball}
+
+A program was written to simulate the flight of a cannonball thrown with the velocity $\vec{v} = (50, 50)^T \tfrac{m}{s}$ in two dimensions \footnote{for the code please take a look at the  appendix}. Therefore the Euler integration scheme was used.
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/2_cannonball_01.pgf}}
+	\caption{Trajectories}\label{fig:c1}
+\end{figure}
+
+As a result we get a parabolic trajectory (see figure \ref{fig:c1}) if we neglect fricition. This meets one's expectations. The question what happens with friction is much more interesting because of the lack of a analytic solution. It's also possible to examine the influence of wind. 
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/2_cannonball_02.pgf}}
+	\caption{Influence of different wind speeds}\label{fig:c2}
+\end{figure}
+
+As you can see in figure \ref{fig:c2} the cannonball comes back close to his initial position if the wind speed is about $\vec{v}_W = (0, -196.67)^T \tfrac{m}{s}$.
+
+\section{Theoretical part \label{theo}}
+\subsection{Derivation of the Velocity Verlet alogorithm}
+Let's start with a Taylor expansion of $x(t + \Delta t)$ and $v(t + \Delta t)$.
+\begin{align}
+x(t + \Delta t) &= x(t) + \dot{x}(t) \Delta t + \frac{1}{2} \ddot{x}(t) \Delta t ^2 + \mathcal O(\Delta t ^3) \\
+&= x(t) + v(t) \Delta t + \frac{1}{2} a(t) \Delta t ^2 + \mathcal O(\Delta t ^3) \\
+v(t + \Delta t) &= v(t) + a(t) \Delta t + \frac{1}{2} \dot{a}(t) \Delta t ^2 + \mathcal O(\Delta t ^3)
+\end{align}
+We get rid of the derivative of $a(t)$ by the use of Taylor's formular once more.
+\begin{equation}
+\dot{a}(t) \Delta t = a(t+\Delta t) - a(t) + O(\Delta t ^2)
+\end{equation}
+Considering $\Delta t \cdot O(\Delta t ^2) = O(\Delta t ^3)$ and putting everything together we obtain the Velocity Verlet alogorithm.
+\begin{align}
+x(t + \Delta t) &= x(t) + v(t) \Delta t + \frac{a(t)}{2} \Delta t ^2 + \mathcal O(\Delta t ^3) \label{eqn:1}\\
+v(t + \Delta t) &= v(t) + \frac{a(t)+a(t+\Delta t)}{2} \Delta t + \mathcal O(\Delta t ^3)
+\label{eqn:2}
+\end{align}
+
+\subsection{Velocity Verlet is equivalent to the standard Verlet algorithm}
+We can express x(t) by rearranging equation \ref{eqn:1}.
+\begin{equation}
+x(t) = x(t + \Delta t) - v(t) \Delta t - \frac{a(t)}{2} \Delta t ^2 + \mathcal O(\Delta t ^3)
+\label{eqn:3}
+\end{equation}
+Also with equation \ref{eqn:1}, we can calculate $x(t+2\Delta t)$ by substitution of $t$ with $t + \Delta t$. Then you have to add the received equation to equation \ref{eqn:3}.
+
+\begin{equation}
+x(t + 2 \Delta t) + x(t) = 2 x(t + \Delta t) \left( v(t+\Delta t)- v(t) \right) \Delta t + \frac{a(t+\Delta t)-a(t)}{2} \Delta t ^2 + \mathcal O(\Delta t ^3)
+\end{equation}
+
+We use equation \ref{eqn:2} to get an expression for $\left( v(t+\Delta t)- v(t) \right) \Delta t$.
+\begin{equation}
+\left( v(t+\Delta t)- v(t) \right) \Delta t = \frac{a(t)+a(t+\Delta t)}{2} \Delta t^2 + \mathcal O(\Delta t ^4)
+\end{equation}
+
+Plugging in this expression leads to the standard Verlet algorithm.
+\begin{equation}
+x(t+\Delta t) = 2\cdot x(t) - x(t - \Delta t) + a(t) \cdot \Delta t^2 + \mathcal O(\Delta t ^3)
+\end{equation}
+
+\newpage
+\subsection{Difficulties with the standard Verlet algorithm}
+The standard Verlet algorithm needs the two predecessors $x(t-\Delta t)$ and $x(t)$ to calculate $x(t+\Delta t)$. However the initial conditions give us only one starting value for $x$. Therefore we have to calculate the missing predecessors via Taylor's formula at the very first step. This results in a slightly bigger error than $\mathcal O(\Delta t ^4)$.
+
+\section{Advanced integrators: Solar system}
+
+\subsection{Simulating the solar system with the Euler scheme}
+A program was written to simulate a part of the solar system with given initial position \verb x_init {} and velocity \verb v_init {} by only taking account of Newton's law of universial gravitation. For this simulation again the Euler integration scheme was used.
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/3_solarsystem_01.pgf}}
+	\caption{Simulation of a part of the solar system using the Euler integration scheme}\label{fig:s1}
+\end{figure}
+
+The simulated trajectories are as expected nearly ellical (see figure \ref{fig:s1}). Now we take a closer look on the trajectory of the moon in the rest frame of the earth for different time steps \verb dt. Therefor we run the simulation of the solar system for the time steps \verb dt {}= 0.0001, \verb dt = 0.001 and \verb dt {}= 0.01. Then for all simulations the difference of the location of the moon an the location of the earth are calculated in order to get the trajectory of the moon relative to the earth. The resulting plot is shown in figure \ref{fig:s2}.
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/3_solarsystem_02.pgf}}
+	\caption{Simulated trajectory of the moon in the rest frame of the earth using different time steps}\label{fig:s2}
+\end{figure}
+
+As expected it seems that the tinier the chosen time step is the more precise the simulated trajectory gets. For the time steps \verb dt1 = 0.0001 and \verb dt = 0.001 the moons simulated trajectory relative to the earth is a ellipse as also observed in reality and therefore satisfactory.\\
+In this small simulation of only six particles for each one of them the forces of all the others have to be computed every time step. (In this simulation that makes 15 forces per time step.) Therefor this part of the whole simulation is the most time-consuming.\\
+For modern simulations with up to a few billion particles computing the forces takes an immense amount of the whole computing time.
+
+\subsection{Integrators}
+The simulation of the moons trajectory used the Euler integration scheme. Now this scheme is compared to the symplectic Euler scheme and the Velocity Verlet algorithm (see part \ref{theo}) by computing the solar system using the different algorithms and comparing the plots of the trajectory of the moon. The result is shown in figure \ref{fig:s3}.
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/3_solarsystem_03.pgf}}
+	\caption{Simulated trajectory of the moon in the rest frame of the earth using different algorithms}\label{fig:s3}
+\end{figure}
+
+Obviously the simple Euler integration scheme ist the poorest of the three compared algorithms. After a short time it diverges from the expected trajectory. In contrast the trajectories compluted by the symplectic Euler and the Velocity Verlet algorithm follow more or less the expected ellipse. For this simulation the Velocity Verlet seems to be the best of the three algorithms.
+
+\subsection{Long-term stability}
+This program is a simple modification of the one used in the part before. The only difference is that the simulated time is increased from one to ten years.
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/3_solarsystem_04.pgf}}
+	\caption{Long-term simulation of the trajectory of the moon using different algorithms}\label{fig:s4}
+\end{figure}
+
+In the resulting plot (see figure \ref{fig:s4}) the Velocity Verlet algorithm computed trajektory can hardly be seen as litte red point in the center. This confirms the result of the previous simulation: Velocity Verlet seems not only to be short-term but also long-term the best of the compared algorithms.\\
+Surprisingly in the long-term simulation the symplectic Euler algorithm diverges faster than the simple Euler integration algorithm.
+
+\end{document}

@@ -1,0 +1,2 @@
+EULER, VERLET = range(2) for enums
+in ipython: %run test.py
