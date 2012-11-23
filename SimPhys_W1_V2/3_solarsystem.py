@@ -9,7 +9,7 @@ import os, sys
 sys.path.append('../libs')
 from evaluation import Plotter
 filename = os.path.splitext(os.path.basename(__file__))[0]
-p = Plotter(show = True, save = True, pgf = False, name=filename, directory = '')
+p = Plotter(show = True, save = False, pgf = False, name=filename, directory = '')
 # -------------------------------------------
 
 name, x_init, v_init, m, g = np.load('solar_system.npy')

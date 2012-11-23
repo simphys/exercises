@@ -26,7 +26,7 @@ class Plot(object):
 
 class Plotter(object):
     def __init__(self, show = True, save = False, pgf = False, name='',directory = ''):
-        if name == 'nan': name = 'plot'
+        if not name: name = 'plot'
         self.__global_show = show
         self.__global_save = save
         self.__global_pgf = pgf
