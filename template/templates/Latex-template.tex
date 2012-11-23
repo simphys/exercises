@@ -1,0 +1,61 @@
+\documentclass[
+% Use a4 paper instead of the default american letter format
+a4paper,
+% Use a font with 11pt (other possibilities: 10pt or 12pt)
+11pt,
+% Add the bibliography to the table of contents
+bibtotoc
+]{scrartcl}
+% The class "scrartcl" is one of the so-called KOMA-classes, a set of
+% very well done LaTeX-classes that produce a very European layout
+% (e.g. titles with a sans-serif font).
+% The available classes are:
+%
+% scrartcl - for "articles", typically for up to ~20 pages, the
+%            highest level sectioning command is \section
+%
+% scrreprt - for "reports", typically for up to ~200 pages, the
+%            highest level sectioning command is \chapter
+%
+% scrbook  - for "books", for more than 200 pages, the highest level
+%            sectioning command is \part.
+%
+
+% This allows to type UTF-8 characters 
+\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[intlimits]{amsmath}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Allows to set units
+\usepackage{units}
+
+% Additional packages
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{color}
+
+% Source code listings
+\usepackage{listings}
+\lstloadlanguages{python}
+
+\begin{document}
+
+\titlehead{Simulation Methods in Physics I \hfill WS 2012/2013}
+\title{Template for a nice \LaTeX document}
+\author{Olaf Lenz}
+\date{\today}
+\publishers{Institute for Computational Physics, University of
+  Stuttgart}
+\maketitle
+
+\tableofcontents
+
+\section{First section}
+
+
+\end{document}

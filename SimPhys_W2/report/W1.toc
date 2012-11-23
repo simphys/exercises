@@ -1,9 +1,0 @@
-\contentsline {section}{\numberline {1}Cannonball}{2}{section.1}
-\contentsline {section}{\numberline {2}Theoretical part }{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Derivation of the Velocity Verlet alogorithm}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Velocity Verlet is equivalent to the standard Verlet algorithm}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Difficulties with the standard Verlet algorithm}{4}{subsection.2.3}
-\contentsline {section}{\numberline {3}Advanced integrators: Solar system}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Simulating the solar system with the Euler scheme}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Integrators}{5}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Long-term stability}{6}{subsection.3.3}

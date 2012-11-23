@@ -1,9 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Cannonball}{}
-\BOOKMARK [1][-]{section.2}{Theoretical part }{}
-\BOOKMARK [2][-]{subsection.2.1}{Derivation of the Velocity Verlet alogorithm}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Velocity Verlet is equivalent to the standard Verlet algorithm}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{Difficulties with the standard Verlet algorithm}{section.2}
-\BOOKMARK [1][-]{section.3}{Advanced integrators: Solar system}{}
-\BOOKMARK [2][-]{subsection.3.1}{Simulating the solar system with the Euler scheme}{section.3}
-\BOOKMARK [2][-]{subsection.3.2}{Integrators}{section.3}
-\BOOKMARK [2][-]{subsection.3.3}{Long-term stability}{section.3}
