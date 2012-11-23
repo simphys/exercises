@@ -15,10 +15,10 @@ p = Plotter(show = True, save = True, pgf = False, name=filename, directory = ''
 # ==== DEFINITIONS ====
 
 # ==== FUNCTIONS ====
-    
+asdasd    
 # ==== CALCULATION ====
 
 # ==== PLOTTING ====
-p.new(title=u'Titlename')
+#p.new(title=u'Titlename')
 p.plot(np.linspace(0,10,100), np.linspace(0,10,100)**2, '+-', label=u'Label % *.2f' % (6,0.42))
 p.make()
