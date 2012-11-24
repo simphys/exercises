@@ -295,7 +295,6 @@ display cuedensity 0.320000
 display cuemode    Exp2
 mol new periodic.vtf type vtf first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
 graphics top color 0
-graphics top material 0
 graphics top line {0.000000 0.000000 0.000000} {10.000000 0.000000 0.000000} style solid width 3
 graphics top line {0.000000 0.000000 0.000000} {0.000000 10.000000 0.000000} style solid width 3
 graphics top line {0.000000 0.000000 0.000000} {0.000000 0.000000 10.000000} style solid width 3
@@ -381,7 +380,7 @@ mol rename top periodic.vtf
 set viewpoints([molinfo top]) {{{1 0 0 -5} {0 1 0 -4} {0 0 1 -5} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}} {{0.132804 0 0 0} {0 0.132804 0 0} {0 0 0.132804 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
-# done with molecule 0
+# done with molecule 1
 foreach v $viewplist {
   molinfo $v set {center_matrix rotate_matrix scale_matrix global_matrix} $viewpoints($v)
 }
@@ -526,6 +525,8 @@ color scale colors WBlk {1.0 1.0 1.0} {0.5 0.5 0.5} {0.0 0.0 0.0}
     {color Segname {} blue}
     {color Conformation {all} blue}
     {color Molecule {0} blue}
+    {color Molecule {1} red}
+    {color Molecule {periodic.vtf} red}
     {color Structure {3_10_Helix} blue}
     {color Surface {Grasp} gray}
     {color Labels {Springs} orange}
