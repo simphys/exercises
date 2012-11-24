@@ -50,7 +50,7 @@ def compute_lj_force(rij, eps = EPS, sig = SIG, rcoff = RCOFF):
     q = sig/norm
     return 4*eps*(12*q**11-6*q**5)*q/norm**2*rij
 
-def compute_forces(x):
+def compute_forces(x, L = L):
     """Compute and return the forces acting onto the particles,
     depending on the positions x."""
     global epsilon, sigma
@@ -60,6 +60,7 @@ def compute_forces(x):
         for j in range(i):
             # distance vector
             rij = x[:,j] - x[:,i]
+            rij -= np.rint(rij/L)*L #BECAUSE OF PBC
             fij = compute_lj_force(rij)
             f[:,i] -= fij
             f[:,j] += fij
@@ -117,7 +118,7 @@ vtffile.write('pbc %f %f %f\n' % (L,L,L))
 # main loop
 while t < tmax:
     xfolded = x.copy()
-    xfolded -= np.floor(x/L)*L
+    xfolded -= np.floor(x/L)*L  #BECAUSE OF PBC
     
     x, v, f = step_vv(xfolded, v, f, dt)
     t += dt
@@ -138,7 +139,7 @@ traj = np.array(traj)
 # ==== PLOTTING ====
 # plot the trajectory
 p.new(aspect='equal')
-traj -= np.floor(traj/L)*L
+traj -= np.floor(traj/L)*L  #BECAUSE OF PBC
 for i in range(N):
     p.plot(traj[:,0,i], traj[:,1,i], ",", label='%s'%i)
 
