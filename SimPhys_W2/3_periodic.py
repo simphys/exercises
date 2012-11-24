@@ -9,7 +9,7 @@ import os, sys
 sys.path.append('../libs')
 from evaluation import Plotter
 filename = os.path.splitext(os.path.basename(__file__))[0]
-p = Plotter(show = True, save = True, pgf = True, name=filename, directory = '')
+p = Plotter(show = True, save = False, pgf = True, name=filename, directory = '')
 # -------------------------------------------
 
 # ==== DEFINITIONS ====
@@ -108,7 +108,7 @@ Es = []
 N = x.shape[1]
 
 # open the trajectory file
-vtffile = open('./plots/ljbillards.vtf', 'w')
+vtffile = open('./plots/vmd_3_periodic/periodic.vtf', 'w')
 # write the structure of the system into the file: 
 # N particles ("atoms") with a radius of 0.5
 vtffile.write('atom 0:%s radius 0.5\n' % (N-1))
