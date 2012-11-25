@@ -26,7 +26,7 @@
 
 %%%%%%%% DEFINITIONEN: Titelseite
 \author{April Cooper, Patrick Kreissl und Sebastian Weber}
-\title{Worksheet X: NAME}
+\title{Worksheet 2: Statistical Mechanics and Molecular Dynamics}
 \publishers{University of Stuttgart}
 \date{\today}
 
@@ -34,10 +34,10 @@
 \fancypagestyle{plain}{} % redefine the plain pagestyle to match the fancy layout
 \pagestyle{fancy} % aktiviere eigenen Seitenstil
 \fancyhf{} % alle Kopf- und Fußzeilen bereinigen
-\fancyhead[L]{Worksheet X: NAME}
+\fancyhead[L]{Worksheet 2: Statistical Mechanics and Molecular Dynamics}
 \fancyhead[R]{\today}
 \renewcommand{\headrulewidth}{0.6pt} % obere Trennlinie
-\fancyfoot[L]{Patrick Kreissl und Sebastian Weber}
+\fancyfoot[L]{April Cooper, Patrick Kreissl und Sebastian Weber}
 \fancyfoot[R]{Seite \thepage}
 \renewcommand{\footrulewidth}{0.6pt} % untere Trennlinie
 
@@ -70,7 +70,72 @@
 \newpage
 
 % =============== Section ============
-\section{NAME}
+\section{Statistical Mechanics}
+\subsection{Task 1}
+First we had to consider a system A consisting of two subsystems $A_1$ and $A_2$ with the related numbers of configurations $\Omega_1= 10^20$ and $\Omega_2=10^22$.\\
+The number of configurations available to the combined system  is $\Omega=\Omega_1\cdot \Omega_2= 10^{42}$.\\
+As the entropy is defined as $S = ln(\Omega)k_B$ the entropies are:\\
+$S_1=k_B ln(\Omega_1)=k_B ln(10^{20})$,
+$S_2=k_B ln(\Omega_2)=k_B ln(10^{22})$,
+$S=k_B ln(\Omega)=k_B ln(10^{42})$.\\
+\\
+Then were asked to give the factor by which the number of available configurations increases in a system with given initial $V_1,T,p_1$ if $V_1$ was expanded isothermal by 0.001\%.
+%We  assume that the air behaves like an ideal gas and as temperature is constant it is:\\
+%$p_1V_1=p_2V_2 \Rightarrow p_2= \frac{p_1V_1}{V_2}\approx101324\nonumber$ Pa \\
+\\
+With the help of the first law of thermodynamics  it follows that for T = const it is:\\
+$dS=\frac{p}{T}dV$, which leads with the ideal gas equation to
+ \begin{align}
+ \Delta S&=\int_{V1}^{V2} \frac{k_BN}{V}dV\nonumber\\
+  &= k_BNln\left(\frac{V_2}{V_1}\right)\nonumber\\
+  &=10^{-7}k_BN
+   \end{align}
+  If you consider now the definition of S: $\Delta S = ln( \hat \Delta \Omega)k_B $ you get with equation (1):\\
+ \[ \hat \Delta\Omega = exp(\frac{\Delta S}{k_B}) = exp(10^{-7}N)=\frac{\Omega_2}{\Omega_1}\]
+ \\
+ Finally we were asked to give the factor by which the number of available configurations increases in a system with given initial $N,V,T_1$ when an energy of 150 kJ is  added to the system at constant Volume.
+
+
+
+\subsection{Task 2 - Thermodynamic Variables in the Canonical Ensemble}
+Given the Helmholtz free energy F we were asked to derive expressions for U,p,S.
+Using the Maxwell relations it follows:\\
+\begin{align}
+S&=\frac{-\partial F}{\partial T} = ln(Q(N,V,T))k_B+\frac{k_BT}{Q(N,V,T)}\frac{\partial Q(N,V,T)}{\partial T}\nonumber\\
+p&=\frac{-\partial F}{\partial V}=\frac{1}{\beta Q(N,V,T)}\frac{\partial Q(N,V,T)}{\partial V}\nonumber
+\end{align}
+\newpage
+The derivation of the equation for U is as follows:\\
+It is known from statistical mechanics that $Q(N,V,T)= \frac{1}{h^{3N}N!}\int d\Gamma exp(-\beta H)$. The thermodynamic properties of the system can be obtained by $Q(N,V,T)=exp(-\beta F(N,V,T))$. To justify this identification we show fist that F is extensive and then that $F=U-TS$, where $U=\langle H \rangle$.\\
+That F is extensive can be derived directly from $Q(N,V,T)= \frac{1}{h^{3N}N!}\int d\Gamma exp(-\beta H)$. When the system is split up into two systems with a very weak corelation, then is Q a product of two factors.
+To show the second equivalence we rewrite $F = U -TS $ to $U = \langle H \rangle = A - T\left(\frac{\partial A}{\partial T} \right)$.
+To show this we divide the two expressions of Q that we stated before and therefore get:\\
+\[\frac{1}{h^{3N}N!}\int d\Gamma exp(\beta (F-H))=1\]
+Deriving both sides by $\beta$ leads to:\\
+\[ \frac{1}{h^{3N}N!}\int d\Gamma exp(\beta (F-H))(F-H+\beta \left(\frac{\partial F}{\partial \beta}\right))=0\]
+This is equivalent to $F - U - T \left(\frac{\partial F}{\partial T}\right)$, wherefore it is: $U= F+TS$.
+
+\subsection{Task 3 - Ideal Gas}
+Given the partition function $Q(N,V,T)$ we had to derive expressions for the free Helmholtz energy F(N,V,T) and the pressure p(N,V,T).\\
+As we know from task 2 it is $F=\frac{-ln(Q(N,V,T))}{\beta}$.
+Plugging in the $Q(N,V,T)$ given on the sheet and using the hint leads to:
+
+ \begin{align}
+ F&= -\frac{ln(Q(N,V,T)}{\beta}\nonumber\\
+ &= -k_BT  ln\left(\frac{V^N}{\lambda^{3N}N!}\right)\nonumber\\
+ &= -k_BT\left(N ln(V) - N ln(\lambda^{3}) - ln(N!)\right)\nonumber\\
+ &= -k_BTN\left(ln(V) - ln(\lambda^{3}) -ln(N) + 1\right)\nonumber\\
+ &= k_BTN\left(ln\left(\frac{N\lambda^3}{V}\right)-1\right)
+ \end{align}
+ Applying the Maxwell relation $\frac{-\partial F}{\partial V}=p$ on equation (1) it follows:\\
+  \begin{align}
+ p&=\frac{-\partial F}{\partial V} \nonumber\\
+ &=\frac{-\partial k_BTN\left(ln\left(\frac{N\lambda^3}{V}\right)-1\right) }{\partial V}\nonumber\\
+ &=\frac{k_BTN}{V}
+ \end{align}
+As it is obvious equation(2) leads to the ideal gas law : $pV=Nk_BT$.
+
+
 
 \end{document}
 
