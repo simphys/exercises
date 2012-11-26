@@ -55,7 +55,7 @@ Es = []
 traj = []
 
 # open the trajectory file
-vtffile = open('ljfluid.vtf', 'w')
+vtffile = open('./plots/vmd_4_ljfluid/ljfluid_cython.vtf', 'w')
 # write the structure of the system into the file: 
 # N particles ("atoms") with a radius of 0.5
 vtffile.write('atom 0:%s radius 0.5\n' % (N-1))
