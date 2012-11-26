@@ -47,6 +47,7 @@ for i in range(n):
             count += 1
 
 # random particle velocities
+random.seed(17)
 v = 2.0*random.random((3,N))-1.0
 
 # variables to cumulate data

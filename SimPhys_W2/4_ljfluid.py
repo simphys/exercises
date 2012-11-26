@@ -44,6 +44,7 @@ for a in range(n):
             x[2,(a*n*n)+(b*n)+c] = positions[c]
 
 # random particle velocities
+np.random.seed(17)
 v = 2.0*np.random.random((3,N))-1.0
 
 # RUNNING VARIABLES
