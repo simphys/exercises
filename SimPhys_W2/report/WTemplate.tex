@@ -93,10 +93,14 @@ $dS=\frac{p}{T}dV$, which leads with the ideal gas equation to
   If you consider now the definition of S: $\Delta S = ln( \hat \Delta \Omega)k_B $ you get with equation (1):\\
  \[ \hat \Delta\Omega = exp(\frac{\Delta S}{k_B}) = exp(10^{-7}N)=\frac{\Omega_2}{\Omega_1}\]
  \\
- Finally we were asked to give the factor by which the number of available configurations increases in a system with given initial $N,V,T_1$ when an energy of 150 kJ is  added to the system at constant Volume.
+ Finally we were asked to give the factor by which the number of available configurations increases in a system with given initial $N,V,T_1$ when an energy of 150 kJ is  added to the system at constant Volume.\\
+ Analogous to the task before it can be derived that $\Delta S = c_vNln\left(\frac{T_2}{T_1}\right)$.
+ Using again that the factor by which the number of configurations is given by $\hat \Delta \Omega = exp(\frac{S}{k_B})$ it follows that:\\
+ \[\hat \Delta \Omega = exp\left(\frac{c_vNln(\frac{T_2}{T_1})}{k_B}\right)=exp\left(\frac{c_vN}{k_B}\right)\frac{T_2}{T_1} \]\\
+Using that $T_2=\frac{\Delta Q}{c_vN}-T_1$ and plugging in the given values leads finally to:\\
+\[\hat \Delta \Omega = exp\left(\frac{2c_v}{k_B}\right)\left(\frac{78}{300c_v }-1\right)= \frac{\Omega_2}{\Omega_1}\]
 
-
-
+\newpage
 \subsection{Task 2 - Thermodynamic Variables in the Canonical Ensemble}
 Given the Helmholtz free energy F we were asked to derive expressions for U,p,S.
 Using the Maxwell relations it follows:\\
@@ -104,7 +108,6 @@ Using the Maxwell relations it follows:\\
 S&=\frac{-\partial F}{\partial T} = ln(Q(N,V,T))k_B+\frac{k_BT}{Q(N,V,T)}\frac{\partial Q(N,V,T)}{\partial T}\nonumber\\
 p&=\frac{-\partial F}{\partial V}=\frac{1}{\beta Q(N,V,T)}\frac{\partial Q(N,V,T)}{\partial V}\nonumber
 \end{align}
-\newpage
 The derivation of the equation for U is as follows:\\
 It is known from statistical mechanics that $Q(N,V,T)= \frac{1}{h^{3N}N!}\int d\Gamma exp(-\beta H)$. The thermodynamic properties of the system can be obtained by $Q(N,V,T)=exp(-\beta F(N,V,T))$. To justify this identification we show fist that F is extensive and then that $F=U-TS$, where $U=\langle H \rangle$.\\
 That F is extensive can be derived directly from $Q(N,V,T)= \frac{1}{h^{3N}N!}\int d\Gamma exp(-\beta H)$. When the system is split up into two systems with a very weak corelation, then is Q a product of two factors.
@@ -133,9 +136,11 @@ Plugging in the $Q(N,V,T)$ given on the sheet and using the hint leads to:
  &=\frac{-\partial k_BTN\left(ln\left(\frac{N\lambda^3}{V}\right)-1\right) }{\partial V}\nonumber\\
  &=\frac{k_BTN}{V}
  \end{align}
-As it is obvious equation(2) leads to the ideal gas law : $pV=Nk_BT$.
+As it is obvious equation(3) leads to the ideal gas law : $pV=Nk_BT$.
 
-
+\section{Molecular Dynamics: Lennard-Jones Fluid}
+\subsection{Implementation of the Lennard Jones Potential}
+The Lennard Jones Potential is $V_{LJ}(r)=4\epsilon\left(\left(\frac{\sigma}{r}\right)^{12}-\left(\frac{\sigma}{r}\right)^{6}\right) $
 
 \end{document}
 
@@ -145,7 +150,7 @@ As it is obvious equation(2) leads to the ideal gas law : $pV=Nk_BT$.
 \verb{x_init {}}
 
 \begin{figure}[H]
-	\resizebox{1\textwidth}{!{\input{../plots/NAME.pgf}}
+	\resizebox{1\textwidth}{!{\input{../plots/1_potentoal_00.pgf}}
 	\caption{CAPTION}\label{fig:NAME}
 \end{figure}
 \end{comment}
