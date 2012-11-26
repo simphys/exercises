@@ -1,0 +1,2 @@
+for n = 5: user 0.416s
+for n = 10: user 3.896s

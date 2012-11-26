@@ -1,0 +1,3 @@
+for n = 3: user 2.628s
+for n = 4: user 13.081s
+for n = 5: user 44.115s

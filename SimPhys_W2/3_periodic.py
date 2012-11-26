@@ -117,15 +117,12 @@ vtffile.write('atom 0:%s radius 0.5\n' % (N-1))
 vtffile.write('pbc %f %f %f\n' % (L,L,L))
 
 # main loop
-while t < tmax:
-    xfolded = x.copy()
-    xfolded -= np.floor(x/L)*L  #BECAUSE OF PBC
-    
-    x, v, f = step_vv(xfolded, v, f, dt)
+while t < tmax:    
+    x, v, f = step_vv(x, v, f, dt)
     t += dt
     
     traj.append(x.copy())
-    Es.append(compute_energy(xfolded, v))
+    Es.append(compute_energy(x, v))
     
     # write out that a new timestep starts
     vtffile.write('timestep\n')
