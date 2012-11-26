@@ -3,14 +3,9 @@
 
 from __future__ import division
 import numpy as np
+from libs.simlib import Plotter
 
-# ---- this section is usefull everytime ----
-import os, sys
-sys.path.append('../libs')
-from evaluation import Plotter
-filename = os.path.splitext(os.path.basename(__file__))[0]
-p = Plotter(show = True, save = False, pgf = True, name=filename, directory = '')
-# -------------------------------------------
+p = Plotter(show = True, save = False, pgf = True, name='2_ljbillards', directory = '')
 
 # ==== DEFINITIONS ====
 EPS = 1

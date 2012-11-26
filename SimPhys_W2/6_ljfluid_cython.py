@@ -1,12 +1,21 @@
+#!/usr/bin/python2
+# -*- coding:utf-8 -*-
+
+from __future__ import division
 from numpy import *
-from matplotlib.pyplot import *
-from lj import *
+from libs.cython1.lj import *
+from libs.simlib import Plotter
+import sys
+
+p = Plotter(show = True, save = False, pgf = True, name='6_ljfluid_cython', directory = '')
+
 
 # CONSTANTS
 # density
 density = 0.7
 # number of particles per side
-n = 3
+if len(sys.argv) == 2 and sys.argv[1].isdigit(): n = int(sys.argv[1])
+else: n = 3
 # timestep
 dt = 0.01
 # length of run
@@ -81,11 +90,11 @@ while t < tmax:
     x, v, f = step_vv(x, v, f, dt)
     t += dt
 
-    print "t=%s" % t
-
-    #    E = compute_energy(x, v)
-    #ts.append(t)
-    #Es.append(E)
+    E = compute_energy(x, v)
+    ts.append(t)
+    Es.append(E)
+    
+    print "t=%s, E=%s" % (t, E)
 
     # write out that a new timestep starts
     vtffile.write('timestep\n')
@@ -95,5 +104,6 @@ while t < tmax:
 
 vtffile.close()
 
-#plot(ts, Es)
-#show()
+p.new()
+p.plot(ts, Es)
+p.make()

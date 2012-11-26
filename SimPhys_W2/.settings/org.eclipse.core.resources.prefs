@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
-encoding//4_cython1/ljfluid.py=utf-8
+encoding//libs/__init__.py=utf-8
+encoding//libs/simlib/__init__.py=utf-8
+encoding//libs/simlib/plotter.py=utf-8
 encoding/1_potential.py=utf-8
 encoding/2_ljbillards.py=utf-8
 encoding/3_periodic.py=utf-8
 encoding/4_ljfluid.py=utf-8
+encoding/6_ljfluid_cython.py=utf-8
+encoding/7_ljfluid_lists.py=utf-8

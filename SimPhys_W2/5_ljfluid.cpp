@@ -120,11 +120,7 @@ void step_vv(double *x, double *v, double *f, double dt) {
 int main(int argc, char *argv[]) {
   // Constants
   const double density = 0.7;
-
-  int tmp = 3;
-  if (argc == 2) tmp = atoi(argv[1]);
-  const int n = tmp;
-
+  const int n = (argc == 2) ? atoi(argv[1]) : 3;
   const double dt = 0.01;
   const double tmax = 1.0;
   rcut = 2.5;
@@ -166,7 +162,7 @@ int main(int argc, char *argv[]) {
   vtffile << "atom 0:" << (N-1) << " radius 0.5" << endl;
   vtffile << "unitcell " << L << " " << L << " " << L << endl;
 
-  ofstream datfile("ljfluid_c.dat");
+  ofstream datfile("./data/ljfluid_c.dat");
 
   while (t < tmax) {
     step_vv(x, v, f, dt);

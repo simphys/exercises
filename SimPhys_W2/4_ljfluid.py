@@ -4,14 +4,9 @@
 from __future__ import division
 import numpy as np
 import sys
+from libs.simlib import Plotter
 
-# ---- this section is usefull everytime ----
-import os
-sys.path.append('../libs')
-from evaluation import Plotter
-filename = os.path.splitext(os.path.basename(__file__))[0]
-p = Plotter(show = True, save = False, pgf = True, name=filename, directory = '')
-# -------------------------------------------
+p = Plotter(show = True, save = False, pgf = True, name='4_ljfluid', directory = '')
 
 # ==== DEFINITIONS ====
 # CONSTANTS
@@ -142,7 +137,7 @@ while t < tmax:
     t += dt
 
     E = compute_energy(x, v, L)
-    #print "t=%s, E=%s" % (t, E)
+    print "t=%s, E=%s" % (t, E)
 
     ts.append(t)
     Es.append(E)
@@ -154,6 +149,7 @@ while t < tmax:
         vtffile.write("%s %s %s\n" % (x[0,i], x[1,i], x[2,i]))
 
 vtffile.close()
+
 p.new()
 p.plot(ts, Es)
 p.make()
