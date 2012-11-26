@@ -1,0 +1,8 @@
+for n =  5: user 0.148s
+for n =  6: user 0.324s
+for n =  7: user 0.584s
+for n =  8: user 1.052s
+for n =  9: user 1.892s
+for n = 10: user 3.116s
+for n = 11: user 5.116s
+for n = 12: user 8.121s
