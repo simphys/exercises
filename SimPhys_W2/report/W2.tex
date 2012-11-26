@@ -149,7 +149,8 @@ Consequently the force being the negative gradient of the potential $V_{LJ}$ is 
 \lstinputlisting[frame=single,label=LJ_Force,caption=Function compute\_lj\_force]{../code_snippets/compute_lj_force.py}
 To compute the plot of the potential and the first component of the force against d the following routine was implemented:
 \lstinputlisting[frame=single,label=LJ_Force,caption=Computation of the potential and force]{../code_snippets/pot_force.py}
-%%% Hier fehlen noch 1-2 SŠtze zum Bild!
+Both, the plot of the potential and the force, show a steep increase for $x \rightarrow 0$ and become constant 0 for $x\rightarrow \infty$. This simply reflects the fact that the force and potential increase with declining distances for already small distances and that the interaction of two particles being far apart is negligible.
+
 \begin{figure}[H]
 	\resizebox{1\textwidth}{!}{\input{../plots/1_potential_00.pgf}}
 	\caption{LJ Potential}\label{fig:Potential_LJ}
@@ -236,11 +237,73 @@ n&time [s]\\ \midrule
 \end{center}
 
 It can be seen that the time needed to do the simulations is basically proportional to $n^3$ which would be expected as we have three nested for loops over $n$ in our computation of the positions on the cubic lattice and no other function has a higher complexity.
-
+\newpage
 \subsection{Pure C/C++}
 First we had to implement the function \verb compute_energy() in C:
-%\lstinputlisting[frame=single,label=Cubic Lattice,caption=Placing Particles on a Cubic Lattice]{../code_snippets/.py}
+\lstinputlisting[frame=single,label=compute energy,caption=Computing the energy]{../code_snippets/comp_e.py}
+The total energy is put in the file $ ljfluid\_c.dat$. From the values in the file it can be seen that the energy fluctuates during the simulation time about 5\%. This is supposedly because the system size L is quite small.
 
+\subsubsection{Timing}
+The measured timings are given in the following table:\\
+
+\begin{center}
+\begin{tabular}{c c}\toprule
+n&time [s]\\ \midrule
+5&0.148\\
+6&0.342\\
+7&0.584\\ 
+8&1.052\\
+9&1.892\\
+10&3.11\\
+11&5.11\\
+12&8.121\\ \bottomrule
+\end{tabular}
+\end{center}
+Compared to the timings in Python measured for $n\le5$ the timings of the C code are much lower even for $n>5$. 
+The comparison of the timings for $n=5$ shows the great difference between the run times of these two codes.
+As the Python code was running 44.11 s the C code only ran 0.148 s which is significantly lesser.
+Further more it can be observed that the time is not scaling with $n^3$ as in the Python code but seems to increase somehow quadratic. This can also be seen in the plot:
+\begin{figure}[H]
+\centering
+\includegraphics[width=12.0cm]{../plots/timing.png}
+\caption{Timing of the simulation evolving with $n$}
+\label{fig:Timing of the simulation}
+\end{figure}
+
+\subsection{Mixing C/C++ and Python}
+In thissection we mixed c and Python code. Our task was it to use the C code to measure the energy simulated with the code mixture. The resulting energy is:
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!}{\input{../plots/4_ljfluid_00.pgf}}
+	
+	\caption{Energy of the system}\label{fig:Energy of the system}
+\end{figure}
+Again it can be seen that the energy fluctuates a bit, but as the fluctuations are less than 1\%, it's basically constant.
+
+\subsubsection{Timing}
+
+\begin{center}
+\begin{tabular}{c c c}\toprule
+n&time C [s]&tim Cython[s]\\ \midrule
+5&0.148&0.416\\
+10&3.11&3.896\\ \bottomrule
+\end{tabular}
+\end{center}
+As it can be seen the timings for Cython are a bit greater than those for plain C, but Cython outperforms pure Python by far. As the variation in these two timings is quite small it can be said, that it is useful to use Cython as it's much more convenient than c and not significantly slower.
+\subsection{Neighborhood Lists}
+Using Cython we have up to now the problem that the scaling of the timings is still unfavorable. In order to improve this we introduced neighborhood lists. Which great effect these have on the simulation time can be seen in the following paragraph. 
+\subsubsection{Timings}
+\begin{center}
+\begin{tabular}{c c}\toprule
+n&time [s]\\ \midrule
+5&0.376\\
+10&1.352\\
+15&4.088\\ 
+20&9.777\\
+ \bottomrule
+\end{tabular}
+\end{center}
+If you compare the timings of the simulation with and without neighborhood lists for $n=5$ and $n=10$ it becomes clear that introducing neighborhood lists reduced the timing approximately by a factor 4 respectively 3  which is quite a lot. Therefore it is indeed useful and worthwhile to introduce neighborhood lists even though this means some more implementation. 
 
 \end{document}
 

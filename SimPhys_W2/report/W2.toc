@@ -9,4 +9,9 @@
 \contentsline {section}{\numberline {3}Lennard- Jones Fluid}{10}{section.3}
 \contentsline {subsection}{\numberline {3.1}Pure Python}{10}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Timings}{10}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}Pure C/C++}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.2}Pure C/C++}{11}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Timing}{11}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}Mixing C/C++ and Python}{12}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Timing}{13}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Neighborhood Lists}{13}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Timings}{13}{subsubsection.3.4.1}

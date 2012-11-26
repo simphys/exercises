@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.7.8)  26 NOV 2012 22:36
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.7.8)  27 NOV 2012 00:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -832,9 +832,6 @@ LaTeX Warning: Label `LJ_Force' multiply defined.
 
 LaTeX Warning: Label `fig:Energy' multiply defined.
 
-
-LaTeX Warning: Label `Cubic Lattice' multiply defined.
-
 )
 \openout1 = `W2.aux'.
 
@@ -1019,11 +1016,11 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 File: uni-34.def 2004/10/17 UCS: Unicode data U+2200..U+22FF
 ))
 (../plots/1_potential_01.pgf) [4] [5] (../plots/2_ljbillards_00.pgf)
-Overfull \hbox (578.15999pt too wide) in paragraph at lines 1219--169
+Overfull \hbox (578.15999pt too wide) in paragraph at lines 1219--170
  [][] 
  []
 
-<../plots/vmd_2_ljbillards/vmdscene.png, id=121, 671.50874pt x 837.1275pt>
+<../plots/vmd_2_ljbillards/vmdscene.png, id=146, 671.50874pt x 837.1275pt>
 File: ../plots/vmd_2_ljbillards/vmdscene.png Graphic file (type png)
 
 <use ../plots/vmd_2_ljbillards/vmdscene.png> (../plots/2_ljbillards_01.pgf)
@@ -1044,51 +1041,61 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 (../code_snippets/folding_x.py [7]) (../code_snippets/main_pbc.py)
 (../plots/3_periodic_00.pgf) (../plots/3_periodic_01.pgf) [8] [9]
 (../code_snippets/cubic_lattice.py)
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
-[10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
+[10] (../code_snippets/comp_e.py)
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+<../plots/timing.png, id=241, 578.16pt x 433.62pt>
+File: ../plots/timing.png Graphic file (type png)
+ <use ../plots/timing.png>
+[11] (../plots/4_ljfluid_00.pgf) [12 <../plots/timing.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
  (./W2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
 Package rerunfilecheck Info: File `W2.out' has not changed.
-(rerunfilecheck)             Checksum: 5DC14190840FE88010844FC3FEEC40D3;848.
+(rerunfilecheck)             Checksum: C10750922F1E09C0B5FBC8EFA9D9632B;1188.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17114 strings out of 493747
- 270649 string characters out of 3143547
- 951546 words of memory out of 3000000
- 19874 multiletter control sequences out of 15000+200000
- 13455 words of font info for 51 fonts, out of 3000000 for 9000
+ 17179 strings out of 493747
+ 271827 string characters out of 3143547
+ 951714 words of memory out of 3000000
+ 19899 multiletter control sequences out of 15000+200000
+ 14703 words of font info for 56 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,12n,43p,612b,1748s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
-sr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
-/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
-/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
-xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
-ve/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texliv
-e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive
-/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texliv
-e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
-010/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-10/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on W2.pdf (10 pages, 284419 bytes).
+</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/
+2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
+10/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/201
+0/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on W2.pdf (13 pages, 324959 bytes).
 PDF statistics:
- 297 PDF objects out of 1000 (max. 8388607)
- 264 compressed objects within 3 object streams
- 111 named destinations out of 1000 (max. 500000)
- 114 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

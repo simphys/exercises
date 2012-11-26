@@ -10,3 +10,8 @@
 \BOOKMARK [2][-]{subsection.3.1}{Pure Python}{section.3}% 10
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Timings}{subsection.3.1}% 11
 \BOOKMARK [2][-]{subsection.3.2}{Pure C/C++}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Timing}{subsection.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Mixing C/C++ and Python}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Timing}{subsection.3.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Neighborhood Lists}{section.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Timings}{subsection.3.4}% 17
