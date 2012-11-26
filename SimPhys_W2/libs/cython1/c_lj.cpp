@@ -93,13 +93,15 @@ extern "C" {
       }
 
       // sum up kinetic energy
+      // sum up kinetic energy
       for (int i=0; i < N; i++) {
       	double dot = 0;
-      	for (int d=0; d < 3; d++) {
-      		dot += v[i+d]*v[i+d];
-      	}
-          E_kin += 0.5 * dot;
+      	dot +=  v[i]*v[i];
+      	dot +=  v[i+N]*v[i+N];
+      	dot +=  v[i+2*N]*v[i+2*N];
+        E_kin += 0.5 * dot;
       }
+
       return E_pot + E_kin;
   }
 
