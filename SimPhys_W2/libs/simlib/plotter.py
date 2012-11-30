@@ -1,15 +1,21 @@
 #!/usr/bin/python2
 # -*- coding:utf-8 -*-
 
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import matplotlib
 matplotlib.use('GtkAgg')
+matplotlib.rcParams['text.usetex']=True
+matplotlib.rcParams['text.latex.unicode']=True
 import matplotlib.pyplot as p
 import numpy as np
 import os
 
 class Plot(object):
-    def __init__(self,title,name,xlabel,ylabel,xscale,yscale,aspect,show,save,pgf,directory):
+    def __init__(self,title,name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,directory):
         self.curves = []
         self.title = title
         self.name = name
@@ -19,83 +25,101 @@ class Plot(object):
         self.yscale = yscale
         self.aspect = aspect
         self.show = show
-        self.save = save
+        self.pdf = pdf
         self.pgf = pgf
         self.dir = directory
-    def addCurve(self,xdata,ydata,fmt,label):
-        self.curves.append([xdata,ydata,fmt,label])
+        self.legend = False
+        
+    def addCurve(self,*args, **kwargs):
+        self.curves.append([args,kwargs])
+        if 'label' in kwargs: self.legend = True
 
 class Plotter(object):
-    def __init__(self, show = True, save = False, pgf = False, name='', directory=''):
-        if not name: name = 'plot'
-        self.__global_show = show
-        self.__global_save = save
-        self.__global_pgf = pgf
-        self.__global_dir = directory
-        self.__global_name = name
+    def __init__(self, **kwargs):
+        self.__global_xlabel  = kwargs.get('xlabel','')
+        self.__global_ylabel  = kwargs.get('ylabel','')
+        self.__global_xscale  = kwargs.get('xscale','linear')
+        self.__global_yscale  = kwargs.get('yscale','linear')
+        self.__global_aspect  = kwargs.get('aspect','auto')
+        self.__global_show    = kwargs.get('show',True)
+        self.__global_pdf     = kwargs.get('pdf',False)
+        self.__global_pgf     = kwargs.get('pgf',False)
+        self.__global_direc   = kwargs.get('directory','./plots/')
+        self.__global_name    = kwargs.get('name','plot')
+        
         self.__reset()
-    def new(self, title='', name='', xlabel='', ylabel='', xscale='linear', yscale='linear', aspect='auto', show='nab', save='nab', pgf='nab', directory=''):
-        if show == 'nab': show = self.__global_show
-        if save == 'nab': save = self.__global_save
-        if pgf == 'nab': pgf = self.__global_pgf
-        if not title: title = name
-        if not directory: directory = self.__global_dir
-        self.__plots.append(Plot(title,name,xlabel,ylabel,xscale,yscale,aspect,show,save,pgf,directory))
+    
+    def new(self, **kwargs):
+        xlabel  = kwargs.get('xlabel',self.__global_xlabel)
+        ylabel  = kwargs.get('ylabel',self.__global_ylabel)
+        xscale  = kwargs.get('xscale',self.__global_xscale)
+        yscale  = kwargs.get('yscale',self.__global_yscale)
+        aspect  = kwargs.get('aspect',self.__global_aspect)
+        show    = kwargs.get('show',self.__global_show)
+        pdf     = kwargs.get('pdf',self.__global_pdf)
+        pgf     = kwargs.get('pgf',self.__global_pgf)
+        direc   = kwargs.get('directory',self.__global_direc)
+        name    = kwargs.get('name',self.__global_name+'_%0*i'%(2,self.__nr_id))
+        title   = kwargs.get('title',name)
+        
+        self.__plots.append(Plot(r'\verb#Plot %i) '%(self.__nr_id)+title+r'#',name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,direc))
+        
         if show: self.__nr_show += 1
-        if save: self.__nr_save += 1
-    def plot(self, xdata, ydata=None, fmt='-',label='' ):
-        self.__plots[-1].addCurve(xdata, ydata, fmt, label)
-    def make(self, ncols = 2, swindow = (17,10), sfile = (8,3)):
-        if self.__nr_show == 1: 
-            f, axarr = p.subplots(1, 1, figsize=swindow)
-            axarr = np.array([axarr])
-        elif self.__nr_show > 1:
-            nrows = int(np.ceil(1.*self.__nr_show/ncols))
-            f, axarr = p.subplots(nrows, ncols, figsize=swindow)
-        nplots = 0
+        self.__nr_id += 1
+    
+    def plot(self, *args, **kwargs):
+        self.__plots[-1].addCurve(*args, **kwargs)
+    
+    def make(self, ncols = 2, swindow = (15,10), sfile = (8,3)):        
         for n,plot in enumerate(self.__plots):
-            if plot.show:
-                self.__show(n,plot,axarr.flatten()[nplots])
-                nplots += 1
-            if plot.save: 
-                self.__save(n,plot,sfile)
+            if plot.pdf or plot.pgf: self.__save(n,plot,sfile)
+        
         if self.__nr_show > 0:
+            if self.__nr_show == 1: f, axarr = p.subplots(1, 1, figsize=swindow)
+            else: f, axarr = p.subplots(int(np.ceil(1.*self.__nr_show/ncols)), ncols, figsize=swindow)
+            nplots = 0
+            for n,plot in enumerate(self.__plots):
+                if plot.show:
+                    self.__show(n,plot,np.ravel(axarr)[nplots])
+                    nplots += 1
             f.tight_layout()
             p.show()
+        
         self.__reset()
+    
     def __show(self,n,plot, ax):
-        ax.set_title("Plot %i) "%(n)+plot.title,fontsize='medium', fontweight='bold', x=.05, y =1., ha = 'left', va='bottom')
+        ax.set_title(plot.title,fontsize='medium', fontweight='bold', x=.05, y =1., ha = 'left', va='bottom')
         ax.set_xlabel(plot.xlabel,fontsize='small')
         ax.set_ylabel(plot.ylabel,fontsize='small')
         ax.tick_params(labelsize='small')
         ax.set_xscale(plot.xscale)
         ax.set_yscale(plot.yscale)
         ax.grid()
-        for curve in plot.curves:
-            if curve[1] == None: ax.plot(curve[0], curve[2],label=curve[3])
-            else: ax.plot(curve[0], curve[1], curve[2],label=curve[3])
-        ax.legend(shadow=0, loc='best',fontsize='small')
+        for args, kwargs in plot.curves: ax.plot(*args, **kwargs)
         ax.set_aspect(plot.aspect)
+        if plot.legend: ax.legend(shadow=0, loc='best',fontsize='small')
+        
     def __save(self,n,plot,sfile):
         p.figure(figsize=sfile)
+        
         p.xlabel(plot.xlabel)
         p.ylabel(plot.ylabel)
         p.xscale(plot.xscale)
         p.yscale(plot.yscale)
         p.grid()
-        for curve in plot.curves: 
-            if curve[1] == None: p.plot(curve[0],curve[2], label=curve[3])
-            else: p.plot(curve[0],  curve[1], curve[2], label=curve[3])
-        p.rc('legend', fontsize='small')
-        p.legend(shadow=0, loc='best')
+        for args, kwargs in plot.curves: p.plot(*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
-        if not plot.dir: plot.dir = './plots/'
-        if not plot.name: plot.name = self.__global_name+'_%0*i'%(2,n)
+        if plot.legend:
+            p.rc('legend', fontsize='small')
+            p.legend(shadow=0, loc='best')
+        
         if not os.path.isdir(plot.dir): os.mkdir(plot.dir)
         if plot.pgf: p.savefig(plot.dir+plot.name+'.pgf')
-        else: p.savefig(plot.dir+plot.name+'.pdf', bbox_inches='tight')
+        if plot.pdf: p.savefig(plot.dir+plot.name+'.pdf', bbox_inches='tight')
+        
         p.close()
+        
     def __reset(self):
         self.__plots = []
         self.__nr_show = 0
-        self.__nr_save = 0
+        self.__nr_id = 0

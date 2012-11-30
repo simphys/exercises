@@ -7,7 +7,7 @@ from libs.cython2.lj import *
 from libs.simlib import Plotter
 import sys
 
-p = Plotter(show = True, save = False, pgf = True, name='7_ljfluid_lists', directory = '')
+p = Plotter(show = True, pdf = False, pgf = False, name='7_ljfluid_lists')
 
 
 # CONSTANTS
@@ -15,11 +15,11 @@ p = Plotter(show = True, save = False, pgf = True, name='7_ljfluid_lists', direc
 density = 0.7
 # number of particles per side
 if len(sys.argv) == 2 and sys.argv[1].isdigit(): n = int(sys.argv[1])
-else: n = 3
+else: n = 5
 # timestep
 dt = 0.01
 # length of run
-tmax = 1.0
+tmax = 50.0
 # cutoff length
 rcut = 2.5
 # potential shift
@@ -104,6 +104,8 @@ set_globals(L, N, rcut, shift)
 rebuild_neighbor_lists(x, rcut+skin)
 xup = x.copy()
 f = compute_forces(x)
+
+traj = np.array([x[0:2,:] - np.floor(x[0:2,:]/L)*L])
 while t < tmax:
     x, v, f, xup = step_vv(x, v, f, dt, xup)
     t += dt
@@ -120,9 +122,20 @@ while t < tmax:
     # write out the coordinates of the particles
     for i in range(N):
         vtffile.write("%s %s %s\n" % (x[0,i], x[1,i], x[2,i]))
+    
+    # for plotting
+    traj = np.append(traj,[x[0:2,:] - np.floor(x[0:2,:]/L)*L],axis=0)
 
 vtffile.close()
 
 p.new()
+for n in range(1,traj.shape[0]):
+    i = (traj[n-1,0,:] - traj[n,0,:])**2+(traj[n-1,1,:] - traj[n,1,:])**2 > 1
+    traj[n,:,i] = [None,None]
+p.plot(traj[:,0,:],traj[:,1,:],'-', lw = 2, alpha=0.3)
+p.plot(traj[0,0,:],traj[0,1,:],'ko', alpha=0.5 ,ms=10, mew = 4, label = 'start position')
+p.plot(traj[-1,0,:],traj[-1,1,:],'wo', alpha=0.5 ,ms=10, mew = 4, label = 'end position')
+
+p.new()
 p.plot(ts, Es)
-p.make()
+p.make(ncols=1)

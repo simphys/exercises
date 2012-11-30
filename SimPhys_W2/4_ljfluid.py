@@ -6,7 +6,7 @@ import numpy as np
 import sys
 from libs.simlib import Plotter
 
-p = Plotter(show = True, save = False, pgf = True, name='4_ljfluid', directory = '')
+p = Plotter(show = True, pdf = False, pgf = False, name='4_ljfluid')
 
 # ==== DEFINITIONS ====
 # CONSTANTS
@@ -35,6 +35,8 @@ x = np.zeros((3,N))
 L = n/density**(1/3)
 
 # - set up n*n*n particles on a cubic lattice
+'''
+# This can be done shorter, take a look below
 positions = np.arange(0.5, n + 0.5)/density**(1/3)
 for a in range(n):
     for b in range(n):
@@ -42,6 +44,19 @@ for a in range(n):
             x[0,(a*n*n)+(b*n)+c] = positions[a]
             x[1,(a*n*n)+(b*n)+c] = positions[b]
             x[2,(a*n*n)+(b*n)+c] = positions[c]
+'''
+i = 0
+for a in range(n):
+    for b in range(n):
+        for c in range(n):
+            x[:,i] = [a+.5, b+.5, c+.5]
+            i += 1
+x = x/density**(1/3)
+'''
+p.new()
+p.plot(np.array(x[0]),np.array(x[2]),'o')
+p.plot(np.array(x[0]),np.array(x[1]),'o')
+'''
 
 # random particle velocities
 np.random.seed(17)
@@ -153,4 +168,4 @@ vtffile.close()
 
 p.new()
 p.plot(ts, Es)
-p.make()
+p.make(ncols=1)

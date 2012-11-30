@@ -5,7 +5,7 @@ from __future__ import division
 import numpy as np
 from libs.simlib import Plotter
 
-p = Plotter(show = True, save = False, pgf = True, name='2_ljbillards', directory = '')
+p = Plotter(show = True, pdf = False, pgf = False, name='2_ljbillards')
 
 # ==== DEFINITIONS ====
 EPS = 1
