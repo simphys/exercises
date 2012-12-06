@@ -17,9 +17,9 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run
-tadd = 50.0
+tadd = 10.0
 # max length of all runs
-tges = 1000.0
+tges = 100.0
 # number of particles per side for cubic setup
 n = 10
 
@@ -33,9 +33,11 @@ rcut = 2.5
 # potential shift
 shift = -0.016316891136
 # VTF filename 
-vtffilename = "ljsim.vtf"
+vtffilename = "data/ljsim.vtf"
 # DATA filename 
-datafilename = "ljsim.dat"
+datafilename = "data/ljsim.dat"
+# STATE filename 
+statefilename = "data/ljsim.state"
 
 # COMPUTED CONSTANTS
 # total number of particles
@@ -82,10 +84,8 @@ def step_vv(x, v, f, dt, xup):
 def write_vtf(traj_new, vtffilename = vtffilename):    
     # check whether vtf file already exists
     if os.path.exists(vtffilename):
-        print "Opening %s to append new timesteps." % vtffilename
         vtffile = open(vtffilename, 'a')
     else:
-        print "Creating %s..." % vtffilename
         # create a new file and write the structure
         vtffile = open(vtffilename, 'w')
     
@@ -103,22 +103,18 @@ def write_vtf(traj_new, vtffilename = vtffilename):
             vtffile.write("%s %s %s\n" % (x[0,i], x[1,i], x[2,i]))
         
     # close vtf file
-    print "Closing %s." % vtffilename
     vtffile.close()
 
 """==== SIMULATION ===="""
 # ==== INITIALIZATION ====
 # SET UP SYSTEM OR LOAD IT
-# check whether data file already exists
-if os.path.exists(datafilename):
-    print "Reading data from %s." % datafilename
-    step, t, x, v, ts, Es, traj = np.load(datafilename)
-    print "Restarting simulation at t=%s..." % t
-
+if os.path.exists(statefilename):
+    step, t, x, v = np.load(statefilename)
+    
+    print "Old data was found. Restarting simulation at t=%s, step=%s with density=%s, L=%s, N=%s." % (t,step,density, L, N)
 else:
-    print "Starting simulation..."
-    t = 0.0
     step = 0
+    t = 0.0
     # particle positions on cubic lattice
     x = np.empty((3,N))
     count = 0
@@ -129,70 +125,80 @@ else:
                 count += 1
     x += 0.5
     x *= L/n
-    
     # random particle velocities
     v = 0.1*(2.0*np.random.random((3,N))-1.0)
-    
-    # start values
-    ts = np.array([])
-    Es = np.array([])
-    traj = np.array([x])
+
+    print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
 
 # calculate number of steps
 tadd = min(tges-t, tadd)
 steps = int(tadd//(dt*measurement_stride))
 
 # variables to cumulate data
-traj_new = np.empty((steps,3,N))
-ts_new = np.empty(steps)
-Es_new = np.empty(steps)
-
-print "density=%s, L=%s, N=%s" % (density, L, N)
+traj = np.empty((steps,3,N))
+ts = np.empty(steps)
+Es = np.empty(steps)
 
 # ==== CALCULATION ====
-# main loop
+print "Simulating until tmax=%s..." % (t + tadd)
+
 set_globals(L, N, rcut, shift)
 rebuild_neighbor_lists(x, rcut+skin)
 xup = x.copy()
 f = compute_forces(x)
 
-print "Simulating until tmax=%s..." % (t + tadd)
+# calculate or load the data from the time before the current run will start
+if os.path.exists(datafilename):
+    ts_old, Es_old, traj_old = np.load(datafilename)
+else:
+    ts_old = np.array([t])
+    Es_old = np.array([compute_energy(x, v)])
+    traj_old = np.array([x])
 
+# main loop
 for n in range(steps):
     for _i in range(measurement_stride):
         x, v, f, xup = step_vv(x, v, f, dt, xup)
         t += dt
         step += 1
-        
+    print "test"  
+    #E, Epot, Ekin = compute_energy(x, v)
+    #print Epot
     E = compute_energy(x, v)
     print "t=%s, E=%s" % (t, E)
     
     # store data
-    ts_new[n] = t
-    Es_new[n] = E
-    traj_new[n] = x
-
-ts = np.append(ts,ts_new,axis = 0)
-Es = np.append(Es,Es_new,axis = 0)
-traj = np.append(traj,traj_new,axis = 0)
+    ts[n] = t
+    Es[n] = E
+    traj[n] = x
+    
+print "Finished simulation."
 
 """==== SAVING ===="""
 # write out vtf
-write_vtf(traj_new)
+print "Writing vtf data to %s ..." % vtffilename
+write_vtf(traj)
+
+# write out state data
+print "Writing state data to %s ..." % statefilename
+statefile = open(statefilename, 'w')
+pickle.dump([step, t, x, v], statefile)
+statefile.close()
 
 # write out simulation data
-print "Writing simulation data to %s." % datafilename
+print "Writing simulation data to %s ..." % datafilename
+ts = np.append(ts_old,ts,axis = 0)
+Es = np.append(Es_old,Es,axis = 0)
+traj = np.append(traj_old,traj,axis = 0)
 datafile = open(datafilename, 'w')
-pickle.dump([(n-1)*measurement_stride, t, x, v, ts, Es, traj], datafile)
+pickle.dump([ts, Es, traj], datafile)
 datafile.close()
-
-print "Finished simulation."
 
 """==== PLOTTING ===="""
 print "Plotting..."
 
 # Trajectories
-p.new(aspect='equal')
+p.new(aspect='equal',xlabel='x-coordinate',ylabel='y-coordinate')
 traj -= np.floor(traj/L)*L
 
 p.plot([0,L,L,0,0],[0,0,L,L,0],'b-', lw=2)
@@ -213,7 +219,7 @@ for n in range(nmax):
     p.plot(tpart[-1,0,n],tpart[-1,1,n],'o', c = colors[n], alpha=0.8 ,ms=7, mew = 2)
 
 # Energy
-p.new()
+p.new(xlabel='time',ylabel='energy')
 p.plot(ts,Es)
 p.make(ncols= 2)
 

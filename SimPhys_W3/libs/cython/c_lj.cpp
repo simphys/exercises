@@ -11,6 +11,10 @@ extern "C" {
   double L;
   double rcut;
   double shift;
+  struct MyEnergies {
+	  MyEnergies(double E, double E_pot, double E_kin) : E(E), E_pot(E_pot), E_kin(E_kin) {}
+	  double E, E_pot, E_kin;
+  };
 
   void c_set_globals(double _L, int _N, double _rcut, double _shift) {
     N = _N;
@@ -20,7 +24,7 @@ extern "C" {
   }
 
   // compute the minimum image of particle i and j
-  double minimum_image(double *x, int i, int j, double rij[3]) {
+  void minimum_image(double *x, int i, int j, double rij[3]) {
     rij[0] = x[j] - x[i];
     rij[1] = x[j+N] - x[i+N];
     rij[2] = x[j+2*N] - x[i+2*N];
@@ -82,6 +86,7 @@ extern "C" {
     }
   }
 
+  //MyEnergies c_compute_energy(double *x, double *v) {
   double c_compute_energy(double *x, double *v) {
     double rij[3];
     double E_pot = 0.0;
@@ -105,6 +110,7 @@ extern "C" {
       E_kin += 0.5*(v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
 
+    //return MyEnergies(E_pot+E_kin, E_pot, E_kin);
     return E_pot+E_kin;
   }
 
