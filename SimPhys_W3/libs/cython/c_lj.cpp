@@ -86,8 +86,7 @@ extern "C" {
     }
   }
 
-  //MyEnergies c_compute_energy(double *x, double *v) {
-  double c_compute_energy(double *x, double *v) {
+  MyEnergies c_compute_energy(double *x, double *v) {
     double rij[3];
     double E_pot = 0.0;
     double E_kin = 0.0;
@@ -110,8 +109,7 @@ extern "C" {
       E_kin += 0.5*(v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
 
-    //return MyEnergies(E_pot+E_kin, E_pot, E_kin);
-    return E_pot+E_kin;
+    return MyEnergies(E_pot+E_kin, E_pot, E_kin);
   }
 
   // a list of the neighbor cells that need to be checked for

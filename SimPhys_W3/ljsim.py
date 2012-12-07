@@ -126,7 +126,7 @@ else:
     x += 0.5
     x *= L/n
     # random particle velocities
-    v = 0.1*(2.0*np.random.random((3,N))-1.0)
+    v = 1*(2.0*np.random.random((3,N))-1.0)
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
 
@@ -138,6 +138,8 @@ steps = int(tadd//(dt*measurement_stride))
 traj = np.empty((steps,3,N))
 ts = np.empty(steps)
 Es = np.empty(steps)
+Epots = np.empty(steps)
+Ekins = np.empty(steps)
 
 # ==== CALCULATION ====
 print "Simulating until tmax=%s..." % (t + tadd)
@@ -149,10 +151,13 @@ f = compute_forces(x)
 
 # calculate or load the data from the time before the current run will start
 if os.path.exists(datafilename):
-    ts_old, Es_old, traj_old = np.load(datafilename)
+    ts_old, Es_old, Epots_old, Ekins_old, traj_old = np.load(datafilename)
 else:
+    a,b,c= compute_energy(x, v)
     ts_old = np.array([t])
-    Es_old = np.array([compute_energy(x, v)])
+    Es_old = np.array([a])
+    Epots_old = np.array([b])
+    Ekins_old = np.array([c])
     traj_old = np.array([x])
 
 # main loop
@@ -160,16 +165,15 @@ for n in range(steps):
     for _i in range(measurement_stride):
         x, v, f, xup = step_vv(x, v, f, dt, xup)
         t += dt
-        step += 1
-    print "test"  
-    #E, Epot, Ekin = compute_energy(x, v)
-    #print Epot
-    E = compute_energy(x, v)
-    print "t=%s, E=%s" % (t, E)
+        step += 1 
+    E, Epot, Ekin = compute_energy(x, v)
+    print "t=%s, E=%s, Epot=%s, Ekin=%s" % (t, E, Epot, Ekin)
     
     # store data
     ts[n] = t
     Es[n] = E
+    Epots[n] = Epot
+    Ekins[n] = Ekin
     traj[n] = x
     
 print "Finished simulation."
@@ -189,9 +193,11 @@ statefile.close()
 print "Writing simulation data to %s ..." % datafilename
 ts = np.append(ts_old,ts,axis = 0)
 Es = np.append(Es_old,Es,axis = 0)
+Epots = np.append(Epots_old,Epots,axis = 0)
+Ekins = np.append(Ekins_old,Ekins,axis = 0)
 traj = np.append(traj_old,traj,axis = 0)
 datafile = open(datafilename, 'w')
-pickle.dump([ts, Es, traj], datafile)
+pickle.dump([ts, Es, Epots, Ekins, traj], datafile)
 datafile.close()
 
 """==== PLOTTING ===="""
@@ -218,9 +224,16 @@ for n in range(nmax):
     p.plot(tpart[:,0,n],tpart[:,1,n],'-', c = colors[n], alpha=0.8)
     p.plot(tpart[-1,0,n],tpart[-1,1,n],'o', c = colors[n], alpha=0.8 ,ms=7, mew = 2)
 
-# Energy
+# Total energy
 p.new(xlabel='time',ylabel='energy')
 p.plot(ts,Es)
+
+# Energies
+p.new(xlabel='time',ylabel='energy')
+p.plot(ts,Es)
+p.plot(ts,Ekins)
+p.plot(ts,Epots)
+
 p.make(ncols= 2)
 
 print "Finished."
