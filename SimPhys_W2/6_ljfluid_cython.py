@@ -7,7 +7,7 @@ from libs.cython1.lj import *
 from libs.simlib import Plotter
 import sys
 
-p = Plotter(show = True, save = False, pgf = True, name='6_ljfluid_cython', directory = '')
+p = Plotter(show = True, pdf = False, pgf = False, name='6_ljfluid_cython')
 
 
 # CONSTANTS
@@ -107,4 +107,4 @@ vtffile.close()
 
 p.new()
 p.plot(ts, Es)
-p.make()
+p.make(ncols=1)
