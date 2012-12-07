@@ -38,7 +38,6 @@ vtffilename = "data/ljsim.vtf"
 datafilename = "data/ljsim.dat"
 # STATE filename 
 statefilename = "data/ljsim.state"
-
 # COMPUTED CONSTANTS
 # total number of particles
 N = n*n*n

@@ -2,9 +2,9 @@
 # -*- coding:utf-8 -*-
 
 from __future__ import division
-import matplotlib
-matplotlib.use('GtkAgg')
-import matplotlib.pyplot as p
+#import matplotlib
+#matplotlib.use('GtkAgg')
+import matplotlib as p
 import numpy as np
 import os
 
