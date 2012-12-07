@@ -7,7 +7,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import matplotlib
-matplotlib.use('GtkAgg')
+#matplotlib.use('GtkAgg')
 matplotlib.rcParams['text.usetex']=True
 matplotlib.rcParams['text.latex.unicode']=True
 import matplotlib.pyplot as p
