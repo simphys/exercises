@@ -54,7 +54,7 @@ extern "C" {
     }
   }
 
-  void c_compute_forces(double *x, double *f) {
+  void c_compute_forces(double *x, double *f, double fmax) {
     double rij[3];
     double fij[3];
 
@@ -80,6 +80,22 @@ extern "C" {
       f[j] += fij[0];
       f[j+N] += fij[1];
       f[j+2*N] += fij[2];
+    }
+
+    //force capping
+    if (fmax != 0) {
+		double fmaxsq = fmax*fmax;
+		for (int i = 0; i < N; i++) {
+		  double normsq = f[i]*f[i] + f[i+N]*f[i+N] + f[i+2*N]*f[i+2*N];
+		  if (normsq > fmaxsq) {
+			  double k = sqrt(fmaxsq/normsq);
+			  f[i] *= k;
+			  f[i+N] *= k;
+			  f[i+2*N] *= k;
+			  //double normsq2 = f[i]*f[i] + f[i+N]*f[i+N] + f[i+2*N]*f[i+2*N];
+			  //printf ("capped by fmaxsq =%f, normsq =%f: now %f \n", fmaxsq, normsq, normsq2);
+		  }
+		}
     }
   }
 
@@ -130,7 +146,7 @@ extern "C" {
 
 	  minimum_image(x, i, j, rij);
 	  compute_lj_force(rij, fij);
-	  pressure -= rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
+	  pressure += rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
 	}
 	pressure /= (L*L*L);
 

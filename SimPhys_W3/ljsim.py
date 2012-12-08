@@ -17,11 +17,15 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run
-tadd = 500.0
+tadd = 10.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
 n = 10
+
+NEWRUN = False
+RANDOM = False
+FCAP = False
 
 # SIMULATION CONSTANTS
 # skin size
@@ -32,6 +36,8 @@ measurement_stride = 100
 rcut = 2.5
 # potential shift
 shift = -0.016316891136
+# force limit
+fmax = 10
 # VTF filename 
 vtffilename = "data/ljsim.vtf"
 # DATA filename 
@@ -52,7 +58,7 @@ np.random.seed(42)
 
 """==== FUNCTIONS ===="""
 def step_vv(x, v, f, dt, xup):
-    global rcut, skin
+    global rcut, skin, fmax
 
     # update positions
     x += v*dt + 0.5*f * dt*dt
@@ -73,7 +79,7 @@ def step_vv(x, v, f, dt, xup):
     v += 0.5*f * dt
         
     # compute new forces
-    f = compute_forces(x)
+    f = compute_forces(x,fmax)
     # we assume that m=1 for all particles
 
     # second half update of the velocity
@@ -110,28 +116,38 @@ def compute_temperature(Ekin, N = N):
 
 """==== SIMULATION ===="""
 # ==== INITIALIZATION ====
+if NEWRUN:
+    if os.path.exists(vtffilename): os.remove(vtffilename)
+    if os.path.exists(datafilename): os.remove(datafilename)
+    if os.path.exists(statefilename): os.remove(statefilename)
+
 # SET UP SYSTEM OR LOAD IT
 if os.path.exists(statefilename):
-    step, t, x, v = np.load(statefilename)
+    step, t, x, v, fmax = np.load(statefilename)
     
     print "Old data was found. Restarting simulation at t=%s, step=%s with density=%s, L=%s, N=%s." % (t,step,density, L, N)
 else:
     step = 0
     t = 0.0
-    # particle positions on cubic lattice
-    x = np.empty((3,N))
-    count = 0
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                x[:,count] = [i, j, k]
-                count += 1
-    x += 0.5
-    x *= L/n
+    if RANDOM:
+        x = L*np.random.random((3,N))
+    else:
+        # particle positions on cubic lattice
+        x = np.empty((3,N))
+        count = 0
+        for i in range(n):
+            for j in range(n):
+                for k in range(n):
+                    x[:,count] = [i, j, k]
+                    count += 1
+        x += 0.5
+        x *= L/n
     # random particle velocities
     v = 1*(2.0*np.random.random((3,N))-1.0)
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
+
+if not FCAP: fmax = 0
 
 # calculate number of steps
 tadd = min(tges-t, tadd)
@@ -152,7 +168,7 @@ print "Simulating until tmax=%s..." % (t + tadd)
 set_globals(L, N, rcut, shift)
 rebuild_neighbor_lists(x, rcut+skin)
 xup = x.copy()
-f = compute_forces(x)
+f = compute_forces(x,fmax)
 
 # calculate or load the data from the time before the current run will start
 if os.path.exists(datafilename):
@@ -188,6 +204,7 @@ for n in range(steps):
     Ts[n] = T
     Ps[n] = P
     traj[n] = x
+    fmax *= 1.1
     
 print "Finished simulation."
 
@@ -199,7 +216,7 @@ write_vtf(traj)
 # write out state data
 print "Writing state data to %s ..." % statefilename
 statefile = open(statefilename, 'w')
-pickle.dump([step, t, x, v], statefile)
+pickle.dump([step, t, x, v, fmax], statefile)
 statefile.close()
 
 # write out simulation data
@@ -230,7 +247,7 @@ i = range(traj.shape[2])
 np.random.shuffle(i)
 tpart = np.array(traj[:,:,i[:3]])
 for n in range(1,tpart.shape[0]):
-    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > 50
+    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > L*L*.9
     tpart[n,:,i] = [None,None,None]
 nmax = tpart.shape[2]
 cm = cm.get_cmap('Dark2')
