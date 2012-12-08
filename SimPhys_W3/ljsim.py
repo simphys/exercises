@@ -17,7 +17,7 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run
-tadd = 10.0
+tadd = 800.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
@@ -143,7 +143,7 @@ else:
         x += 0.5
         x *= L/n
     # random particle velocities
-    v = 1*(2.0*np.random.random((3,N))-1.0)
+    v = 0.1*(2.0*np.random.random((3,N))-1.0)
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
 
@@ -247,7 +247,7 @@ i = range(traj.shape[2])
 np.random.shuffle(i)
 tpart = np.array(traj[:,:,i[:3]])
 for n in range(1,tpart.shape[0]):
-    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > L*L*.9
+    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > L*L*0.5
     tpart[n,:,i] = [None,None,None]
 nmax = tpart.shape[2]
 cm = cm.get_cmap('Dark2')
