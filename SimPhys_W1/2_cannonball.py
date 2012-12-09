@@ -3,8 +3,8 @@
 
 from __future__ import division
 import numpy as np
-import matplotlib
-matplotlib.use('GtkAgg')
+#import matplotlib
+#matplotlib.use('GtkAgg')
 import matplotlib.pyplot as p
 import os
 
