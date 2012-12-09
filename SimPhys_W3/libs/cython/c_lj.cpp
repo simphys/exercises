@@ -140,6 +140,7 @@ extern "C" {
     	pressure += (v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
 
+    pressure /= 3
     // add up forces part
     vector<int>::iterator it = verlet_list.begin();
 	vector<int>::iterator end = verlet_list.end();
@@ -154,7 +155,7 @@ extern "C" {
 	  compute_lj_force(rij, fij);
 	  pressure += rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
 	}
-	pressure /= (L*L*L*3);
+	pressure /= (L*L*L);
 
     return pressure;
   }
