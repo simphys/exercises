@@ -1,0 +1,10 @@
+libs/cython/build
+libs/cython/lj.c
+libs/cython/lj.so
+data/*
+
+#IDE files to ignore (Netbeans, Eclipse)
+nbproject/private/
+.classpath
+.project
+.settings

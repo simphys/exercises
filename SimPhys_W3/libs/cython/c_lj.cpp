@@ -128,11 +128,17 @@ extern "C" {
     double fij[3];
     double pressure = 0;
 
+    /*
+     * PV = N*kB*T-1/3*sum_{i<j} rij Fij
+     * PV = N*kB*T+1/3*sum_{i>j} rij Fij
+     * N*kB*T = 2/3* Ekin = 1/3*m*v^2
+     * ==> P = 1/(3*V)*(sum_{i} m*v^2 + sum_{j<i} rij Fij)
+     */
+
     // add up kinetic part
     for (int i = 0; i < N; i++) {
     	pressure += (v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
-    pressure /= 3;
 
     // add up forces part
     vector<int>::iterator it = verlet_list.begin();
@@ -148,7 +154,7 @@ extern "C" {
 	  compute_lj_force(rij, fij);
 	  pressure += rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
 	}
-	pressure /= (L*L*L);
+	pressure /= (L*L*L*3);
 
     return pressure;
   }

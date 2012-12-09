@@ -8,7 +8,7 @@ from libs.cython import set_globals, compute_forces, compute_energy, compute_pre
 from libs.simlib import Plotter
 from matplotlib import cm
 
-p = Plotter(show = True, pdf = False, pgf = False, name='ljfluid')
+p = Plotter(show = True, pdf = False, pgf = False, name='ljsim')
 
 """==== DEFINITIONS ===="""
 # SYSTEM CONSTANTS
@@ -16,8 +16,13 @@ p = Plotter(show = True, pdf = False, pgf = False, name='ljfluid')
 density = 0.316
 # timestep
 dt = 0.01
+<<<<<<< HEAD
 # max length of each run 800
 tadd = 100.0
+=======
+# max length of each run
+tadd = 20.0
+>>>>>>> a137a4eba0ee9cbbe2964c37b7d4c2653bc821b9
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
