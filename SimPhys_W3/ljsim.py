@@ -4,7 +4,7 @@
 from __future__ import division
 import os, pickle
 import numpy as np
-from libs.cython import set_globals, compute_forces, compute_energy, rebuild_neighbor_lists
+from libs.cython import set_globals, compute_forces, compute_energy, compute_pressure, rebuild_neighbor_lists
 from libs.simlib import Plotter
 from matplotlib import cm
 
@@ -17,11 +17,15 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run
-tadd = 10.0
+tadd = 800.0
 # max length of all runs
-tges = 100.0
+tges = 1000.0
 # number of particles per side for cubic setup
 n = 10
+
+NEWRUN = False
+RANDOM = False
+FCAP = False
 
 # SIMULATION CONSTANTS
 # skin size
@@ -32,6 +36,8 @@ measurement_stride = 100
 rcut = 2.5
 # potential shift
 shift = -0.016316891136
+# force limit
+fmax = 10
 # VTF filename 
 vtffilename = "data/ljsim.vtf"
 # DATA filename 
@@ -51,7 +57,7 @@ np.random.seed(42)
 
 """==== FUNCTIONS ===="""
 def step_vv(x, v, f, dt, xup):
-    global rcut, skin
+    global rcut, skin, fmax
 
     # update positions
     x += v*dt + 0.5*f * dt*dt
@@ -72,7 +78,7 @@ def step_vv(x, v, f, dt, xup):
     v += 0.5*f * dt
         
     # compute new forces
-    f = compute_forces(x)
+    f = compute_forces(x,fmax)
     # we assume that m=1 for all particles
 
     # second half update of the velocity
@@ -103,31 +109,44 @@ def write_vtf(traj_new, vtffilename = vtffilename):
         
     # close vtf file
     vtffile.close()
+    
+def compute_temperature(Ekin, N = N):    
+    return 2/3*Ekin/N # T_red_units = kB*T/eps, eps = 1
 
 """==== SIMULATION ===="""
 # ==== INITIALIZATION ====
+if NEWRUN:
+    if os.path.exists(vtffilename): os.remove(vtffilename)
+    if os.path.exists(datafilename): os.remove(datafilename)
+    if os.path.exists(statefilename): os.remove(statefilename)
+
 # SET UP SYSTEM OR LOAD IT
 if os.path.exists(statefilename):
-    step, t, x, v = np.load(statefilename)
+    step, t, x, v, fmax = np.load(statefilename)
     
     print "Old data was found. Restarting simulation at t=%s, step=%s with density=%s, L=%s, N=%s." % (t,step,density, L, N)
 else:
     step = 0
     t = 0.0
-    # particle positions on cubic lattice
-    x = np.empty((3,N))
-    count = 0
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                x[:,count] = [i, j, k]
-                count += 1
-    x += 0.5
-    x *= L/n
+    if RANDOM:
+        x = L*np.random.random((3,N))
+    else:
+        # particle positions on cubic lattice
+        x = np.empty((3,N))
+        count = 0
+        for i in range(n):
+            for j in range(n):
+                for k in range(n):
+                    x[:,count] = [i, j, k]
+                    count += 1
+        x += 0.5
+        x *= L/n
     # random particle velocities
-    v = 1*(2.0*np.random.random((3,N))-1.0)
+    v = 0.1*(2.0*np.random.random((3,N))-1.0)
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
+
+if not FCAP: fmax = 0
 
 # calculate number of steps
 tadd = min(tges-t, tadd)
@@ -139,6 +158,8 @@ ts = np.empty(steps)
 Es = np.empty(steps)
 Epots = np.empty(steps)
 Ekins = np.empty(steps)
+Ts = np.empty(steps)
+Ps = np.empty(steps)
 
 # ==== CALCULATION ====
 print "Simulating until tmax=%s..." % (t + tadd)
@@ -146,17 +167,21 @@ print "Simulating until tmax=%s..." % (t + tadd)
 set_globals(L, N, rcut, shift)
 rebuild_neighbor_lists(x, rcut+skin)
 xup = x.copy()
-f = compute_forces(x)
+f = compute_forces(x,fmax)
 
 # calculate or load the data from the time before the current run will start
 if os.path.exists(datafilename):
-    ts_old, Es_old, Epots_old, Ekins_old, traj_old = np.load(datafilename)
+    ts_old, Es_old, Epots_old, Ekins_old, Ts_old, Ps_old, traj_old = np.load(datafilename)
 else:
-    a,b,c= compute_energy(x, v)
+    a,b,c = compute_energy(x, v)
+    d = compute_temperature(c)
+    e = compute_pressure(x,v)
     ts_old = np.array([t])
     Es_old = np.array([a])
     Epots_old = np.array([b])
     Ekins_old = np.array([c])
+    Ts_old = np.array([d])
+    Ps_old = np.array([e])
     traj_old = np.array([x])
 
 # main loop
@@ -164,16 +189,21 @@ for n in range(steps):
     for _i in range(measurement_stride):
         x, v, f, xup = step_vv(x, v, f, dt, xup)
         t += dt
-        step += 1 
-    E, Epot, Ekin = compute_energy(x, v)
-    print "t=%s, E=%s, Epot=%s, Ekin=%s" % (t, E, Epot, Ekin)
+        step += 1
+    E, Epot, Ekin = compute_energy(x,v)
+    T = compute_temperature(Ekin)
+    P = compute_pressure(x,v)
+    print "t=%s, E=%s, Epot=%s, Ekin=%s, T=%s, P=%s" % (t, E, Epot, Ekin,T,P)
     
     # store data
     ts[n] = t
     Es[n] = E
     Epots[n] = Epot
     Ekins[n] = Ekin
+    Ts[n] = T
+    Ps[n] = P
     traj[n] = x
+    fmax *= 1.1
     
 print "Finished simulation."
 
@@ -185,7 +215,7 @@ write_vtf(traj)
 # write out state data
 print "Writing state data to %s ..." % statefilename
 statefile = open(statefilename, 'w')
-pickle.dump([step, t, x, v], statefile)
+pickle.dump([step, t, x, v, fmax], statefile)
 statefile.close()
 
 # write out simulation data
@@ -194,9 +224,11 @@ ts = np.append(ts_old,ts,axis = 0)
 Es = np.append(Es_old,Es,axis = 0)
 Epots = np.append(Epots_old,Epots,axis = 0)
 Ekins = np.append(Ekins_old,Ekins,axis = 0)
+Ts = np.append(Ts_old,Ts,axis = 0)
+Ps = np.append(Ps_old,Ps,axis = 0)
 traj = np.append(traj_old,traj,axis = 0)
 datafile = open(datafilename, 'w')
-pickle.dump([ts, Es, Epots, Ekins, traj], datafile)
+pickle.dump([ts, Es, Epots, Ekins, Ts, Ps, traj], datafile)
 datafile.close()
 
 """==== PLOTTING ===="""
@@ -214,7 +246,7 @@ i = range(traj.shape[2])
 np.random.shuffle(i)
 tpart = np.array(traj[:,:,i[:3]])
 for n in range(1,tpart.shape[0]):
-    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > 50
+    i = (tpart[n-1,0,:] - tpart[n,0,:])**2+(tpart[n-1,1,:] - tpart[n,1,:])**2 > L*L*0.5
     tpart[n,:,i] = [None,None,None]
 nmax = tpart.shape[2]
 cm = cm.get_cmap('Dark2')
@@ -225,14 +257,22 @@ for n in range(nmax):
 
 # Total energy
 p.new(xlabel='time',ylabel='energy')
-p.plot(ts,Es)
+p.plot(ts,Es, label='Eges')
 
 # Energies
 p.new(xlabel='time',ylabel='energy')
-p.plot(ts,Es)
-p.plot(ts,Ekins)
-p.plot(ts,Epots)
+p.plot(ts,Ekins, label='Ekin')
+p.plot(ts,Es, label='Eges')
+p.plot(ts,Epots, label='Epot')
 
-p.make(ncols= 2)
+# Temperature
+p.new(xlabel='time',ylabel='temperature')
+p.plot(ts,Ts, label='T')
+
+# Pressure
+p.new(xlabel='time',ylabel='pressure')
+p.plot(ts,Ps, label='P')
+
+p.make(ncols= 3)
 
 print "Finished."

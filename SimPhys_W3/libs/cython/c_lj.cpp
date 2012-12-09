@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <stdio.h>
 using namespace std;
 
 extern "C" {
@@ -11,10 +12,6 @@ extern "C" {
   double L;
   double rcut;
   double shift;
-  struct MyEnergies {
-	  MyEnergies(double E, double E_pot, double E_kin) : E(E), E_pot(E_pot), E_kin(E_kin) {}
-	  double E, E_pot, E_kin;
-  };
 
   void c_set_globals(double _L, int _N, double _rcut, double _shift) {
     N = _N;
@@ -57,7 +54,7 @@ extern "C" {
     }
   }
 
-  void c_compute_forces(double *x, double *f) {
+  void c_compute_forces(double *x, double *f, double fmax) {
     double rij[3];
     double fij[3];
 
@@ -84,12 +81,26 @@ extern "C" {
       f[j+N] += fij[1];
       f[j+2*N] += fij[2];
     }
+
+    //force capping
+    if (fmax != 0) {
+		double fmaxsq = fmax*fmax;
+		for (int i = 0; i < N; i++) {
+		  double normsq = f[i]*f[i] + f[i+N]*f[i+N] + f[i+2*N]*f[i+2*N];
+		  if (normsq > fmaxsq) {
+			  double k = sqrt(fmaxsq/normsq);
+			  f[i] *= k;
+			  f[i+N] *= k;
+			  f[i+2*N] *= k;
+			  //double normsq2 = f[i]*f[i] + f[i+N]*f[i+N] + f[i+2*N]*f[i+2*N];
+			  //printf ("capped by fmaxsq =%f, normsq =%f: now %f \n", fmaxsq, normsq, normsq2);
+		  }
+		}
+    }
   }
 
-  MyEnergies c_compute_energy(double *x, double *v) {
+  double c_compute_energy(double *x, double *v, double *E_pot, double *E_kin) {
     double rij[3];
-    double E_pot = 0.0;
-    double E_kin = 0.0;
 
     // add up potential energy
     vector<int>::iterator it = verlet_list.begin();
@@ -101,15 +112,45 @@ extern "C" {
       ++it;
       
       minimum_image(x, i, j, rij);
-      E_pot += compute_lj_potential(rij);
+      *E_pot += compute_lj_potential(rij);
     }
 
     // add up kinetic energy
     for (int i = 0; i < N; i++) {
-      E_kin += 0.5*(v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
+      *E_kin += 0.5*(v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
 
-    return MyEnergies(E_pot+E_kin, E_pot, E_kin);
+    return (*E_pot)+(*E_kin);
+  }
+
+  double c_compute_pressure(double *x, double *v) {
+    double rij[3];
+    double fij[3];
+    double pressure = 0;
+
+    // add up kinetic part
+    for (int i = 0; i < N; i++) {
+    	pressure += (v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
+    }
+    pressure /= 3;
+
+    // add up forces part
+    vector<int>::iterator it = verlet_list.begin();
+	vector<int>::iterator end = verlet_list.end();
+	while (it != end) {
+	  int i = *it;
+	  ++it;
+	  int j = *it;
+	  ++it;
+	  //printf ("i = %d, j = %d \n", i, j);
+
+	  minimum_image(x, i, j, rij);
+	  compute_lj_force(rij, fij);
+	  pressure += rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
+	}
+	pressure /= (L*L*L);
+
+    return pressure;
   }
 
   // a list of the neighbor cells that need to be checked for

@@ -29,7 +29,7 @@ if len(sys.argv) == 2:
     print "Usage: python %s FILE" % sys.argv[0]
     datafilename = sys.argv[1]
 else:
-    datafilename = "data/ljsim.dat"
+    datafilename = "data/until1000/ljsim.dat"
 
 # check whether data file exists
 if not os.path.exists(datafilename):
@@ -38,7 +38,7 @@ if not os.path.exists(datafilename):
 
 print "Reading data from %s." % datafilename
 datafile = open(datafilename, 'r')
-ts, Es, Epots, Ekins, traj = pickle.load(datafile)
+ts, Es, Epots, Ekins, Ts, Ps, traj = pickle.load(datafile)
 datafile.close()
 
 """==== PLOTTING ===="""
@@ -67,14 +67,22 @@ for n in range(nmax):
 
 # Total energy
 p.new(xlabel='time',ylabel='energy')
-p.plot(ts,Es)
+p.plot(ts,Es, label='Eges')
 
 # Energies
 p.new(xlabel='time',ylabel='energy')
-p.plot(ts,Es)
-p.plot(ts,Ekins)
-p.plot(ts,Epots)
+p.plot(ts,Ekins, label='Ekin')
+p.plot(ts,Es, label='Eges')
+p.plot(ts,Epots, label='Epot')
 
-p.make(ncols= 2)
+# Temperature
+p.new(xlabel='time',ylabel='temperature')
+p.plot(ts,Ts, label='T')
+
+# Pressure
+p.new(xlabel='time',ylabel='pressure')
+p.plot(ts,Ps, label='P')
+
+p.make(ncols= 3)
 
 print "Finished."
