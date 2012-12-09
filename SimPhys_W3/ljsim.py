@@ -16,12 +16,14 @@ p = Plotter(show = True, pdf = False, pgf = False, name='ljfluid')
 density = 0.316
 # timestep
 dt = 0.01
-# max length of each run
-tadd = 800.0
+# max length of each run 800
+tadd = 100.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
 n = 10
+# Desired temperature{0.3, 1.0, 2.0}
+Tdes= 2.0
 
 NEWRUN = False
 RANDOM = False
@@ -141,7 +143,8 @@ else:
                     count += 1
         x += 0.5
         x *= L/n
-    # random particle velocities
+    
+    # random particle velocities -> new
     v = 0.1*(2.0*np.random.random((3,N))-1.0)
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
@@ -193,6 +196,8 @@ for n in range(steps):
     E, Epot, Ekin = compute_energy(x,v)
     T = compute_temperature(Ekin)
     P = compute_pressure(x,v)
+    #Velocity rescaling
+    v*=np.sqrt(Tdes/T)
     print "t=%s, E=%s, Epot=%s, Ekin=%s, T=%s, P=%s" % (t, E, Epot, Ekin,T,P)
     
     # store data

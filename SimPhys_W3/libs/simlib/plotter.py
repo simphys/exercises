@@ -97,7 +97,7 @@ class Plotter(object):
         ax.grid()
         for args, kwargs in plot.curves: ax.plot(*args, **kwargs)
         ax.set_aspect(plot.aspect)
-        if plot.legend: ax.legend(shadow=0, loc='best',fontsize='small')
+        if plot.legend: ax.legend(shadow=0, loc='best')
         
     def __save(self,n,plot,sfile):
         p.figure(figsize=sfile)

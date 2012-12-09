@@ -74,7 +74,7 @@ class Plotter(object):
         for curve in plot.curves:
             if curve[1] == None: ax.plot(curve[0], curve[2],label=curve[3])
             else: ax.plot(curve[0], curve[1], curve[2],label=curve[3])
-        ax.legend(shadow=0, loc='best',fontsize='small')
+        ax.legend(shadow=0, loc='best')
         ax.set_aspect(plot.aspect)
     def __save(self,n,plot,sfile):
         p.figure(figsize=sfile)
