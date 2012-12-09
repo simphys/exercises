@@ -29,7 +29,7 @@ if len(sys.argv) == 2:
     print "Usage: python %s FILE" % sys.argv[0]
     datafilename = sys.argv[1]
 else:
-    datafilename = "data/until1000/ljsim.dat"
+    datafilename = "data/ljsim.dat"
 
 # check whether data file exists
 if not os.path.exists(datafilename):
@@ -41,20 +41,40 @@ datafile = open(datafilename, 'r')
 ts, Es, Epots, Ekins, Ts, Ps, traj = pickle.load(datafile)
 datafile.close()
 
+# drop the beginning
+i = ts >=15
+Es=Es[i].copy()
+ts=ts[i].copy()
+Epots=Epots[i].copy()
+Ekins=Ekins[i].copy()
+Ts=Ts[i].copy()
+Ps=Ps[i].copy()
+traj=traj[i].copy()
+
 """==== Functions==== """
 def compute_running_average(O,M):
     length=np.shape(O)[0]
     av=[]
-    hlp = 1;
     for t in range(M-1,length):
         summe = 0.0
         for i in range(1,M+1):
-             summe+=O[t-M+i]
+            summe+=O[t-M+i]
         av.append(summe/M)
     return np.array(av)
 
-
 """==== PLOTTING ===="""
+# mean values
+meanEs=np.mean(Es[:10])
+print "meanEs=", meanEs
+meanEpots=np.mean(Epots[:10])
+print "meanEpots=", meanEpots
+meanEkins=np.mean(Ekins[:10])
+print "meanEkins=", meanEkins
+meanTs=np.mean(Ts[:10])
+print "meanTs=", meanTs
+meanPs=np.mean(Ps[:10])
+print "meanPs=", meanPs
+
 print "Plotting..."
 
 # Trajectories
@@ -90,6 +110,11 @@ p.plot(ts,Es, label='Eges')
 p.plot(ts10,Es10, label='running av 10')
 p.plot(ts100,Es100, label='running av 100')
 
+# Energies till time t=50
+p.new(xlabel='time',ylabel='energy')
+p.plot(ts[:50],Ekins[:50], label='Ekin')
+p.plot(ts[:50],Es[:50], label='Eges')
+p.plot(ts[:50],Epots[:50], label='Epot')
 
 # Energies
 # Averages
@@ -102,7 +127,6 @@ p.new(xlabel='time',ylabel='energy')
 p.plot(ts,Ekins, label='Ekin')
 p.plot(ts10,Ekins10, label='running av 10')
 p.plot(ts100,Ekins100, label='running av 100')
-
 
 p.plot(ts,Es, label='Eges')
 p.plot(ts,Epots, label='Epot')
@@ -128,29 +152,6 @@ p.plot(ts,Ps, label='P')
 p.plot(ts10,Ps10, label='running av 10')
 p.plot(ts100,Ps100, label='running av 100')
 
-# Energies till time t=50
-
-p.new(xlabel='time',ylabel='energy')
-p.plot(ts[:50],Ekins[:50], label='Ekin')
-
-
-p.plot(ts[:50],Es[:50], label='Eges')
-p.plot(ts[:50],Epots[:50], label='Epot')
-
-
 p.make(ncols= 3)
 
-meanEs=np.mean(Es[:10])
-print "meanEs=", meanEs
-meanEpots=np.mean(Epots[:10])
-print "meanEpots=", meanEpots
-meanEkins=np.mean(Ekins[:10])
-print "meanEkins=", meanEkins
-meanTs=np.mean(Ts[:10])
-print "meanTs=", meanTs
-meanPs=np.mean(Ps[:10])
-print "meanPs=", meanPs
-
-
 print "Finished."
-

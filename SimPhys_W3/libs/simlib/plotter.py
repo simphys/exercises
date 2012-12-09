@@ -10,6 +10,7 @@ import matplotlib
 #matplotlib.use('GtkAgg')
 matplotlib.rcParams['text.usetex']=True
 matplotlib.rcParams['text.latex.unicode']=True
+matplotlib.rc('legend', fontsize='small')
 import matplotlib.pyplot as p
 import numpy as np
 import os
@@ -109,9 +110,7 @@ class Plotter(object):
         p.grid()
         for args, kwargs in plot.curves: p.plot(*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
-        if plot.legend:
-            p.rc('legend', fontsize='small')
-            p.legend(shadow=0, loc='best')
+        if plot.legend: p.legend(shadow=0, loc='best')
         
         if not os.path.isdir(plot.dir): os.mkdir(plot.dir)
         if plot.pgf:

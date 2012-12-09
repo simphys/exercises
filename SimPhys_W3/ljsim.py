@@ -16,13 +16,8 @@ p = Plotter(show = True, pdf = False, pgf = False, name='ljsim')
 density = 0.316
 # timestep
 dt = 0.01
-<<<<<<< HEAD
-# max length of each run 800
-tadd = 100.0
-=======
 # max length of each run
-tadd = 20.0
->>>>>>> a137a4eba0ee9cbbe2964c37b7d4c2653bc821b9
+tadd = 1000.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
@@ -31,8 +26,9 @@ n = 10
 Tdes= 2.0
 
 NEWRUN = False
-RANDOM = False
-FCAP = False
+RANDOM = True
+FCAP = True
+VRESCALE = True
 
 # SIMULATION CONSTANTS
 # skin size
@@ -201,9 +197,10 @@ for n in range(steps):
     E, Epot, Ekin = compute_energy(x,v)
     T = compute_temperature(Ekin)
     P = compute_pressure(x,v)
-    #Velocity rescaling
-    v*=np.sqrt(Tdes/T)
     print "t=%s, E=%s, Epot=%s, Ekin=%s, T=%s, P=%s" % (t, E, Epot, Ekin,T,P)
+    
+    #Velocity rescaling
+    if VRESCALE: v*=np.sqrt(Tdes/T)
     
     # store data
     ts[n] = t
