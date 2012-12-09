@@ -17,7 +17,7 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run
-tadd = 200.0
+tadd = 20.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
