@@ -83,6 +83,7 @@ p.plot(ts,Ts, label='T')
 p.new(xlabel='time',ylabel='pressure')
 p.plot(ts,Ps, label='P')
 
+## Hier scheitert's!
 p.make(ncols= 3)
 
 print "Finished."
