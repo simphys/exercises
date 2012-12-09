@@ -7,7 +7,7 @@ import numpy as np
 from libs.simlib import Plotter
 from matplotlib import cm
 
-p = Plotter(show = True, pdf = False, pgf = False, name='ljfluid')
+p = Plotter(show = True, pdf = False, pgf = False, name='ljsim')
 
 """==== DEFINITIONS ===="""
 # SYSTEM CONSTANTS
