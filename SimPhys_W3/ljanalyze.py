@@ -29,7 +29,7 @@ if len(sys.argv) == 2:
     print "Usage: python %s FILE" % sys.argv[0]
     datafilename = sys.argv[1]
 else:
-    datafilename = "data/ljsim.dat"
+    datafilename = "data/until1000withT/ljsim.dat"
 
 # check whether data file exists
 if not os.path.exists(datafilename):

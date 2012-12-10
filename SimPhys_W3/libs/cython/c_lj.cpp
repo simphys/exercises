@@ -140,7 +140,6 @@ extern "C" {
     	pressure += (v[i]*v[i] + v[i+N]*v[i+N] + v[i+2*N]*v[i+2*N]);
     }
 
-    pressure /= 3
     // add up forces part
     vector<int>::iterator it = verlet_list.begin();
 	vector<int>::iterator end = verlet_list.end();
