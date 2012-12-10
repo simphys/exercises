@@ -154,7 +154,7 @@ extern "C" {
 	  compute_lj_force(rij, fij);
 	  pressure += rij[0]*fij[0]+rij[1]*fij[1]+rij[2]*fij[2];
 	}
-	pressure /= (L*L*L);
+	pressure /= (L*L*L*3);
 
     return pressure;
   }
