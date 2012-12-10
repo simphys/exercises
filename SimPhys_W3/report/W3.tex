@@ -27,7 +27,7 @@
 
 %%%%%%%% DEFINITIONEN: Titelseite
 \author{April Cooper, Patrick Kreissl und Sebastian Weber}
-\title{Worksheet X: NAME}
+\title{Worksheet 3: Molecular Dynamics 2 and Observables}
 \publishers{University of Stuttgart}
 \date{\today}
 
@@ -74,13 +74,27 @@
 \section{Running averages}
 In this section we had to calculate the running averages of the measured observables.
 The resulting plot can be  seen below:
-
-%Hier fehlt ein Plot
+\begin{figure}[H]
+\centering
+\includegraphics[width=16.0cm]{../plots/t1000.png}
+\caption{Observables up to t=1000 and their running averages}
+\label{fig:running averages}
+\end{figure}
 
 It can be observed that the observables fluctuate during the first time steps immensely and after some time they still fluctuate a bit, but their mean values become quite constant. This is due to the fact that first the system is equilibrating wherefore the observables fluctuate quite much, after this process the system is in equilibrium and therefore the observables stay constant.
 The time the system needs to be equilibrated is about $t_equi=20$ time units.
+This can be easily seen as all the following graphs and especially all running averages showing a rather constant behavior .
+\begin{figure}[H]
+\centering
+\includegraphics[width=16.0cm]{../plots/Tequi.png}
+\caption{Observables up to t=1000 and their running averages}
+\label{fig:running averages}
+\end{figure}
+
+In this context it should be mentioned, that there is no running average for window size 100 as we only simulated 50 time steps.
 The mean values of the observables measured in one of our simulatios are:\newline
 \\
+\begin{center}
 \begin{tabular}{cc}
 \toprule
 Observable & Mean value\\
@@ -93,7 +107,8 @@ P&0.6\\
 \bottomrule
 
 \end{tabular}
-
+\end{center}
+\newpage
 \section{Velocity rescaling}
  \subsection{Derivation of the rescaling factor}
  It is: 
@@ -115,9 +130,29 @@ v_{des}=v_{mes} \sqrt{\frac{T_{des}}{T_{mes}}}
 Therefore you have to multiply the measured velocities $v_{mes}$ by the factor $\sqrt{\frac{T_{des}}{T_{mes}}}$ in order to get a correct velocity rescaling.
 \newline
 \newline
-This velocity rescaling has been implemented in the python part due to the fact that it's a simple multiplication with a factor and nothing numerically problematic.
+This velocity rescaling has been implemented in the python part due to the fact that it's a simple multiplication with a factor and nothing numerically problematic. Implementing it in C had only made this calculation more komlpex to implement and wouldn't bring a big simulation time reduction.
+The plots of all observables for $T_{des}$ = 0.3, 1.0 and 2.0 are the following:
+\begin{figure}
+\centering
+\includegraphics[width=16.0cm]{../plots/Tdes03.png}
+\caption{Observables for $T_{des}$ = 0.3 and their running averages}
+\label{fig:running averages Tdes03}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=16.0cm]{../plots/Tdes1.png}
+\caption{Observables for $T_{des}$ = 1.0 and their running averages}
+\label{fig:running averages Tdes1} 
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16.0cm]{../plots/Tdes2.png}
+\caption{Observables for $T_{des}$ = 2.0 and their running averages}
+\label{fig:running averages Tdes2}
+\end{figure}
+Comparing these three plots it can easily be seen that the total energies increase with the temperature which would be expected, due to the fact that the kinetic energy will increase with temperature.
+It also seems that equilibration will take longer for lower temperatures which can be explained by the lower average kinetic energy and therefore averagely slower movement of the particles.
 
-%Auch hier fehlt noch ein Plot
 \end{document}
 
 

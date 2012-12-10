@@ -16,7 +16,7 @@ import numpy as np
 import os
 
 class Plot(object):
-    def __init__(self,title,name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,directory):
+    def __init__(self,title,name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,loc,direc):
         self.curves = []
         self.title = title
         self.name = name
@@ -28,7 +28,8 @@ class Plot(object):
         self.show = show
         self.pdf = pdf
         self.pgf = pgf
-        self.dir = directory
+        self.loc = loc
+        self.dir = direc
         self.legend = False
         
     def addCurve(self,*args, **kwargs):
@@ -47,6 +48,7 @@ class Plotter(object):
         self.__global_pgf     = kwargs.get('pgf',False)
         self.__global_direc   = kwargs.get('directory','./plots/')
         self.__global_name    = kwargs.get('name','plot')
+        self.__global_loc     = kwargs.get('loc','best')
         
         self.__reset()
     
@@ -59,11 +61,12 @@ class Plotter(object):
         show    = kwargs.get('show',self.__global_show)
         pdf     = kwargs.get('pdf',self.__global_pdf)
         pgf     = kwargs.get('pgf',self.__global_pgf)
+        loc     = kwargs.get('loc',self.__global_loc)
         direc   = kwargs.get('directory',self.__global_direc)
         name    = kwargs.get('name',self.__global_name+'_%0*i'%(2,self.__nr_id))
         title   = kwargs.get('title',name)
         
-        self.__plots.append(Plot(r'\verb#Plot %i) '%(self.__nr_id)+title+r'#',name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,direc))
+        self.__plots.append(Plot(r'\verb#Plot %i) '%(self.__nr_id)+title+r'#',name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,loc,direc))
         
         if show: self.__nr_show += 1
         self.__nr_id += 1
@@ -71,11 +74,12 @@ class Plotter(object):
     def plot(self, *args, **kwargs):
         self.__plots[-1].addCurve(*args, **kwargs)
     
-    def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5)):        
+    def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5), savewindow=False):        
         for n,plot in enumerate(self.__plots):
             if plot.pdf or plot.pgf: self.__save(n,plot,sfile)
         
         if self.__nr_show > 0:
+            if savewindow: swindow = (8.2*1.2,11.6*1.2)
             if self.__nr_show == 1: f, axarr = p.subplots(1, 1, figsize=swindow)
             else: f, axarr = p.subplots(int(np.ceil(1.*self.__nr_show/ncols)), ncols, figsize=swindow)
             nplots = 0
@@ -84,8 +88,9 @@ class Plotter(object):
                     self.__show(n,plot,np.ravel(axarr)[nplots])
                     nplots += 1
             f.tight_layout()
+            if savewindow: f.savefig('./plot_window.pdf', bbox_inches='tight',dpi=150)
             p.show()
-        
+
         self.__reset()
     
     def __show(self,n,plot, ax):
@@ -98,7 +103,7 @@ class Plotter(object):
         ax.grid()
         for args, kwargs in plot.curves: ax.plot(*args, **kwargs)
         ax.set_aspect(plot.aspect)
-        if plot.legend: ax.legend(shadow=0, loc='best')
+        if plot.legend: ax.legend(shadow=0, loc=plot.loc)
         
     def __save(self,n,plot,sfile):
         p.figure(figsize=sfile)
@@ -110,7 +115,7 @@ class Plotter(object):
         p.grid()
         for args, kwargs in plot.curves: p.plot(*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
-        if plot.legend: p.legend(shadow=0, loc='best')
+        if plot.legend: p.legend(shadow=0, loc=plot.loc)
         
         if not os.path.isdir(plot.dir): os.mkdir(plot.dir)
         if plot.pgf:
@@ -125,4 +130,4 @@ class Plotter(object):
     def __reset(self):
         self.__plots = []
         self.__nr_show = 0
-        self.__nr_id = 0
+        self.__nr_id = 1
