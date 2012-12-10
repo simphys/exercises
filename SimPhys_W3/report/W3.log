@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.7.8)  10 DEC 2012 18:41
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.7.8)  10 DEC 2012 18:47
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -906,23 +906,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--119
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
 [2pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.119 \end{document}
+l.121 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{equation.2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.119 \end{document}
+l.121 \end{document}
                     ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
  (./W3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 119.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
 Package rerunfilecheck Info: File `W3.out' has not changed.
 (rerunfilecheck)             Checksum: E11617794FB715ACFF286A27E47964CF;187.
  ) 
