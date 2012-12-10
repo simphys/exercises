@@ -18,18 +18,17 @@ density = 0.316
 dt = 0.01
 # max length of each run 800
 tadd = 100.0
-# max length of each run
-tadd = 20.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
 n = 10
-# Desired temperature{0.3, 1.0, 2.0}
+# Desired temperature {0.3, 1.0, 2.0}
 Tdes= 2.0
 
 NEWRUN = False
-RANDOM = False
-FCAP = False
+RANDOMPOSITION = False
+FORCECAPPING = False
+VELOCITYRESCALING = True
 
 # SIMULATION CONSTANTS
 # skin size
@@ -132,7 +131,7 @@ if os.path.exists(statefilename):
 else:
     step = 0
     t = 0.0
-    if RANDOM:
+    if RANDOMPOSITION:
         x = L*np.random.random((3,N))
     else:
         # particle positions on cubic lattice
@@ -151,7 +150,7 @@ else:
 
     print "No old data was found. Starting simulation with density=%s, L=%s, N=%s." %(density, L, N)
 
-if not FCAP: fmax = 0
+if not FORCECAPPING: fmax = 0
 
 # calculate number of steps
 tadd = min(tges-t, tadd)
@@ -198,9 +197,10 @@ for n in range(steps):
     E, Epot, Ekin = compute_energy(x,v)
     T = compute_temperature(Ekin)
     P = compute_pressure(x,v)
-    #Velocity rescaling
-    v*=np.sqrt(Tdes/T)
     print "t=%s, E=%s, Epot=%s, Ekin=%s, T=%s, P=%s" % (t, E, Epot, Ekin,T,P)
+    
+    #Velocity rescaling
+    if VELOCITYRESCALING: v*=np.sqrt(Tdes/T)
     
     # store data
     ts[n] = t
@@ -247,7 +247,7 @@ traj -= np.floor(traj/L)*L
 
 p.plot([0,L,L,0,0],[0,0,L,L,0],'b-', lw=2)
 p.plot(traj[-1,0,:],traj[-1,1,:],'wo', alpha=0.1 ,ms=7, mew = 2)
-p.plot(traj[0,0,:],traj[0,1,:],'+', c=[0.8,0.8,0.8], alpha=0.1)
+p.plot(traj[0,0,:],traj[0,1,:],'+', c=[0.8,0.8,0.8], alpha=0.5)
 
 i = range(traj.shape[2])
 np.random.shuffle(i)
@@ -279,7 +279,7 @@ p.plot(ts,Ts, label='T')
 # Pressure
 p.new(xlabel='time',ylabel='pressure')
 p.plot(ts,Ps, label='P')
-
+    
 p.make(ncols= 3)
 
 print "Finished."
