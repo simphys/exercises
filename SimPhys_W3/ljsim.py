@@ -17,7 +17,7 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run 800
-tadd = 100.0
+tadd = 1000.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
@@ -28,7 +28,7 @@ Tdes= 2.0
 NEWRUN = False
 RANDOMPOSITION = False
 FORCECAPPING = False
-VELOCITYRESCALING = True
+VELOCITYRESCALING = False
 
 # SIMULATION CONSTANTS
 # skin size

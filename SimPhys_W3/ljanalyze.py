@@ -123,6 +123,7 @@ Ekins100=compute_running_average(Ekins,100)
 Epots10=compute_running_average(Epots,10)
 Epots100=compute_running_average(Epots,100)
 
+
 p.new(xlabel='time',ylabel='energy')
 p.plot(ts,Ekins, label='Ekin')
 p.plot(ts10,Ekins10, label='running av 10')
