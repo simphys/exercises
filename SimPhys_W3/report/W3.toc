@@ -1,3 +1,5 @@
-\contentsline {section}{\numberline {1}Running averages}{2}{section.1}
-\contentsline {section}{\numberline {2}Velocity rescaling}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Derivation of the rescaling factor}{4}{subsection.2.1}
+\contentsline {section}{\numberline {1}Functions for temperature and pressure }{2}{section.1}
+\contentsline {section}{\numberline {2}Running averages}{2}{section.2}
+\contentsline {section}{\numberline {3}Velocity rescaling}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Derivation of the rescaling factor}{3}{subsection.3.1}
+\contentsline {section}{\numberline {4}Force capping}{6}{section.4}

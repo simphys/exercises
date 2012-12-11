@@ -71,6 +71,16 @@
 \newpage
 
 % =============== Section ============
+\section{Functions for temperature and pressure }
+
+We were supposed to implement \verb+compute_temperature()+ and \verb+compute_pressure()+.
+\begin{itemize}
+\item \verb+compute_temperature()+ was implemented in the Python-part. Because it constits of very few operations it isn't time-consuming.
+\item \verb+compute_pressure()+ was implemented in the C-part. Here, you have to calculate a large sum in a large loop. Furthermore the access on the variable \verb+verlet_list+ is easier in the C-part than in the Python-part.
+\end{itemize}
+
+
+
 \section{Running averages}
 In this section we had to calculate the running averages of the measured observables.
 The resulting plot can be  seen below:
@@ -93,7 +103,6 @@ This can be easily seen as all the following graphs and especially all running a
 
 In this context it should be mentioned, that there is no running average for window size 100 as we only simulated 50 time steps.
 The mean values of the observables measured in one of our simulatios are:\newline
-\\
 \begin{center}
 \begin{tabular}{cc}
 \toprule
@@ -105,10 +114,9 @@ $E_{kin}$&3000.38\\
 T&2.00\\
 P&0.6\\
 \bottomrule
-
 \end{tabular}
 \end{center}
-\newpage
+
 \section{Velocity rescaling}
  \subsection{Derivation of the rescaling factor}
  It is: 
@@ -132,7 +140,7 @@ Therefore you have to multiply the measured velocities $v_{mes}$ by the factor $
 \newline
 This velocity rescaling has been implemented in the python part due to the fact that it's a simple multiplication with a factor and nothing numerically problematic. Implementing it in C had only made this calculation more komlpex to implement and wouldn't bring a big simulation time reduction.
 The plots of all observables for $T_{des}$ = 0.3, 1.0 and 2.0 are the following:
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=16.0cm]{../plots/Tdes03.png}
 \caption{Observables for $T_{des}$ = 0.3 and their running averages}
@@ -153,15 +161,17 @@ The plots of all observables for $T_{des}$ = 0.3, 1.0 and 2.0 are the following:
 Comparing these three plots it can easily be seen that the total energies increase with the temperature which would be expected, due to the fact that the kinetic energy will increase with temperature.
 It also seems that equilibration will take longer for lower temperatures which can be explained by the lower average kinetic energy and therefore averagely slower movement of the particles.
 
+\section{Force capping}
+Force capping was implemented in C-part because it belongs in the function \verb+c_compute_forces+. In addition it's a more or less complex operation when you want to do it the right way (the simple way would by to do force capping component by component).
+
+It's important to rescale the velocities regularly when you use force capping. In addition the initially calculated observables contain large errors so that you have to reject them for analyzing. If you give attention to both of these aspects, the new set up will work well.
+
 \end{document}
 
-
 % =============== Comments ============
-\begin{comment}
-\verb{x_init {}}
+\verb+x_init {}+
 
 \begin{figure}[H]
 	\resizebox{1\textwidth}{!{\input{../plots/NAME.pgf}}
 	\caption{CAPTION}\label{fig:NAME}
 \end{figure}
-\end{comment}

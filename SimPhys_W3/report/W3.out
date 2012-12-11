@@ -1,3 +1,5 @@
-\BOOKMARK [1][-]{section.1}{Running averages}{}% 1
-\BOOKMARK [1][-]{section.2}{Velocity rescaling}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Derivation of the rescaling factor}{section.2}% 3
+\BOOKMARK [1][-]{section.1}{Functions for temperature and pressure }{}
+\BOOKMARK [1][-]{section.2}{Running averages}{}
+\BOOKMARK [1][-]{section.3}{Velocity rescaling}{}
+\BOOKMARK [2][-]{subsection.3.1}{Derivation of the rescaling factor}{section.3}
+\BOOKMARK [1][-]{section.4}{Force capping}{}
