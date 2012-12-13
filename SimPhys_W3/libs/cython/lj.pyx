@@ -7,6 +7,7 @@ cimport numpy as np
 # declare the interface to the C code
 cdef extern void c_set_globals(double _L, int _N, double _rcut, double _shift)
 cdef extern void c_compute_forces(double *x, double *f, double fmax)
+cdef extern void c_compute_distances(double *x, double *r)
 cdef extern double c_compute_energy (double *x, double *v, double *E_pot, double *E_kin)
 cdef extern double c_compute_pressure (double *x, double *v)
 cdef extern double c_rebuild_neighbor_lists(double *x, double vlsize)
@@ -19,6 +20,12 @@ def compute_forces(np.ndarray[double, ndim=2, mode='c'] x not None, double fmax)
     N = x.shape[1]
     c_compute_forces (&x[0,0], &f[0,0], fmax)
     return f
+
+def compute_distances(np.ndarray[double, ndim=2, mode='c'] x not None):
+    N = x.shape[1]
+    cdef np.ndarray[double, ndim=1, mode='c'] r = np.zeros(N*(N-1)/2)
+    c_compute_distances (&x[0,0], &r[0])
+    return r
 
 def compute_energy(np.ndarray[double, ndim=2, mode='c'] x not None, 
                    np.ndarray[double, ndim=2, mode='c'] v not None):

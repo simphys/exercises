@@ -32,8 +32,8 @@ class Plot(object):
         self.dir = direc
         self.legend = False
         
-    def addCurve(self,*args, **kwargs):
-        self.curves.append([args,kwargs])
+    def addCurve(self,curvetype,*args, **kwargs):
+        self.curves.append([curvetype,args,kwargs])
         if kwargs.get('label',None): self.legend = True
 
 class Plotter(object):
@@ -72,7 +72,10 @@ class Plotter(object):
         self.__nr_id += 1
     
     def plot(self, *args, **kwargs):
-        self.__plots[-1].addCurve(*args, **kwargs)
+        self.__plots[-1].addCurve('plot', *args, **kwargs)
+        
+    def hist(self, *args, **kwargs):
+        self.__plots[-1].addCurve('hist', *args, **kwargs)
     
     def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5), savewindow=False):        
         for n,plot in enumerate(self.__plots):
@@ -101,7 +104,9 @@ class Plotter(object):
         ax.set_xscale(plot.xscale)
         ax.set_yscale(plot.yscale)
         ax.grid()
-        for args, kwargs in plot.curves: ax.plot(*args, **kwargs)
+        for curvetype, args, kwargs in plot.curves:
+            if curvetype == 'plot': ax.plot(*args, **kwargs)
+            else: ax.hist(*args, **kwargs)
         ax.set_aspect(plot.aspect)
         if plot.legend: ax.legend(shadow=0, loc=plot.loc)
         
@@ -113,7 +118,9 @@ class Plotter(object):
         p.xscale(plot.xscale)
         p.yscale(plot.yscale)
         p.grid()
-        for args, kwargs in plot.curves: p.plot(*args, **kwargs)
+        for curvetype, args, kwargs in plot.curves:
+            if curvetype == 'plot': p.plot(*args, **kwargs)
+            else: p.hist(*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
         if plot.legend: p.legend(shadow=0, loc=plot.loc)
         

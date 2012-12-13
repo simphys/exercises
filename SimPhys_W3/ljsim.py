@@ -4,7 +4,7 @@
 from __future__ import division
 import os, pickle
 import numpy as np
-from libs.cython import set_globals, compute_forces, compute_energy, compute_pressure, rebuild_neighbor_lists
+from libs.cython import set_globals, compute_forces, compute_distances, compute_energy, compute_pressure, rebuild_neighbor_lists
 from libs.simlib import Plotter
 from matplotlib import cm
 
@@ -17,18 +17,18 @@ density = 0.316
 # timestep
 dt = 0.01
 # max length of each run 800
-tadd = 50.0
+tadd = 20.0
 # max length of all runs
 tges = 1000.0
 # number of particles per side for cubic setup
 n = 10
 # Desired temperature {0.3, 1.0, 2.0}
-Tdes= 2.0
+Tdes= 10.0
 
-NEWRUN = False
-RANDOMPOSITION = False
-FORCECAPPING = False
-VELOCITYRESCALING = False
+NEWRUN = True
+RANDOMPOSITION = True
+FORCECAPPING = True
+VELOCITYRESCALING = True
 
 # SIMULATION CONSTANTS
 # skin size
@@ -279,7 +279,14 @@ p.plot(ts,Ts, label='T')
 # Pressure
 p.new(xlabel='time',ylabel='pressure')
 p.plot(ts,Ps, label='P')
-    
+
+# RDF
+datafile = open(datafilename, 'r')
+ts, Es, Epots, Ekins, Ts, Ps, traj2 = pickle.load(datafile)
+datafile.close()
+p.new(xlabel='distance',ylabel='probability')
+p.hist(compute_distances(traj2[-1]), bins=100, range=(0.8,5),normed=True,  log=False, label='RDF')
+
 p.make(ncols= 3)
 
 print "Finished."

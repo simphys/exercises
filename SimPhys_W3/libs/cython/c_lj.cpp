@@ -99,6 +99,25 @@ extern "C" {
     }
   }
 
+  void c_compute_distances(double *x, double *r) {
+	double rij[3];
+	double fij[3];
+
+	// set all distances to zero
+	for (int i = 0; i < N*(N-1)/2; i++)
+	  r[i] = 0.0;
+
+	// compute_distances
+	int n = 0;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < i; j++) {
+			minimum_image(x, i, j, rij);
+			r[n] = sqrt(rij[0]*rij[0] + rij[1]*rij[1] + rij[2]*rij[2]);
+			n++;
+		}
+	}
+  }
+
   double c_compute_energy(double *x, double *v, double *E_pot, double *E_kin) {
     double rij[3];
 
@@ -217,6 +236,7 @@ extern "C" {
       }
 
       // now loop over neighboring cells to generate Verlet list
+	  // #pragma omp parallel for
       for (int c0x = 0; c0x < n; c0x++) {
         for (int c0y = 0; c0y < n; c0y++) {
           for (int c0z = 0; c0z < n; c0z++) {
