@@ -43,12 +43,12 @@ def acf_n(x):
 
 # cross correlation via fft
 def ccr(a, b):
-#    return (2.*np.pi)**.5*np.fft.irfft(np.fft.rfft(a).conjugate()*np.fft.rfft(b))
     return np.fft.irfft(np.fft.rfft(a).conjugate()*np.fft.rfft(b))
 
 # autocorrelation via ccr
 def acf(x):
-    out = ccr(x, x)
+    x0 = x - np.mean(x)
+    out = ccr(x0, x0)
     return out/ out[0]
 
 
