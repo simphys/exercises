@@ -30,7 +30,6 @@ datafile.close()
 
 """==== DEFINITIONS ==="""
 
-
 # autocorrelation function, normalized
 def acf_n(x):
     N = len(x)
@@ -49,20 +48,46 @@ def ccr(a, b):
 def acf(x):
     x0 = x - np.mean(x)
     out = ccr(x0, x0)
-    return out/ out[0]
+    return out/out[0]
+
+# estimation of autocorrelation time
+def est_act(x):
+    tau = 0.5
+    kmax = 1
+    xcor = acf(x)
+    while kmax < 6*tau:
+        tau += xcor[kmax]
+        kmax += 1
+    return tau, kmax
+        
+# automatic error analysis via autocorrelation analysis
+def aea(x):
+    N = len(x)
+    tau, kmax = est_act(x)
+    errtau = tau*np.sqrt(2*(2*kmax+1)/N)
+    return np.mean(x), np.sqrt(np.var(x)), tau, errtau, int(12*(tau/errtau)**2)
+
+print "Computing estimated autocorrelation time"
+print aea(s0)
+print aea(s1)
+print aea(s2)
+print aea(s3)
+print aea(s4)
 
 
-"""=== AUTOCORRELATE ==="""
+
+"""=== AUTOCORRELATE DATASETS ==="""
 print "Computing normalized autocorrelation function of..."
-print "... series 1"
+print "... dataset 1"
 acf0 = acf(s0)
-print "... series 2"
+
+print "... dataset 2"
 acf1 = acf(s1)
-print "... series 3"
+print "... dataset 3"
 acf2 = acf(s2)
-print "... series 4"
+print "... dataset 4"
 acf3 = acf(s3)
-print "... series 5"
+print "... dataset 5"
 acf4 = acf(s4)
 
 
@@ -71,19 +96,19 @@ print "Plotting..."
 
 # first 1000 values of the data series s0, s1, s2, s3, s4 over time
 p.new(xlabel='time',ylabel='value')
-p.plot(s0[0:1000], label='series 1')
-p.plot(s1[0:1000], label='series 2')
-p.plot(s2[0:1000], label='series 3')
-p.plot(s3[0:1000], label='series 4')
-p.plot(s4[0:1000], label='series 5')
+p.plot(s0[0:1000], label='dataset 1')
+p.plot(s1[0:1000], label='dataset 2')
+p.plot(s2[0:1000], label='dataset 3')
+p.plot(s3[0:1000], label='dataset 4')
+p.plot(s4[0:1000], label='dataset 5')
 
 # plott autocorrelation of s0, s1, s2, s3, s4 over k
 p.new(xlabel='time',ylabel='normalized autocorrelation')
-p.plot(acf0[0:1000], label='acf of series 1')
-p.plot(acf1[0:1000], label='acf of series 2')
-p.plot(acf2[0:1000], label='acf of series 3')
-p.plot(acf3[0:1000], label='acf of series 4')
-p.plot(acf4[0:1000], label='acf of series 5')
+p.plot(acf0[0:1000], label='acf of dataset 1')
+p.plot(acf1[0:1000], label='acf of dataset 2')
+p.plot(acf2[0:1000], label='acf of dataset 3')
+p.plot(acf3[0:1000], label='acf of dataset 4')
+p.plot(acf4[0:1000], label='acf of dataset 5')
 
 p.make()
 
