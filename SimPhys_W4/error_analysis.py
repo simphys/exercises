@@ -30,6 +30,7 @@ datafile.close()
 
 """==== DEFINITIONS ==="""
 
+""" TODO: correct this function """
 # autocorrelation function, normalized
 def acf_n(x):
     N = len(x)
@@ -40,6 +41,8 @@ def acf_n(x):
     out /= out[0]
     return out
 
+""" TODO: integrated autocorrelation function """
+
 # cross correlation via fft
 def ccr(a, b):
     return np.fft.irfft(np.fft.rfft(a).conjugate()*np.fft.rfft(b))
@@ -47,6 +50,7 @@ def ccr(a, b):
 # autocorrelation via ccr
 def acf(x):
     x0 = x - np.mean(x)
+    x0 = np.append(x0, np.zeros((len(x))))
     out = ccr(x0, x0)
     return out/out[0]
 
@@ -59,7 +63,8 @@ def est_act(x):
         tau += xcor[kmax]
         kmax += 1
     return tau, kmax
-        
+
+""" TODO: check error of mean value """        
 # automatic error analysis via autocorrelation analysis
 def aea(x):
     N = len(x)
@@ -67,20 +72,42 @@ def aea(x):
     errtau = tau*np.sqrt(2*(2*kmax+1)/N)
     return np.mean(x), np.sqrt(np.var(x)), tau, errtau, int(12*(tau/errtau)**2)
 
-print "Computing estimated autocorrelation time"
-print aea(s0)
-print aea(s1)
-print aea(s2)
-print aea(s3)
-print aea(s4)
+# BINNING ANALYSIS
+# blocking of given time series x and block size k
+def block(x, k):
+    N = len(x)    
+    x = x[0:N-N%k]
+    N = len(x)
+    B = int(N/k)
+    out = np.zeros((B))
+    for i in range(B):
+        out[i] = np.mean(x[i*k:(i+1)*k])
+    return out
 
+# compute block variance for given time series x and block size k
+def cbv(x, k):
+    b = block(x, k)
+    b -= np.mean(b)
+    return np.sum(b*b)/(len(b)-1)
 
+# estimated autocorrelation time from blocking/blocking tau
+def est_act_b(x, k): return 0.5*k*cbv(x,k)/np.var(x)
+
+# estimate error of mean value using block variance
+def eem(x, k): return cbv(x, k)/(len(x)/k)
+
+# compute sequences of block variance for plotting
+def cbv_seq(x):
+    k = 2000
+    t = np.zeros((2000))
+    for i in range(k):
+        t[i] = est_act_b(x, k+1)
+    return t 
 
 """=== AUTOCORRELATE DATASETS ==="""
 print "Computing normalized autocorrelation function of..."
 print "... dataset 1"
 acf0 = acf(s0)
-
 print "... dataset 2"
 acf1 = acf(s1)
 print "... dataset 3"
@@ -90,6 +117,27 @@ acf3 = acf(s3)
 print "... dataset 5"
 acf4 = acf(s4)
 
+"""=== AUTOMATIC ERROR ANALYSIS ==="""
+print "Computing automatic error analysis function of..."
+print "| mean value | error of mean value | est. autocor. time | error of autocor. time | N_eff | "
+print "... dataset 1:", aea(s0)
+print "... dataset 2:", aea(s1)
+print "... dataset 3:", aea(s2)
+print "... dataset 4:", aea(s3)
+print "... dataset 5:", aea(s4)
+
+"""=== BINNING ANALYSIS ==="""
+print "Computing blocking taus of..."
+print "... dataset 1"
+bts0 = cbv_seq(s0)
+print "... dataset 2"
+bts1 = cbv_seq(s1)
+print "... dataset 3"
+bts2 = cbv_seq(s2)
+print "... dataset 4"
+bts3 = cbv_seq(s3)
+print "... dataset 5"
+bts4 = cbv_seq(s4)
 
 """==== PLOTTING ===="""
 print "Plotting..."
@@ -102,13 +150,21 @@ p.plot(s2[0:1000], label='dataset 3')
 p.plot(s3[0:1000], label='dataset 4')
 p.plot(s4[0:1000], label='dataset 5')
 
-# plott autocorrelation of s0, s1, s2, s3, s4 over k
+# plot autocorrelation of s0, s1, s2, s3, s4 over k
 p.new(xlabel='time',ylabel='normalized autocorrelation')
 p.plot(acf0[0:1000], label='acf of dataset 1')
 p.plot(acf1[0:1000], label='acf of dataset 2')
 p.plot(acf2[0:1000], label='acf of dataset 3')
 p.plot(acf3[0:1000], label='acf of dataset 4')
 p.plot(acf4[0:1000], label='acf of dataset 5')
+
+# plot blocking tau over block size k
+p.new(xlabel='block size k',ylabel='blocking tau')
+p.plot(bts0[0:2000], label='bt of dataset 1')
+p.plot(bts1[0:2000], label='bt of dataset 2')
+p.plot(bts2[0:2000], label='bt of dataset 3')
+p.plot(bts3[0:2000], label='bt of dataset 4')
+p.plot(bts4[0:2000], label='bt of dataset 5')
 
 p.make()
 
