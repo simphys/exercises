@@ -96,15 +96,15 @@ def cbv(x, k):
 def est_act_b(x, k): return 0.5*k*cbv(x,k)/np.var(x)
 
 # estimate error of mean value using block variance
-def eem(x, k): return cbv(x, k)/(len(x)/k)
+def eem(x, k): return np.sqrt(cbv(x, k)/(len(x)/k))
 
 # compute sequences of block variance for plotting
 def cbv_seq(x):
     k = 2000
     t = np.zeros((2000))
     for i in range(k):
-        t[i] = est_act_b(x, k+1)
-    return t 
+        t[i] = est_act_b(x, i+1)
+    return t
 
 """=== AUTOCORRELATE DATASETS ==="""
 print "Computing normalized autocorrelation function of..."
