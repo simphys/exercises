@@ -30,6 +30,11 @@ datafile.close()
 
 """==== DEFINITIONS ==="""
 
+def variance(x):
+    out = (x-np.mean(x))**2
+    out = np.sum(out)
+    return out/len(x)/(len(x)-1)
+
 """ TODO: correct this function """
 # autocorrelation function, normalized
 def acf_n(x):
@@ -42,7 +47,6 @@ def acf_n(x):
     return out
 
 """ TODO: integrated autocorrelation function """
-
 # cross correlation via fft
 def ccr(a, b):
     return np.fft.irfft(np.fft.rfft(a).conjugate()*np.fft.rfft(b))
@@ -65,14 +69,13 @@ def est_act(x):
         tau += xcor[kmax]
         kmax += 1
     return tau, kmax
-
-""" TODO: check error of mean value """        
+       
 # automatic error analysis via autocorrelation analysis
 def aea(x):
     N = len(x)
     tau, kmax = est_act(x)
     errtau = tau*np.sqrt(2*(2*kmax+1)/N)
-    return np.mean(x), np.sqrt(np.var(x)), tau, errtau, int(12*(tau/errtau)**2)
+    return np.mean(x), np.sqrt(variance(x)), tau, errtau, int(12*(tau/errtau)**2)
 
 # BINNING ANALYSIS
 # blocking of given time series x and block size k
@@ -96,7 +99,9 @@ def cbv(x, k):
 def est_act_b(x, k): return 0.5*k*cbv(x,k)/np.var(x)
 
 # estimate error of mean value using block variance
-def eem(x, k): return np.sqrt(cbv(x, k)/(len(x)/k))
+def eem(x, k): return np.sqrt(cbv(x, k)/(len(x)//k))
+
+print eem(s1,1)
 
 # compute sequences of block variance for plotting
 def cbv_seq(x):
@@ -104,6 +109,14 @@ def cbv_seq(x):
     t = np.zeros((2000))
     for i in range(k):
         t[i] = est_act_b(x, i+1)
+    return t
+
+# compute sequences of estimated error of mean value using block variance
+def eem_seq(x):
+    k = 2000
+    t = np.zeros((2000))
+    for i in range(k):
+        t[i] = eem(x, i+1)
     return t
 
 """=== AUTOCORRELATE DATASETS ==="""
@@ -141,6 +154,20 @@ bts3 = cbv_seq(s3)
 print "... dataset 5"
 bts4 = cbv_seq(s4)
 
+"""=== BINNING ANALYSIS ==="""
+print "Computing blocking estimated error of mean value of..."
+print "... dataset 1"
+ems0 = eem_seq(s0)
+print "... dataset 2"
+ems1 = eem_seq(s1)
+print "... dataset 3"
+ems2 = eem_seq(s2)
+print "... dataset 4"
+ems3 = eem_seq(s3)
+print "... dataset 5"
+ems4 = eem_seq(s4)
+
+
 """==== PLOTTING ===="""
 print "Plotting..."
 
@@ -167,6 +194,15 @@ p.plot(bts1[0:2000], label='bt of dataset 2')
 p.plot(bts2[0:2000], label='bt of dataset 3')
 p.plot(bts3[0:2000], label='bt of dataset 4')
 p.plot(bts4[0:2000], label='bt of dataset 5')
+
+# plot blocking eem over block size k
+p.new(xlabel='block size k',ylabel='est. err. of mean value')
+p.plot(ems0[0:2000], label='bt of dataset 1')
+p.plot(ems1[0:2000], label='bt of dataset 2')
+p.plot(ems2[0:2000], label='bt of dataset 3')
+p.plot(ems3[0:2000], label='bt of dataset 4')
+p.plot(ems4[0:2000], label='bt of dataset 5')
+
 
 p.make()
 
