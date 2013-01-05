@@ -148,7 +148,7 @@ extern "C" {
     double pressure = 0;
 
     /*
-     * PV = N*kB*T-1/3*sum_{i<j} rij Fij
+     * PV = N*kB*T+1/3*sum_{i<j} rij Fij
      * PV = N*kB*T+1/3*sum_{i>j} rij Fij
      * N*kB*T = 2/3* Ekin = 1/3*m*v^2
      * ==> P = 1/(3*V)*(sum_{i} m*v^2 + sum_{j<i} rij Fij)
