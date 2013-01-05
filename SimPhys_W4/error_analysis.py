@@ -197,11 +197,11 @@ p.plot(bts4[0:2000], label='bt of dataset 5')
 
 # plot blocking eem over block size k
 p.new(xlabel='block size k',ylabel='est. err. of mean value')
-p.plot(ems0[0:2000], label='bt of dataset 1')
-p.plot(ems1[0:2000], label='bt of dataset 2')
-p.plot(ems2[0:2000], label='bt of dataset 3')
-p.plot(ems3[0:2000], label='bt of dataset 4')
-p.plot(ems4[0:2000], label='bt of dataset 5')
+p.plot(ems0[0:2000], label='eem of dataset 1')
+p.plot(ems1[0:2000], label='eem of dataset 2')
+p.plot(ems2[0:2000], label='eem of dataset 3')
+p.plot(ems3[0:2000], label='eem of dataset 4')
+p.plot(ems4[0:2000], label='eem of dataset 5')
 
 
 p.make()
