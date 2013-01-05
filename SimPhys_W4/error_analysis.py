@@ -52,7 +52,9 @@ def acf(x):
     x0 = x - np.mean(x)
     x0 = np.append(x0, np.zeros((len(x))))
     out = ccr(x0, x0)
-    return out/out[0]
+    out = out [0:len(x)]
+    out /= np.arange(len(x), 0, -1)
+    return (out/out[0])
 
 # estimation of autocorrelation time
 def est_act(x):
@@ -152,11 +154,11 @@ p.plot(s4[0:1000], label='dataset 5')
 
 # plot autocorrelation of s0, s1, s2, s3, s4 over k
 p.new(xlabel='time',ylabel='normalized autocorrelation')
-p.plot(acf0[0:1000], label='acf of dataset 1')
-p.plot(acf1[0:1000], label='acf of dataset 2')
-p.plot(acf2[0:1000], label='acf of dataset 3')
-p.plot(acf3[0:1000], label='acf of dataset 4')
-p.plot(acf4[0:1000], label='acf of dataset 5')
+p.plot(acf0[0:100000], label='acf of dataset 1')
+p.plot(acf1[0:100000], label='acf of dataset 2')
+p.plot(acf2[0:100000], label='acf of dataset 3')
+p.plot(acf3[0:100000], label='acf of dataset 4')
+p.plot(acf4[0:100000], label='acf of dataset 5')
 
 # plot blocking tau over block size k
 p.new(xlabel='block size k',ylabel='blocking tau')
