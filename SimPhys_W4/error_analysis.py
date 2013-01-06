@@ -4,8 +4,8 @@
 from __future__ import division
 import os, sys, pickle
 import numpy as np
-import scipy as sp
-import scipy.signal
+#import scipy as sp
+#import scipy.signal
 from libs.simlib import Plotter
 
 """==== PARAMETERS ===="""
@@ -29,11 +29,12 @@ s0, s1, s2, s3, s4  = pickle.load(datafile)
 datafile.close()
 
 """==== DEFINITIONS ==="""
-
 def variance(x):
     out = (x-np.mean(x))**2
     out = np.sum(out)
     return out/len(x)/(len(x)-1)
+
+def mean(x): return np.sum(x)/len(x)
 
 """ TODO: correct this function """
 # autocorrelation function, normalized
@@ -41,11 +42,10 @@ def acf_n(x):
     N = len(x)
     out = np.zeros((N))
     for i in range(N):
-        out[i] = np.mean(x*np.roll(x, i))
+        out[i] = np.mean(x[i:N]*x[0:N-i])
     out -= np.mean(x)**2
-    out /= out[0]
-    return out
-
+    return out/out[0]
+              
 """ TODO: integrated autocorrelation function """
 # cross correlation via fft
 def ccr(a, b):
@@ -101,8 +101,6 @@ def est_act_b(x, k): return 0.5*k*cbv(x,k)/np.var(x)
 # estimate error of mean value using block variance
 def eem(x, k): return np.sqrt(cbv(x, k)/(len(x)//k))
 
-print eem(s1,1)
-
 # compute sequences of block variance for plotting
 def cbv_seq(x):
     k = 2000
@@ -122,6 +120,19 @@ def eem_seq(x):
 """=== AUTOCORRELATE DATASETS ==="""
 print "Computing normalized autocorrelation function of..."
 print "... dataset 1"
+acfn0 = acf_n(s0)
+print "... dataset 2"
+acfn1 = acf_n(s1)
+print "... dataset 3"
+acfn2 = acf_n(s2)
+print "... dataset 4"
+acfn3 = acf_n(s3)
+print "... dataset 5"
+acfn4 = acf_n(s4)
+
+
+print "Computing normalized autocorrelation function (via fft) of..."
+print "... dataset 1"
 acf0 = acf(s0)
 print "... dataset 2"
 acf1 = acf(s1)
@@ -134,7 +145,7 @@ acf4 = acf(s4)
 
 """=== AUTOMATIC ERROR ANALYSIS ==="""
 print "Computing automatic error analysis function of..."
-print "| mean value | error of mean value | est. autocor. time | error of autocor. time | N_eff | "
+print "| used dataset | mean value | error of mean value | est. autocor. time | error of autocor. time | N_eff | "
 print "... dataset 1:", aea(s0)
 print "... dataset 2:", aea(s1)
 print "... dataset 3:", aea(s2)
@@ -179,8 +190,16 @@ p.plot(s2[0:1000], label='dataset 3')
 p.plot(s3[0:1000], label='dataset 4')
 p.plot(s4[0:1000], label='dataset 5')
 
-# plot autocorrelation of s0, s1, s2, s3, s4 over k
+# plot autocorrelationof s0, s1, s2, s3, s4 over k
 p.new(xlabel='time',ylabel='normalized autocorrelation')
+p.plot(acfn0[0:100000], label='acf of dataset 1')
+p.plot(acfn1[0:100000], label='acf of dataset 2')
+p.plot(acfn2[0:100000], label='acf of dataset 3')
+p.plot(acfn3[0:100000], label='acf of dataset 4')
+p.plot(acfn4[0:100000], label='acf of dataset 5')
+
+# plot autocorrelation via fft  of s0, s1, s2, s3, s4 over k
+p.new(xlabel='time',ylabel='normalized autocorrelation via fft')
 p.plot(acf0[0:100000], label='acf of dataset 1')
 p.plot(acf1[0:100000], label='acf of dataset 2')
 p.plot(acf2[0:100000], label='acf of dataset 3')
