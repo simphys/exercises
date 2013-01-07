@@ -46,7 +46,16 @@ def acf_n(x):
     #out -= np.mean(x)**2
     return out/out[0]
               
-""" TODO: integrated autocorrelation function """
+# integrated autocorrelation function
+def acf_int(x):
+    N = len(x)
+    x0 = acf(x)
+    out = np.zeros((N))
+    for i in range(N):
+        if i == 0: out[i] = x0[0]
+        else: out[i] = out[i-1]+x0[i]
+    return out
+
 # cross correlation via fft
 def ccr(a, b):
     return np.fft.irfft(np.fft.rfft(a).conjugate()*np.fft.rfft(b))
@@ -117,6 +126,40 @@ def eem_seq(x):
         t[i] = eem(x, i+1)
     return t
 
+# WORKING, BUT VERY SLOW
+# blocking for jackknifing
+def block_j(x,k):
+    N = len(x)    
+    x = x[0:N-N%k]
+    N = len(x)
+    B = N//k
+    out = np.zeros((B,k))
+    for i in range(B):
+        out[i,:] = x[i*k:(i+1)*k]
+    return out
+
+# Jackknife error
+def jke(x, k):
+    xb = block_j(x, k)
+    #Nb = len(xb[:,0])
+    Nb = np.shape(xb)[0]
+    Oj = np.mean(x)
+    out = 0
+    for i in range(Nb):
+        h = (np.append(xb[0:i,:],xb[i+1:,:]) - Oj)
+        out += np.dot(h,h)
+    return np.sqrt(out*(Nb-1)/Nb)
+
+    
+# compute sequences of estimated error of mean value using block variance
+def jke_seq(x):
+    k = 2000
+    t = np.zeros((2000))
+    for i in range(k):
+        t[i] = jke(x, i+1)
+    return t
+
+
 """=== AUTOCORRELATE DATASETS ==="""
 print "Computing normalized autocorrelation function of..."
 print "... dataset 1"
@@ -130,7 +173,6 @@ acfn3 = acf_n(s3)
 print "... dataset 5"
 acfn4 = acf_n(s4)
 
-
 print "Computing normalized autocorrelation function (via fft) of..."
 print "... dataset 1"
 acf0 = acf(s0)
@@ -142,6 +184,18 @@ print "... dataset 4"
 acf3 = acf(s3)
 print "... dataset 5"
 acf4 = acf(s4)
+
+print "Computing integrated autocorrelation function (via fft) of..."
+print "... dataset 1"
+acfi0 = acf_int(s0)
+print "... dataset 2"
+acfi1 = acf_int(s1)
+print "... dataset 3"
+acfi2 = acf_int(s2)
+print "... dataset 4"
+acfi3 = acf_int(s3)
+print "... dataset 5"
+acfi4 = acf_int(s4)
 
 """=== AUTOMATIC ERROR ANALYSIS ==="""
 print "Computing automatic error analysis function of..."
@@ -165,7 +219,6 @@ bts3 = cbv_seq(s3)
 print "... dataset 5"
 bts4 = cbv_seq(s4)
 
-"""=== BINNING ANALYSIS ==="""
 print "Computing blocking estimated error of mean value of..."
 print "... dataset 1"
 ems0 = eem_seq(s0)
@@ -177,6 +230,20 @@ print "... dataset 4"
 ems3 = eem_seq(s3)
 print "... dataset 5"
 ems4 = eem_seq(s4)
+
+"""=== JACKKNIFE ANALYSIS ==="""
+print "Computing jackknife error of mean value of..."
+print "... dataset 1"
+jks0 = jke_seq(s0)
+print "... dataset 2"
+jks1 = jke_seq(s1)
+print "... dataset 3"
+jks2 = jke_seq(s2)
+print "... dataset 4"
+jks3 = jke_seq(s3)
+print "... dataset 5"
+jks4 = jke_seq(s4)
+
 
 
 """==== PLOTTING ===="""
@@ -190,8 +257,8 @@ p.plot(s2[0:1000], label='dataset 3')
 p.plot(s3[0:1000], label='dataset 4')
 p.plot(s4[0:1000], label='dataset 5')
 
-# plot autocorrelationof s0, s1, s2, s3, s4 over k
-p.new(xlabel='time',ylabel='normalized autocorrelation')
+# plot autocorrelation of s0, s1, s2, s3, s4 over k
+p.new(xlabel='k',ylabel='normalized autocorrelation')
 p.plot(acfn0[0:100000], label='acf of dataset 1')
 p.plot(acfn1[0:100000], label='acf of dataset 2')
 p.plot(acfn2[0:100000], label='acf of dataset 3')
@@ -199,12 +266,36 @@ p.plot(acfn3[0:100000], label='acf of dataset 4')
 p.plot(acfn4[0:100000], label='acf of dataset 5')
 
 # plot autocorrelation via fft  of s0, s1, s2, s3, s4 over k
-p.new(xlabel='time',ylabel='normalized autocorrelation via fft')
+p.new(xlabel='k',ylabel='normalized autocorrelation via fft')
 p.plot(acf0[0:100000], label='acf of dataset 1')
 p.plot(acf1[0:100000], label='acf of dataset 2')
 p.plot(acf2[0:100000], label='acf of dataset 3')
 p.plot(acf3[0:100000], label='acf of dataset 4')
 p.plot(acf4[0:100000], label='acf of dataset 5')
+
+# plot autocorrelation via fft  of s0, s1, s2, s3, s4 over k, ZOOM to relevant interval
+p.new(xlabel='k',ylabel='normalized autocorrelation via fft')
+p.plot(acf0[0:10000], label='acf of dataset 1')
+p.plot(acf1[0:10000], label='acf of dataset 2')
+p.plot(acf2[0:10000], label='acf of dataset 3')
+p.plot(acf3[0:10000], label='acf of dataset 4')
+p.plot(acf4[0:10000], label='acf of dataset 5')
+
+# plot integrated autocorrelation via fft  of s0, s1, s2, s3, s4 over k
+p.new(xlabel='k',ylabel='integrated autocorrelation function via fft')
+p.plot(acfi0[0:100000], label='acf of dataset 1')
+p.plot(acfi1[0:100000], label='acf of dataset 2')
+p.plot(acfi2[0:100000], label='acf of dataset 3')
+p.plot(acfi3[0:100000], label='acf of dataset 4')
+p.plot(acfi4[0:100000], label='acf of dataset 5')
+
+# plot integrated autocorrelation via fft  of s0, s1, s2, s3, s4 over k, ZOOM to relevant interval
+p.new(xlabel='k',ylabel='integrated autocorrelation function via fft')
+p.plot(acfi0[0:10000], label='acf of dataset 1')
+p.plot(acfi1[0:10000], label='acf of dataset 2')
+p.plot(acfi2[0:10000], label='acf of dataset 3')
+p.plot(acfi3[0:10000], label='acf of dataset 4')
+p.plot(acfi4[0:10000], label='acf of dataset 5')
 
 # plot blocking tau over block size k
 p.new(xlabel='block size k',ylabel='blocking tau')
@@ -221,6 +312,14 @@ p.plot(ems1[0:2000], label='eem of dataset 2')
 p.plot(ems2[0:2000], label='eem of dataset 3')
 p.plot(ems3[0:2000], label='eem of dataset 4')
 p.plot(ems4[0:2000], label='eem of dataset 5')
+
+# plot jke over block size k
+p.new(xlabel='block size k',ylabel='jackknife error')
+p.plot(jks0[0:2000], label='jke of dataset 1')
+p.plot(jks1[0:2000], label='jke of dataset 2')
+p.plot(jks2[0:2000], label='jke of dataset 3')
+p.plot(jks3[0:2000], label='jke of dataset 4')
+p.plot(jks4[0:2000], label='jke of dataset 5')
 
 
 p.make()
