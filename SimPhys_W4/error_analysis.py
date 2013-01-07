@@ -36,14 +36,14 @@ def variance(x):
 
 def mean(x): return np.sum(x)/len(x)
 
-""" TODO: correct this function """
 # autocorrelation function, normalized
 def acf_n(x):
     N = len(x)
+    x -= mean(x)
     out = np.zeros((N))
     for i in range(N):
         out[i] = np.mean(x[i:N]*x[0:N-i])
-    out -= np.mean(x)**2
+    #out -= np.mean(x)**2
     return out/out[0]
               
 """ TODO: integrated autocorrelation function """
