@@ -4,6 +4,7 @@ libs/cython/lj.so
 data/ljsim.dat
 data/ljsim.state
 data/ljsim.vtf
+data/tmp
 plots
 
 #IDE files to ignore (Netbeans, Eclipse)
