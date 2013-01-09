@@ -30,7 +30,7 @@ if len(sys.argv) == 2:
     print "Usage: python %s FILE" % sys.argv[0]
     datafilename = sys.argv[1]
 else:
-    datafilename = "data/ljsim.dat"
+    datafilename = "data/10/ljsim.dat"
 
 # check whether data file exists
 if not os.path.exists(datafilename):
@@ -57,15 +57,16 @@ def compute_running_average(O,M):
 
 """==== PLOTTING ===="""
 # mean values
-meanEs=np.mean(Es[:10])
+i = ts>700
+meanEs=np.mean(Es[i])
 print "meanEs=", meanEs
-meanEpots=np.mean(Epots[:10])
+meanEpots=np.mean(Epots[i])
 print "meanEpots=", meanEpots
-meanEkins=np.mean(Ekins[:10])
+meanEkins=np.mean(Ekins[i])
 print "meanEkins=", meanEkins
-meanTs=np.mean(Ts[:10])
+meanTs=np.mean(Ts[i])
 print "meanTs=", meanTs
-meanPs=np.mean(Ps[:10])
+meanPs=np.mean(Ps[i])
 print "meanPs=", meanPs
 
 print "Plotting..."
@@ -178,6 +179,6 @@ for i in range(1,l+1):
 p.new(title='RDF (last 100 trajectories)', xlabel='distance',ylabel='probability')
 p.hist(dist, bins=100, range=(0.8,5), normed=True,  log=False, label='RDF')
 
-p.make(ncols= 2)
+p.make(ncols= 2, savewindow=True)
 
 print "Finished."

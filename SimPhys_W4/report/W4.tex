@@ -214,6 +214,55 @@ In this section we had to implement a Python funcion that computes the Jackknife
 
 The computed errors would range from 2126 to 2203 at $k=2000$. That seems hardly plausible and does not match the values obtained in the other tasks at all.
 
+\subsection{Jackknife Analysis}
+In this section we had to implement a Python funcion that computes the Jackknife error $\epsilon_{\bar{\cal O} {}}$ for a given time series and block size $k$. The resulting plot is shown below:
+
+\begin{minipage}[hbt]{15cm}
+	\centering
+	\includegraphics[width=16cm]{../plots/jackk.pdf}
+	%\caption{Bild1}
+	%\label{fig:Bild1}
+\end{minipage}
+
+The computed errors would range from 2126 to 2203 at $k=2000$. That seems hardly plausible and does not match the values obtained in the other tasks at all.
+
+\section{Error Analysis of Real Simulation Data}
+
+\subsection{Langevin Thermostat}
+
+The Langevin Thermostat was implemented according to the following formula \footnote{source:\url{http://en.wikipedia.org/wiki/Langevin_dynamics}, visited on January 9, 2013} (in reduced units):
+\begin{equation}
+	F = - \nabla U(x) - \gamma v + \sqrt{2\gamma\cdot T}\cdot R(t)
+\end{equation}
+R(t) is a delta-correlated stationary Gaussian process with zero-mean, for example white noise. As an approximation Gaussian noise with mean = 0 and variance = 1 was used. Furthermore it was necessary to multiply the values of the generated noise by ten to get the right temperatures. This points to a possible error.\\
+
+The function was written in the python part because no loops or other time consuming stuff was needed - except for the noise generation that was done by a fast numpy function.
+
+\subsubsection*{As a result we got the following equilibrium mean values}
+The averages were taken from t = 700 to t = 1000.\\
+For T = 0.3 (measurement 0.302)
+\begin{itemize}
+\item pressure $p = -0.0903$, potential energy per particle $E_{pot} = -5.74$
+\end{itemize}
+
+For T = 1.0 (measurement 1.004)
+\begin{itemize}
+\item pressure $p = 0.0624$, potential energy per particle $E_{pot} = -2.48$
+\end{itemize}
+
+For T = 2.0 (measurement 2.018)
+\begin{itemize}
+\item pressure $p = 0.6319$, potential energy per particle $E_{pot} = -1.69$
+\end{itemize}
+
+\subsection{Plots}
+\subsection*{For T=0.3}
+\includegraphics[page=1, scale=0.6]{../plots/all03}
+\subsection*{For T=1.0}
+\includegraphics[page=1, scale=0.6]{../plots/all10}
+\subsection*{For T=2.0}
+\includegraphics[page=1, scale=0.6]{../plots/all20}
+
 \end{document}
 
 
