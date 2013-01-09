@@ -179,6 +179,6 @@ for i in range(1,l+1):
 p.new(title='RDF (last 100 trajectories)', xlabel='distance',ylabel='probability')
 p.hist(dist, bins=100, range=(0.8,5), normed=True,  log=False, label='RDF')
 
-p.make(ncols= 2, savewindow=True)
+p.make(ncols= 2, savewindow=False)
 
 print "Finished."
