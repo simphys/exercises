@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  10 JAN 2013 00:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  10 JAN 2013 18:30
 entering extended mode
  %&-line parsing enabled.
 **W4.tex
@@ -810,76 +810,150 @@ Package caption Info: End \AtBeginDocument code.
 \MPnumerator=\count146
 \everyMPtoPDFconversion=\toks40
 ) ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 72.
+LaTeX Font Info:    Try loading font information for U+msa on input line 74.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 72.
+LaTeX Font Info:    Try loading font information for U+msb on input line 74.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) (./W4.toc)
-\tf@toc=\write5
-\openout5 = `W4.toc'.
+)
+<../plots/acfplot.pdf, id=42, 522.29951pt x 245.99367pt>
+File: ../plots/acfplot.pdf Graphic file (type pdf)
 
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+<use ../plots/acfplot.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 88--91
+ [][] 
+ []
+
+<../plots/acfintplot.pdf, id=44, 527.47264pt x 247.54936pt>
+File: ../plots/acfintplot.pdf Graphic file (type pdf)
+
+<use ../plots/acfintplot.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 97--100
+ [][] 
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 94.
+ <../plots/acfplot.pdf>]
+<../plots/acfzoom.pdf, id=75, 519.5841pt x 245.99367pt>
+File: ../plots/acfzoom.pdf Graphic file (type pdf)
+
+<use ../plots/acfzoom.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 107--110
+ [][] 
+ []
+
+<../plots/acfintzoom.pdf, id=77, 515.20183pt x 247.54936pt>
+File: ../plots/acfintzoom.pdf Graphic file (type pdf)
+
+<use ../plots/acfintzoom.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 114--117
+ [][] 
+ []
+
+[2 <../plots/acfintplot.pdf> <../plots/acfzoom.pdf>] [3 <../plots/acfintzoom.pd
+f>] <../plots/blockingtau.pdf, id=125, 512.04228pt x 246.20958pt>
+File: ../plots/blockingtau.pdf Graphic file (type pdf)
+
+<use ../plots/blockingtau.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 168--171
+ [][] 
+ []
+
+<../plots/eem.pdf, id=127, 513.1882pt x 246.20958pt>
+File: ../plots/eem.pdf Graphic file (type pdf)
+ <use ../plots/eem.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 175--178
+ [][] 
+ []
+
+[4 <../plots/blockingtau.pdf> <../plots/eem.pdf>]
+<../plots/jackk.pdf, id=150, 529.88914pt x 246.20958pt>
+File: ../plots/jackk.pdf Graphic file (type pdf)
+
+<use ../plots/jackk.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 210--213
+ [][] 
+ []
+
+File: ../plots/jackk.pdf Graphic file (type pdf)
+<use ../plots/jackk.pdf>
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 222--225
+ [][] 
+ []
+
+[5 <../plots/jackk.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 236--238
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 245.
 
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 94.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 245.
 
-<../plots/all03.pdf, id=37, page=1, 688.63573pt x 994.43517pt>
+<../plots/all03.pdf, id=165, page=1, 688.63573pt x 994.43517pt>
 File: ../plots/all03.pdf Graphic file (type pdf)
 
-<use ../plots/all03.pdf, page 1> [2]
-<../plots/all10.pdf, id=54, page=1, 688.63573pt x 994.43517pt>
+<use ../plots/all03.pdf, page 1> [6]
+<../plots/all10.pdf, id=178, page=1, 688.63573pt x 994.43517pt>
 File: ../plots/all10.pdf Graphic file (type pdf)
 
-<use ../plots/all10.pdf, page 1> [3 <../plots/all03.pdf>]
-<../plots/all20.pdf, id=90, page=1, 688.63573pt x 994.43517pt>
+<use ../plots/all10.pdf, page 1> [7 <../plots/all03.pdf>]
+<../plots/all20.pdf, id=212, page=1, 688.63573pt x 994.43517pt>
 File: ../plots/all20.pdf Graphic file (type pdf)
 
-<use ../plots/all20.pdf, page 1> [4 <../plots/all10.pdf>] [5 <../plots/all20.pd
-f>] (./W4.aux) ) 
+<use ../plots/all20.pdf, page 1> [8 <../plots/all10.pdf>]
+<../plots/error03.pdf, id=237, page=1, 699.57362pt x 994.43517pt>
+File: ../plots/error03.pdf Graphic file (type pdf)
+
+<use ../plots/error03.pdf, page 1> [9 <../plots/all20.pdf>]
+<../plots/error10.pdf, id=262, page=1, 699.57362pt x 994.43517pt>
+File: ../plots/error10.pdf Graphic file (type pdf)
+
+<use ../plots/error10.pdf, page 1> [10 <../plots/error03.pdf>]
+<../plots/error20.pdf, id=285, page=1, 699.57362pt x 994.43517pt>
+File: ../plots/error20.pdf Graphic file (type pdf)
+
+<use ../plots/error20.pdf, page 1> [11 <../plots/error10.pdf>] [12 <../plots/er
+ror20.pdf>] (./W4.aux) ) 
 Here is how much of TeX's memory you used:
- 15439 strings out of 495021
- 260567 string characters out of 1181035
- 358600 words of memory out of 3000000
- 18271 multiletter control sequences out of 15000+50000
- 13794 words of font info for 54 fonts, out of 3000000 for 9000
+ 15501 strings out of 495021
+ 261838 string characters out of 1181035
+ 364602 words of memory out of 3000000
+ 18314 multiletter control sequences out of 15000+50000
+ 13181 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 53i,11n,53p,391b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{subsection.1.3} has been referenced
- but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.1.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf
--texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/typ
-e1/urw/helvetic/uhvr8a.pfb>
-Output written on W4.pdf (5 pages, 1072679 bytes).
+ 53i,12n,53p,600b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts
+/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helveti
+c/uhvr8a.pfb>
+Output written on W4.pdf (12 pages, 2655579 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 60 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

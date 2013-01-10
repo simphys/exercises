@@ -1,2 +1,8 @@
 \contentsline {section}{\numberline {1}Error Analysis}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Langevin Thermostat}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.1}Autocorrelation Analysis}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Binning Analysis}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Jackknife Analysis}{5}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Jackknife Analysis}{6}{subsection.1.4}
+\contentsline {section}{\numberline {2}Error Analysis of Real Simulation Data}{7}{section.2}
+\contentsline {subsection}{\numberline {2.1}Langevin Thermostat}{7}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Plots}{8}{subsection.2.2}
