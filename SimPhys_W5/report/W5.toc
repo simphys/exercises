@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {1}Simple Sampling- Intrgration}{2}{section.1}
+\contentsline {section}{\numberline {2}Importance Sampling- Metropolis-Hastings-Algorithm}{4}{section.2}
