@@ -6,6 +6,9 @@ from __future__ import division
 from libs.simlib import Plotter
 import numpy as np
 
+import matplotlib.pyplot as plt
+
+
 '''
 === SETUP ===
 '''
@@ -91,6 +94,14 @@ def metropolisMC(N,Phi,T, n=n, i=itmp):
 
     return arrayE, arrayM, arrayP, actrate/N
 
+#===ERROR ANALYSIS===
+def variance(x):
+    out = (x-np.mean(x))**2
+    out = np.sum(out)
+    return out/len(x)
+
+def calcError(x): return np.sqrt(variance(x))
+
 
 '''
 === CALCULATIONS ===
@@ -108,6 +119,11 @@ meanM = np.empty_like(T)
 for i in range(len(T)):
     meanE[i] = calcMean(E,E,T[i])
     meanM[i] = calcMean(M,E,T[i])
+    
+errmE = calcError(meanE)
+errmM = calcError(meanM)
+print "error of mean E:", errmE
+print "error of mean M:", errmM 
 
 print 'Finished exact calculation.'
 
@@ -129,6 +145,11 @@ MC_acceptance = np.mean(arrayA)
 MC_E = arrayE.flat
 MC_M = arrayM.flat
 MC_P = arrayP
+
+MC_errmE = calcError(MC_meanE)
+MC_errmM = calcError(MC_meanM)
+print "error of MC mean E:", MC_errmE
+print "error of MC mean M:", MC_errmM 
 
 print 'Finished metropolis calculation.'
 
@@ -153,5 +174,26 @@ time = (T*np.ones_like(arrayP).T).T
 H, xedges, yedges = np.histogram2d(time.flatten(), MC_P.flatten(), bins=(len(T),100))
 p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
 
-print 'Finished plots.'
 p.make(ncols=2)
+
+'Plots with error bars'
+
+plt.figure()
+plt.xlabel('Temperature')
+plt.ylabel('Energy')
+plt.errorbar(T, MC_meanE, yerr=MC_errmE, label='metropolis with error')
+plt.plot(T, meanE, label='exact')
+plt.legend ()
+plt.savefig ("./plots/meanEerr.png")
+
+plt.clf()
+
+plt.figure()
+plt.xlabel('Temperature')
+plt.ylabel('Magnetization')
+plt.errorbar(T, MC_meanM, yerr=MC_errmM, label='metropolis with error')
+plt.plot(T, meanM, label='exact')
+plt.legend ()
+plt.savefig ("./plots/meanMerr.png")
+
+print 'Finished plots.'
