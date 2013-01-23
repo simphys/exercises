@@ -76,14 +76,11 @@ class Plotter(object):
         
     def hist(self, *args, **kwargs):
         self.__plots[-1].addCurve('hist', *args, **kwargs)
-    
-    def bar(self, *args, **kwargs):
-        self.__plots[-1].addCurve('bar', *args, **kwargs)  
         
     def imshow(self, *args, **kwargs):
         self.__plots[-1].addCurve('imshow', *args, **kwargs)
     
-    def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5), savewindow=False):        
+    def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5), savewindow=False, show = True):        
         for n,plot in enumerate(self.__plots):
             if plot.pdf or plot.pgf: self.__save(n,plot,sfile)
         
@@ -98,7 +95,7 @@ class Plotter(object):
                     nplots += 1
             f.tight_layout()
             if savewindow: f.savefig('./plot_window.pdf', bbox_inches='tight',dpi=150)
-            p.show()
+            if show: p.show()            
 
         self.__reset()
     
@@ -114,7 +111,6 @@ class Plotter(object):
             if curvetype == 'plot': ax.plot(*args, **kwargs)
             elif curvetype == 'imshow': ax.imshow(*args, **kwargs)
             elif curvetype == 'hist': ax.hist(*args, **kwargs)
-            elif curvetype == 'bar': ax.bar(*args, **kwargs)
         ax.set_aspect(plot.aspect)
         if plot.legend: ax.legend(shadow=0, loc=plot.loc)
         
@@ -130,8 +126,6 @@ class Plotter(object):
             if curvetype == 'plot': p.plot(*args, **kwargs)
             elif curvetype == 'imshow': p.imshow(*args, **kwargs)
             elif curvetype == 'hist': p.hist(*args, **kwargs)
-            elif curvetype == 'bar': p.bar(*args, **kwargs)
-            
         p.axes().set_aspect(plot.aspect)
         if plot.legend: p.legend(shadow=0, loc=plot.loc)
         

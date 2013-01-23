@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 import math
 
 
-def metropolis(N,P,trial_move,phi0,trial_move_param):
+def metropolisMC(N,P,trialMove,phi0,trial_move_param):
     phi=np.zeros(N+1)
     phi[0]=phi0
     actrate=0
     for i in range(N):
-        phis=trial_move(phi[i],trial_move_param)
+        phis=trialMove(phi[i],trial_move_param)
         r=np.random.uniform(0,1)
         if r < min(1,P(phis)/P(phi[i])):
             phi[i+1]=phis
@@ -26,10 +26,10 @@ def trial_move_x(x,dx):
 def runge(x):
     return 1/(1+x**2)
 
-samples1=metropolis(100000,runge,trial_move_x,0,0.1)
-samples2=metropolis(100000,runge,trial_move_x,5,1.0)
-samples3=metropolis(100000,runge,trial_move_x,0,10.0)
-samples4=metropolis(100000,runge,trial_move_x,0,100.0)
+samples1=metropolisMC(100000,runge,trial_move_x,0,0.1)
+samples2=metropolisMC(100000,runge,trial_move_x,5,1.0)
+samples3=metropolisMC(100000,runge,trial_move_x,0,10.0)
+samples4=metropolisMC(100000,runge,trial_move_x,0,100.0)
 scaling=math.atan(5)-math.atan(-5)
 xrunge=np.linspace(-5,5,1000)
 yrunge=runge(xrunge)/scaling

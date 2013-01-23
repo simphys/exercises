@@ -285,7 +285,13 @@ datafile = open(datafilename, 'r')
 ts, Es, Epots, Ekins, Ts, Ps, traj2 = pickle.load(datafile)
 datafile.close()
 p.new(xlabel='distance',ylabel='probability')
-p.hist(compute_distances(traj2[-1]), bins=100, range=(0.8,5),normed=True,  log=False, label='RDF')
+
+hist, bins = np.histogram(compute_distances(traj2[-1]),bins = np.linspace(0.8,5,100))
+width = 0.7*(bins[1]-bins[0])
+center = (bins[:-1]+bins[1:])/2
+hist /=(2*np.pi*density*(bins[1]-bins[0])*(bins[:-1]+(bins[1]-bins[0])/2)**2)
+
+p.bar(center, hist/N, align = 'center', width = width) # kA, warum erst hier durch N geteilt werden darf
 
 p.make(ncols= 3)
 

@@ -1,0 +1,14 @@
+libs/cython/build
+libs/cython/lj.c
+libs/cython/lj.so
+data/ljsim.dat
+data/ljsim.state
+data/ljsim.vtf
+data/tmp
+plots/tmp
+
+#IDE files to ignore (Netbeans, Eclipse)
+nbproject/private/
+.classpath
+.project
+.settings
