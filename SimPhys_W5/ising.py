@@ -16,7 +16,7 @@ TStart = 1
 TStop = 5
 TStep = 0.1
 MCSteps = 10000
-k = 100
+k = 50
 np.random.seed(42)
 
 useExact = True
@@ -99,8 +99,8 @@ def metropolisMC(N,Phi,T, n=n, i=itmp):
 def binning(allValues,k = k):
     nBlocks=len(allValues)//k
 
-    allBlocks = allValues[:nBlocks*k].reshape((k,-1))
-    meanBlocks = np.mean(allBlocks,axis=0)
+    allBlocks = allValues[:nBlocks*k].reshape((-1,k))
+    meanBlocks = np.mean(allBlocks,axis=1)
     meanValue = np.mean(meanBlocks)
     
     variance = np.mean((meanBlocks-meanValue)**2)/(nBlocks-1)
@@ -166,27 +166,27 @@ if useMC:
 '''
 === PLOTS ===
 '''
-p = Plotter(show = True, pdf = False, pgf = False, name='ising')
+p = Plotter(show = True, pdf = True, pgf = False, name='ising')
 
-p.new(name='Mean energy',xlabel='Temperature',ylabel='Energy',pdf=False)
+p.new(name='Mean_energy',xlabel='Temperature',ylabel='Energy')
 if useExact:
     p.plot(T,meanE,label='exact')
 if useMC:
     p.errorbar(T, MC_meanE, yerr=MC_errmE, label='metropolis')
 
-p.new(name='Mean magnetization',xlabel='Temperature',ylabel='Magnetization',pdf=False)
+p.new(name='Mean_magnetization',xlabel='Temperature',ylabel='Magnetization')
 if useExact:
     p.plot(T,meanM,label='exact')
 if useMC:
     p.errorbar(T, MC_meanM, yerr=MC_errmM, label='metropolis')
 
-p.new(name='Mean absolute magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$',pdf=False)
+p.new(name='Mean_absolute_magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$')
 if useExact:
     p.plot(T,meanMabs,label='exact')
 if useMC:
     p.errorbar(T, MC_meanMabs, yerr=MC_errmMabs, label='metropolis')
 
-p.new(name='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy')
+p.new(name='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy',pdf=False)
 if useExact:
     sort = np.argsort(M)
     p.plot(M[sort],E[sort],label='exact')
@@ -195,7 +195,7 @@ if useMC:
     p.plot(MC_M[MC_sort],MC_E[MC_sort],label='metropolis')
 
 if useMC:
-    p.new(name='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature')
+    p.new(name='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature',pdf=False)
     time = (T*np.ones_like(arrayP).T).T
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayP.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
@@ -206,8 +206,8 @@ if useMC:
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayE.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     """
-    p.new(name='Binning Analysis',xlabel='k',ylabel='error')
-    ks = np.arange(1,1000,1)
+    p.new(name='Binning_error',xlabel='k',ylabel='error')
+    ks = np.arange(1,200,1)
     error = np.empty((len(ks),len(arrayE)))
     for i in range(len(ks)):
         error[i] = binningAll(arrayE,ks[i])
