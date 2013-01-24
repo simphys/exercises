@@ -107,6 +107,27 @@ The resulting histograms can be found in the following plots
 \end{figure}
 By eye it is hard to say wether $dx = 1.0$ or $dx= 1.0$ is the better choice. Having a look at the acceptance rates - $\approx 84.8\%$ for $ dx=1.0$, $\approx 32.5\%$ for $dx=10.0$  -and taking into account that it was stated on the worksheet that an acceptance rate of about $30\%$ is optimal, it can be said that $dx = 10.0 $ is a better choice than $dx= 1.0$.
 
+\section{Simulating the Ising Model}
+
+The exact solution of the Ising Model was obtained by using the canonical partition function. The metropolis Monte-Carlo algorithm was implemented according to worksheet 5. To determine the statistical errors Binning errors was used. However Binning errors don't seem to be the best choice. They gave to little error bars independently from the block size. Maybe this was because energy and magnetization of a fixed configuration of the finite Ising Model can only have discrete values.
+
+\subsubsection{Mean energy}
+\begin{figure}[H]
+\includegraphics[width=14.0cm]{../plots/Mean_energy.pdf}
+\caption{The energy becomes higher, when the temperature raises. The metropolis Monte-Carlo curve is in acceptable conformity to the exact one.}
+\end{figure}
+
+\subsubsection{Mean magnetization}
+\begin{figure}[H]
+\includegraphics[width=14.0cm]{../plots/Mean_magnetization.pdf}
+\caption{The mean magnetization is around zero. This full fills our expectations because for every magnetization below zeros there's a equiprobable  magnetization above zero.}
+\end{figure}
+
+\subsubsection{Mean absolute magnetization}
+\begin{figure}[H]
+\includegraphics[width=14.0cm]{../plots/Mean_absolute_magnetization.pdf}
+\caption{The curve of the absolute magnetization is interesting. It clearly shows that a high temperature destroys regimes of equal orientated spins.} 
+\end{figure}
 
 \end{document}
 

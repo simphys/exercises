@@ -16,6 +16,7 @@ TStart = 1
 TStop = 5
 TStep = 0.1
 MCSteps = 10000
+k = 100
 np.random.seed(42)
 
 useExact = True
@@ -29,7 +30,7 @@ itmp = np.arange(-1,n-1)
 #==Exact===
 def generateAllStates(n=n):
     nsqrt = n*n
-    possibilities = np.mgrid[[slice(-1,3,2) for _ in range(nsqrt)]] #Vectorization makes the calculation fast as hell.
+    possibilities = np.mgrid[[slice(-1,3,2) for _ in range(nsqrt)]] # Vectorization makes the calculation fast as hell.
     configurations = possibilities.reshape(n,n,-1).T 
     return configurations
 
@@ -95,14 +96,22 @@ def metropolisMC(N,Phi,T, n=n, i=itmp):
     return arrayE, arrayM, arrayP, actrate/N
 
 #===ERROR ANALYSIS===
-def variance(x):
-    out = (x-np.mean(x))**2
-    out = np.sum(out)
-    return out/len(x)
+def binning(allValues,k = k):
+    nBlocks=len(allValues)//k
 
-def calcError(x):
-    return np.sqrt(variance(x))
+    allBlocks = allValues[:nBlocks*k].reshape((k,-1))
+    meanBlocks = np.mean(allBlocks,axis=0)
+    meanValue = np.mean(meanBlocks)
+    
+    variance = np.mean((meanBlocks-meanValue)**2)/(nBlocks-1)
+    
+    return np.sqrt(variance)
 
+def binningAll(arr,k = k):
+    n = len(arr)
+    result = np.empty(n)
+    for i in range(n): result[i] = binning(arr[i],k)
+    return result
 
 '''
 === CALCULATIONS ===
@@ -123,11 +132,6 @@ if useExact:
         meanE[i] = calcMean(E,E,T[i])
         meanM[i] = calcMean(M,E,T[i])
         meanMabs[i] = calcMean(abs(M),E,T[i])
-
-    errmE = calcError(meanE)
-    errmM = calcError(meanM)
-    print "error of mean E:", errmE
-    print "error of mean M:", errmM
     
     print 'Finished exact calculation.'
 
@@ -151,34 +155,32 @@ if useMC:
     MC_E = arrayE.flat
     MC_M = arrayM.flat
     MC_P = arrayP
-
-    MC_errmE = calcError(MC_meanE)
-    MC_errmM = calcError(MC_meanM)
-    MC_errmMabs = calcError(MC_meanMabs)
-    print "error of MC mean E:", MC_errmE
-    print "error of MC mean M:", MC_errmM
-    print "error of MC mean |M|:", MC_errmMabs
-    
     print 'Finished metropolis calculation.'
+
+    MC_errmE = binningAll(arrayE)
+    MC_errmM = binningAll(arrayM)
+    MC_errmMabs = binningAll(abs(arrayM))
+    
+    print 'Finished error calculation.'
 
 '''
 === PLOTS ===
 '''
 p = Plotter(show = True, pdf = False, pgf = False, name='ising')
 
-p.new(name='Mean energy',xlabel='Temperature',ylabel='Energy')
+p.new(name='Mean energy',xlabel='Temperature',ylabel='Energy',pdf=False)
 if useExact:
     p.plot(T,meanE,label='exact')
 if useMC:
     p.errorbar(T, MC_meanE, yerr=MC_errmE, label='metropolis')
 
-p.new(name='Mean magnetization',xlabel='Temperature',ylabel='Magnetization')
+p.new(name='Mean magnetization',xlabel='Temperature',ylabel='Magnetization',pdf=False)
 if useExact:
     p.plot(T,meanM,label='exact')
 if useMC:
     p.errorbar(T, MC_meanM, yerr=MC_errmM, label='metropolis')
 
-p.new(name='Mean absolute magnetization',xlabel='Temperature',ylabel=r'\vertMagnetization\vert')
+p.new(name='Mean absolute magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$',pdf=False)
 if useExact:
     p.plot(T,meanMabs,label='exact')
 if useMC:
@@ -193,15 +195,24 @@ if useMC:
     p.plot(MC_M[MC_sort],MC_E[MC_sort],label='metropolis')
 
 if useMC:
-    p.new(name='Frequency of probabilities',xlabel='Probability',ylabel='Temperature')
+    p.new(name='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature')
     time = (T*np.ones_like(arrayP).T).T
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayP.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     
+    """
     p.new(name='Frequency of energies',xlabel='Energy',ylabel='Temperature')
     time = (T*np.ones_like(arrayE).T).T
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayE.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
+    """
+    p.new(name='Binning Analysis',xlabel='k',ylabel='error')
+    ks = np.arange(1,1000,1)
+    error = np.empty((len(ks),len(arrayE)))
+    for i in range(len(ks)):
+        error[i] = binningAll(arrayE,ks[i])
+    p.plot(ks,error)
+    
 
 print 'Finished plots.'
 p.make(ncols=2)

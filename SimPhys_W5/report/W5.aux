@@ -1,19 +1,16 @@
 \relax 
-\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
-\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
-\global\let\oldcontentsline\contentsline
-\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
-\global\let\oldnewlabel\newlabel
-\gdef\newlabel#1#2{\newlabelxx{#1}#2}
-\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\ifx\hyper@anchor\@undefined
-\let\contentsline\oldcontentsline
-\let\newlabel\oldnewlabel
-\fi}
-\fi}
-\global\let\hyper@last\relax 
-\gdef\HyperFirstAtBeginDocument#1{#1}
-\providecommand\HyField@AuxAddToFields[1]{}
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
 \@writefile{toc}{\contentsline {section}{\numberline {1}Simple Sampling- Intrgration}{2}{section.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Runge function f(x) on the interval [-5,5]\relax }}{2}{figure.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
@@ -23,3 +20,10 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Importance Sampling- Metropolis-Hastings-Algorithm}{4}{section.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distribution histograms of the Metropolis samples with 100 bins compared to the normalized runge function (red)\relax }}{4}{figure.3}}
 \newlabel{fig:runge}{{3}{4}{Distribution histograms of the Metropolis samples with 100 bins compared to the normalized runge function (red)\relax \relax }{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Simulating the Ising Model}{5}{section.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.1}Mean energy}{5}{subsubsection.3.0.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The energy becomes higher, when the temperature raises. The metropolis Monte-Carlo curve is in acceptable conformity to the exact one.\relax }}{5}{figure.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.2}Mean magnetization}{5}{subsubsection.3.0.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The mean magnetization is around zero. This full fills our expectations because for every magnetization below zeros there's a equiprobable magnetization above zero.\relax }}{5}{figure.5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.3}Mean absolute magnetization}{6}{subsubsection.3.0.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The curve of the absolute magnetization is interesting. It clearly shows that a high temperature destroys regimes of equal orientated spins.\relax }}{6}{figure.6}}

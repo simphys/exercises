@@ -1,2 +1,6 @@
-\BOOKMARK [1][-]{section.1}{Simple Sampling- Intrgration}{}% 1
-\BOOKMARK [1][-]{section.2}{Importance Sampling- Metropolis-Hastings-Algorithm}{}% 2
+\BOOKMARK [1][-]{section.1}{Simple Sampling- Intrgration}{}
+\BOOKMARK [1][-]{section.2}{Importance Sampling- Metropolis-Hastings-Algorithm}{}
+\BOOKMARK [1][-]{section.3}{Simulating the Ising Model}{}
+\BOOKMARK [2][-]{subsubsection.3.0.1}{Mean energy}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.0.2}{Mean magnetization}{subsubsection.3.0.1}
+\BOOKMARK [3][-]{subsubsection.3.0.3}{Mean absolute magnetization}{subsubsection.3.0.1}
