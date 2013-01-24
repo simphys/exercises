@@ -94,6 +94,15 @@ def metropolisMC(N,Phi,T, n=n, i=itmp):
 
     return arrayE, arrayM, arrayP, actrate/N
 
+#===ERROR ANALYSIS===
+def variance(x):
+    out = (x-np.mean(x))**2
+    out = np.sum(out)
+    return out/len(x)
+
+def calcError(x):
+    return np.sqrt(variance(x))
+
 
 '''
 === CALCULATIONS ===
@@ -114,6 +123,11 @@ if useExact:
         meanE[i] = calcMean(E,E,T[i])
         meanM[i] = calcMean(M,E,T[i])
         meanMabs[i] = calcMean(abs(M),E,T[i])
+
+    errmE = calcError(meanE)
+    errmM = calcError(meanM)
+    print "error of mean E:", errmE
+    print "error of mean M:", errmM
     
     print 'Finished exact calculation.'
 
@@ -137,6 +151,13 @@ if useMC:
     MC_E = arrayE.flat
     MC_M = arrayM.flat
     MC_P = arrayP
+
+    MC_errmE = calcError(MC_meanE)
+    MC_errmM = calcError(MC_meanM)
+    MC_errmMabs = calcError(MC_meanMabs)
+    print "error of MC mean E:", MC_errmE
+    print "error of MC mean M:", MC_errmM
+    print "error of MC mean |M|:", MC_errmMabs
     
     print 'Finished metropolis calculation.'
 
@@ -149,19 +170,19 @@ p.new(name='Mean energy',xlabel='Temperature',ylabel='Energy')
 if useExact:
     p.plot(T,meanE,label='exact')
 if useMC:
-    p.plot(T,MC_meanE,label='metropolis')
+    p.errorbar(T, MC_meanE, yerr=MC_errmE, label='metropolis')
 
 p.new(name='Mean magnetization',xlabel='Temperature',ylabel='Magnetization')
 if useExact:
     p.plot(T,meanM,label='exact')
 if useMC:
-    p.plot(T,MC_meanM,label='metropolis')
+    p.errorbar(T, MC_meanM, yerr=MC_errmM, label='metropolis')
 
 p.new(name='Mean absolute magnetization',xlabel='Temperature',ylabel=r'\vertMagnetization\vert')
 if useExact:
     p.plot(T,meanMabs,label='exact')
 if useMC:
-    p.plot(T,MC_meanMabs,label='metropolis')
+    p.errorbar(T, MC_meanMabs, yerr=MC_errmMabs, label='metropolis')
 
 p.new(name='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy')
 if useExact:
@@ -174,7 +195,12 @@ if useMC:
 if useMC:
     p.new(name='Frequency of probabilities',xlabel='Probability',ylabel='Temperature')
     time = (T*np.ones_like(arrayP).T).T
-    H, xedges, yedges = np.histogram2d(time.flatten(), MC_P.flatten(), bins=(len(T),100))
+    H, xedges, yedges = np.histogram2d(time.flatten(), arrayP.flatten(), bins=(len(T),100))
+    p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
+    
+    p.new(name='Frequency of energies',xlabel='Energy',ylabel='Temperature')
+    time = (T*np.ones_like(arrayE).T).T
+    H, xedges, yedges = np.histogram2d(time.flatten(), arrayE.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
 
 print 'Finished plots.'

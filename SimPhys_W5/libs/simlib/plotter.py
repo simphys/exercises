@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 # -*- coding:utf-8 -*-
+# Author: Sebastian Weber
 
 from __future__ import absolute_import
 from __future__ import division
@@ -77,6 +78,9 @@ class Plotter(object):
     def hist(self, *args, **kwargs):
         self.__plots[-1].addCurve('hist', *args, **kwargs)
         
+    def errorbar(self, *args, **kwargs):
+        self.__plots[-1].addCurve('errorbar', *args, **kwargs)
+
     def imshow(self, *args, **kwargs):
         self.__plots[-1].addCurve('imshow', *args, **kwargs)
     
@@ -111,6 +115,7 @@ class Plotter(object):
             if curvetype == 'plot': ax.plot(*args, **kwargs)
             elif curvetype == 'imshow': ax.imshow(*args, **kwargs)
             elif curvetype == 'hist': ax.hist(*args, **kwargs)
+            elif curvetype == 'errorbar': ax.errorbar(*args, **kwargs)
         ax.set_aspect(plot.aspect)
         if plot.legend: ax.legend(shadow=0, loc=plot.loc)
         
@@ -126,6 +131,7 @@ class Plotter(object):
             if curvetype == 'plot': p.plot(*args, **kwargs)
             elif curvetype == 'imshow': p.imshow(*args, **kwargs)
             elif curvetype == 'hist': p.hist(*args, **kwargs)
+            elif curvetype == 'errorbar': p.errorbar(*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
         if plot.legend: p.legend(shadow=0, loc=plot.loc)
         
