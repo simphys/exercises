@@ -111,14 +111,14 @@ By eye it is hard to say wether $dx = 1.0$ or $dx= 1.0$ is the better choice. Ha
 
 The exact solution of the Ising Model was obtained by using the canonical partition function. The metropolis Monte-Carlo algorithm was implemented according to worksheet 5.\\
 
-To determine the statistical errors Binning errors was used. Here you can see the calculated error of the mean energy as a function of the block size k.
+To determine the statistical errors the method of Binning errors is used. In order to choose the right block size k for the Binning error calculation one has to visual evaluate which k seems to be best. If the choosen block size is to small also the errors will be calculated smaller than they actually are. Then again if the choosen block size k is to large you will get a lot of fluctuation in the calculated error. Therefore the determined error will possibly be either to small or to large. Here you can see the calculated error of the mean energy as a function of the block size k.
 
 \begin{figure}[H]
 \includegraphics[width=14.0cm]{../plots/Binning_error.pdf}
 \caption{Binning error as a function of the block size k. Fifty seems to be a good value for k.}
 \end{figure}
 
-However there's much noise. Maybe it's because the energy of a fixed configuration of the finite Ising Model can only have discrete values.
+However there is much more noise than we expeced. Maybe that is due to the fact the energy of a fixed configuration of the finite Ising Model can only have discrete values.
 
 \subsubsection{Mean energy}
 \begin{figure}[H]

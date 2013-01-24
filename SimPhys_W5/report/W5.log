@@ -1,12 +1,17 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  24 JAN 2013 20:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.26)  24 JAN 2013 21:26
 entering extended mode
  %&-line parsing enabled.
 **W5.tex
 (./W5.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, ngerman, german, german-x-2009-06-19, ngerman-x-2009-06-19, loaded.
-
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
 (/usr/share/texmf-texlive/tex/latex/koma-script/scrartcl.cls
 Document Class: scrartcl 2009/07/24 v3.04a KOMA-Script document class (article)
 
@@ -864,29 +869,29 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 <../plots/Mean_energy.pdf, id=77, 515.82709pt x 248.54958pt>
 File: ../plots/Mean_energy.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_energy.pdf>
-<../plots/Mean_magnetization.pdf, id=79, 515.82709pt x 248.54958pt>
+<use ../plots/Mean_energy.pdf> [5 <../plots/Binning_error.pdf>]
+<../plots/Mean_magnetization.pdf, id=99, 515.82709pt x 248.54958pt>
 File: ../plots/Mean_magnetization.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_magnetization.pdf> [5 <../plots/Binning_error.pdf> <../plots
-/Mean_energy.pdf>]
-<../plots/Mean_absolute_magnetization.pdf, id=160, 513.26282pt x 248.54958pt>
+<use ../plots/Mean_magnetization.pdf>
+<../plots/Mean_absolute_magnetization.pdf, id=101, 513.26282pt x 248.54958pt>
 File: ../plots/Mean_absolute_magnetization.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_absolute_magnetization.pdf> [6 <../plots/Mean_magnetization.
-pdf> <../plots/Mean_absolute_magnetization.pdf>] (./W5.aux)
+<use ../plots/Mean_absolute_magnetization.pdf> [6 <../plots/Mean_energy.pdf> <.
+./plots/Mean_magnetization.pdf>] [7 <../plots/Mean_absolute_magnetization.pdf>]
+(./W5.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15445 strings out of 495021
- 261053 string characters out of 1181035
- 356796 words of memory out of 3000000
- 18281 multiletter control sequences out of 15000+50000
+ 15446 strings out of 493848
+ 261059 string characters out of 1152823
+ 357769 words of memory out of 3000000
+ 18365 multiletter control sequences out of 15000+50000
  12687 words of font info for 48 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
- 53i,11n,53p,391b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 714 hyphenation exceptions out of 8191
+ 53i,11n,53p,595b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts
@@ -899,9 +904,9 @@ fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mti10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on W5.pdf (6 pages, 546957 bytes).
+Output written on W5.pdf (7 pages, 548425 bytes).
 PDF statistics:
- 324 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
+ 330 PDF objects out of 1000 (max. 8388607)
+ 14 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
