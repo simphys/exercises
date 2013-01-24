@@ -18,6 +18,9 @@ TStep = 0.1
 MCSteps = 10000
 np.random.seed(42)
 
+useExact = True
+useMC = True
+
 '''
 === FUNCTIONS ===
 '''
@@ -99,38 +102,43 @@ T = np.arange(TStart, TStop+TStep, TStep)
 
 
 #==Exact===
-configurations = generateAllStates(n)
-M = calcMFromAll(configurations)
-E = calcEFromAll(configurations)
-
-meanE = np.empty_like(T)
-meanM = np.empty_like(T)
-for i in range(len(T)):
-    meanE[i] = calcMean(E,E,T[i])
-    meanM[i] = calcMean(M,E,T[i])
-
-print 'Finished exact calculation.'
+if useExact:
+    configurations = generateAllStates(n)
+    M = calcMFromAll(configurations)
+    E = calcEFromAll(configurations)
+    
+    meanE = np.empty_like(T)
+    meanM = np.empty_like(T)
+    meanMabs = np.empty_like(T)
+    for i in range(len(T)):
+        meanE[i] = calcMean(E,E,T[i])
+        meanM[i] = calcMean(M,E,T[i])
+        meanMabs[i] = calcMean(abs(M),E,T[i])
+    
+    print 'Finished exact calculation.'
 
 #==MC===
-configuration = 2*np.random.randint(0,2,(n,n))-np.ones((n,n))
-
-arrayE = np.empty((len(T),MCSteps+1))
-arrayM = np.empty((len(T),MCSteps+1))
-arrayP = np.empty((len(T),MCSteps+1))
-arrayA = np.empty(len(T))
-
-for i in range(len(T)):
-    arrayE[i], arrayM[i], arrayP[i], arrayA[i] = metropolisMC(MCSteps,configuration,T[i])
-
-MC_meanE = np.mean(arrayE,axis=1)
-MC_meanM = np.mean(arrayM,axis=1)
-MC_acceptance = np.mean(arrayA)
-
-MC_E = arrayE.flat
-MC_M = arrayM.flat
-MC_P = arrayP
-
-print 'Finished metropolis calculation.'
+if useMC:
+    configuration = 2*np.random.randint(0,2,(n,n))-np.ones((n,n))
+    
+    arrayE = np.empty((len(T),MCSteps+1))
+    arrayM = np.empty((len(T),MCSteps+1))
+    arrayP = np.empty((len(T),MCSteps+1))
+    arrayA = np.empty(len(T))
+    
+    for i in range(len(T)):
+        arrayE[i], arrayM[i], arrayP[i], arrayA[i] = metropolisMC(MCSteps,configuration,T[i])
+    
+    MC_meanE = np.mean(arrayE,axis=1)
+    MC_meanM = np.mean(arrayM,axis=1)
+    MC_meanMabs = np.mean(abs(arrayM),axis=1)
+    MC_acceptance = np.mean(arrayA)
+    
+    MC_E = arrayE.flat
+    MC_M = arrayM.flat
+    MC_P = arrayP
+    
+    print 'Finished metropolis calculation.'
 
 '''
 === PLOTS ===
@@ -138,20 +146,36 @@ print 'Finished metropolis calculation.'
 p = Plotter(show = True, pdf = False, pgf = False, name='ising')
 
 p.new(name='Mean energy',xlabel='Temperature',ylabel='Energy')
-p.plot(T,meanE,label='exact')
-p.plot(T,MC_meanE,label='metropolis')
+if useExact:
+    p.plot(T,meanE,label='exact')
+if useMC:
+    p.plot(T,MC_meanE,label='metropolis')
+
 p.new(name='Mean magnetization',xlabel='Temperature',ylabel='Magnetization')
-p.plot(T,meanM,label='exact')
-p.plot(T,MC_meanM,label='metropolis')
+if useExact:
+    p.plot(T,meanM,label='exact')
+if useMC:
+    p.plot(T,MC_meanM,label='metropolis')
+
+p.new(name='Mean absolute magnetization',xlabel='Temperature',ylabel=r'\vertMagnetization\vert')
+if useExact:
+    p.plot(T,meanMabs,label='exact')
+if useMC:
+    p.plot(T,MC_meanMabs,label='metropolis')
+
 p.new(name='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy')
-sort = np.argsort(M)
-MC_sort = np.argsort(MC_M)
-p.plot(M[sort],E[sort],label='exact')
-p.plot(MC_M[MC_sort],MC_E[MC_sort],label='metropolis')
-p.new(name='Frequency of probabilities',xlabel='Probability',ylabel='Temperature')
-time = (T*np.ones_like(arrayP).T).T
-H, xedges, yedges = np.histogram2d(time.flatten(), MC_P.flatten(), bins=(len(T),100))
-p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
+if useExact:
+    sort = np.argsort(M)
+    p.plot(M[sort],E[sort],label='exact')
+if useMC:
+    MC_sort = np.argsort(MC_M)
+    p.plot(MC_M[MC_sort],MC_E[MC_sort],label='metropolis')
+
+if useMC:
+    p.new(name='Frequency of probabilities',xlabel='Probability',ylabel='Temperature')
+    time = (T*np.ones_like(arrayP).T).T
+    H, xedges, yedges = np.histogram2d(time.flatten(), MC_P.flatten(), bins=(len(T),100))
+    p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
 
 print 'Finished plots.'
 p.make(ncols=2)
