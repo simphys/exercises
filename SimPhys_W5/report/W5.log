@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  24 JAN 2013 20:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  25 JAN 2013 16:31
 entering extended mode
  %&-line parsing enabled.
 **W5.tex
@@ -853,35 +853,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--113
  []
 
 [4 <../plots/hist.png>]
-<../plots/Binning_error.pdf, id=75, 513.76166pt x 242.127pt>
-File: ../plots/Binning_error.pdf Graphic file (type pdf)
+<../plots/ising_06.pdf, id=75, 513.76166pt x 242.127pt>
+File: ../plots/ising_06.pdf Graphic file (type pdf)
 
-<use ../plots/Binning_error.pdf>
+<use ../plots/ising_06.pdf>
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 123.
 
-<../plots/Mean_energy.pdf, id=77, 515.82709pt x 248.54958pt>
-File: ../plots/Mean_energy.pdf Graphic file (type pdf)
+<../plots/ising_01.pdf, id=77, 515.82709pt x 248.54958pt>
+File: ../plots/ising_01.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_energy.pdf>
-<../plots/Mean_magnetization.pdf, id=79, 515.82709pt x 248.54958pt>
-File: ../plots/Mean_magnetization.pdf Graphic file (type pdf)
+<use ../plots/ising_01.pdf>
+<../plots/ising_02.pdf, id=79, 515.82709pt x 248.54958pt>
+File: ../plots/ising_02.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_magnetization.pdf> [5 <../plots/Binning_error.pdf> <../plots
-/Mean_energy.pdf>]
-<../plots/Mean_absolute_magnetization.pdf, id=160, 513.26282pt x 248.54958pt>
-File: ../plots/Mean_absolute_magnetization.pdf Graphic file (type pdf)
+<use ../plots/ising_02.pdf> [5 <../plots/ising_06.pdf> <../plots/ising_01.pdf>]
+<../plots/ising_03.pdf, id=160, 513.26282pt x 248.54958pt>
+File: ../plots/ising_03.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_absolute_magnetization.pdf> [6 <../plots/Mean_magnetization.
-pdf> <../plots/Mean_absolute_magnetization.pdf>] (./W5.aux)
+<use ../plots/ising_03.pdf> [6 <../plots/ising_02.pdf> <../plots/ising_03.pdf>]
+(./W5.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  15445 strings out of 495021
- 261053 string characters out of 1181035
+ 260868 string characters out of 1181035
  356796 words of memory out of 3000000
  18281 multiletter control sequences out of 15000+50000
  12687 words of font info for 48 fonts, out of 3000000 for 9000
@@ -899,7 +898,7 @@ fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mti10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on W5.pdf (6 pages, 546957 bytes).
+Output written on W5.pdf (6 pages, 546976 bytes).
 PDF statistics:
  324 PDF objects out of 1000 (max. 8388607)
  13 named destinations out of 1000 (max. 500000)

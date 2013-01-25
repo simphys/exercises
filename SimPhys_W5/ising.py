@@ -15,12 +15,14 @@ H = 0
 TStart = 1
 TStop = 5
 TStep = 0.1
-MCSteps = 10000
+MCSteps = 1000
 k = 50
 np.random.seed(42)
 
 useExact = True
 useMC = True
+
+p = Plotter(show = True, pdf = False, pgf = False, latex=False, name='ising')
 
 '''
 === FUNCTIONS ===
@@ -166,27 +168,26 @@ if useMC:
 '''
 === PLOTS ===
 '''
-p = Plotter(show = True, pdf = True, pgf = False, name='ising')
 
-p.new(name='Mean_energy',xlabel='Temperature',ylabel='Energy')
+p.new(title='Mean energy',xlabel='Temperature',ylabel='Energy')
 if useExact:
     p.plot(T,meanE,label='exact')
 if useMC:
     p.errorbar(T, MC_meanE, yerr=MC_errmE, label='metropolis')
 
-p.new(name='Mean_magnetization',xlabel='Temperature',ylabel='Magnetization')
+p.new(title='Mean magnetization',xlabel='Temperature',ylabel='Magnetization')
 if useExact:
     p.plot(T,meanM,label='exact')
 if useMC:
     p.errorbar(T, MC_meanM, yerr=MC_errmM, label='metropolis')
 
-p.new(name='Mean_absolute_magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$')
+p.new(title='Mean absolute magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$')
 if useExact:
     p.plot(T,meanMabs,label='exact')
 if useMC:
     p.errorbar(T, MC_meanMabs, yerr=MC_errmMabs, label='metropolis')
 
-p.new(name='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy',pdf=False)
+p.new(title='Energy(magnetization)',xlabel='Magnetization',ylabel='Energy',pdf=False)
 if useExact:
     sort = np.argsort(M)
     p.plot(M[sort],E[sort],label='exact')
@@ -195,24 +196,23 @@ if useMC:
     p.plot(MC_M[MC_sort],MC_E[MC_sort],label='metropolis')
 
 if useMC:
-    p.new(name='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature',pdf=False)
+    p.new(title='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature',pdf=False)
     time = (T*np.ones_like(arrayP).T).T
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayP.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     
     """
-    p.new(name='Frequency of energies',xlabel='Energy',ylabel='Temperature')
+    p.new(title='Frequency of energies',xlabel='Energy',ylabel='Temperature')
     time = (T*np.ones_like(arrayE).T).T
     H, xedges, yedges = np.histogram2d(time.flatten(), arrayE.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     """
-    p.new(name='Binning_error',xlabel='k',ylabel='error')
+    p.new(title='Binning error',xlabel='k',ylabel='error')
     ks = np.arange(1,200,1)
     error = np.empty((len(ks),len(arrayE)))
     for i in range(len(ks)):
         error[i] = binningAll(arrayE,ks[i])
     p.plot(ks,error)
-    
 
 print 'Finished plots.'
 p.make(ncols=2)

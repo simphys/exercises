@@ -8,10 +8,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import matplotlib
-#matplotlib.use('GtkAgg')
-matplotlib.rcParams['text.usetex']=True
-matplotlib.rcParams['text.latex.unicode']=True
-matplotlib.rc('legend', fontsize='small')
 import matplotlib.pyplot as p
 import numpy as np
 import os
@@ -50,6 +46,13 @@ class Plotter(object):
         self.__global_direc   = kwargs.get('directory','./plots/')
         self.__global_name    = kwargs.get('name','plot')
         self.__global_loc     = kwargs.get('loc','best')
+        self.__global_latex   = kwargs.get('latex',False)
+        
+        if self.__global_latex:
+            matplotlib.rcParams['text.usetex']=True
+            matplotlib.rcParams['text.latex.unicode']=True
+        
+        matplotlib.rc('legend', fontsize='small')
         
         self.__reset()
     
@@ -65,25 +68,13 @@ class Plotter(object):
         loc     = kwargs.get('loc',self.__global_loc)
         direc   = kwargs.get('directory',self.__global_direc)
         name    = kwargs.get('name',self.__global_name+'_%0*i'%(2,self.__nr_id))
-        title   = kwargs.get('title',name)
+        title   = kwargs.get('title',name.replace('_',' '))
         
-        self.__plots.append(Plot(r'\verb#Plot %i) '%(self.__nr_id)+title+r'#',name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,loc,direc))
+        self.__plots.append(Plot('Plot %i) '%(self.__nr_id)+title,name,xlabel,ylabel,xscale,yscale,aspect,show,pdf,pgf,loc,direc))
         
         if show: self.__nr_show += 1
         self.__nr_id += 1
-    
-    def plot(self, *args, **kwargs):
-        self.__plots[-1].addCurve('plot', *args, **kwargs)
-        
-    def hist(self, *args, **kwargs):
-        self.__plots[-1].addCurve('hist', *args, **kwargs)
-        
-    def errorbar(self, *args, **kwargs):
-        self.__plots[-1].addCurve('errorbar', *args, **kwargs)
 
-    def imshow(self, *args, **kwargs):
-        self.__plots[-1].addCurve('imshow', *args, **kwargs)
-    
     def make(self, ncols = 2, swindow = (15,10), sfile = (8,3.5), savewindow=False, show = True):        
         for n,plot in enumerate(self.__plots):
             if plot.pdf or plot.pgf: self.__save(n,plot,sfile)
@@ -102,6 +93,14 @@ class Plotter(object):
             if show: p.show()            
 
         self.__reset()
+        
+    def __getattr__(self, name):
+        def method(*args, **kwargs):
+            self.__plots[-1].addCurve(name, *args, **kwargs)
+        return method
+    
+    def __callMatplotlib(self, obj, method_name, *args, **kwargs):
+        getattr(obj, method_name)(*args, **kwargs)
     
     def __show(self,n,plot, ax):
         ax.set_title(plot.title,fontsize='medium', fontweight='bold', x=.05, y =1., ha = 'left', va='bottom')
@@ -111,11 +110,7 @@ class Plotter(object):
         ax.set_xscale(plot.xscale)
         ax.set_yscale(plot.yscale)
         ax.grid()
-        for curvetype, args, kwargs in plot.curves:
-            if curvetype == 'plot': ax.plot(*args, **kwargs)
-            elif curvetype == 'imshow': ax.imshow(*args, **kwargs)
-            elif curvetype == 'hist': ax.hist(*args, **kwargs)
-            elif curvetype == 'errorbar': ax.errorbar(*args, **kwargs)
+        for curvetype, args, kwargs in plot.curves: self.__callMatplotlib(ax,curvetype,*args, **kwargs)
         ax.set_aspect(plot.aspect)
         if plot.legend: ax.legend(shadow=0, loc=plot.loc)
         
@@ -127,11 +122,7 @@ class Plotter(object):
         p.xscale(plot.xscale)
         p.yscale(plot.yscale)
         p.grid()
-        for curvetype, args, kwargs in plot.curves:
-            if curvetype == 'plot': p.plot(*args, **kwargs)
-            elif curvetype == 'imshow': p.imshow(*args, **kwargs)
-            elif curvetype == 'hist': p.hist(*args, **kwargs)
-            elif curvetype == 'errorbar': p.errorbar(*args, **kwargs)
+        for curvetype, args, kwargs in plot.curves:  self.__callMatplotlib(p,curvetype,*args, **kwargs)
         p.axes().set_aspect(plot.aspect)
         if plot.legend: p.legend(shadow=0, loc=plot.loc)
         
