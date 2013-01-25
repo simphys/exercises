@@ -6,6 +6,7 @@ data/ljsim.state
 data/ljsim.vtf
 data/tmp
 plots/tmp
+report/*.log
 
 #IDE files to ignore (Netbeans, Eclipse)
 nbproject/private/
