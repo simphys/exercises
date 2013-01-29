@@ -2,5 +2,6 @@
 \contentsline {section}{\numberline {2}Importance Sampling- Metropolis-Hastings-Algorithm}{4}{section.2}
 \contentsline {section}{\numberline {3}Simulating the Ising Model}{5}{section.3}
 \contentsline {subsubsection}{\numberline {3.0.1}Mean energy}{6}{subsubsection.3.0.1}
-\contentsline {subsubsection}{\numberline {3.0.2}Mean magnetization}{6}{subsubsection.3.0.2}
-\contentsline {subsubsection}{\numberline {3.0.3}Mean absolute magnetization}{7}{subsubsection.3.0.3}
+\contentsline {subsubsection}{\numberline {3.0.2}Mean magnetization}{7}{subsubsection.3.0.2}
+\contentsline {subsubsection}{\numberline {3.0.3}Mean absolute magnetization}{8}{subsubsection.3.0.3}
+\contentsline {subsubsection}{\numberline {3.0.4}Energy as a function of magnetization}{8}{subsubsection.3.0.4}

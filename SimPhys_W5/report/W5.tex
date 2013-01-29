@@ -114,31 +114,45 @@ The exact solution of the Ising Model was obtained by using the canonical partit
 To determine the statistical errors the method of Binning errors is used. In order to choose the right block size k for the Binning error calculation one has to visual evaluate which k seems to be best. If the choosen block size is to small also the errors will be calculated smaller than they actually are. Then again if the choosen block size k is to large you will get a lot of fluctuation in the calculated error. Therefore the determined error will possibly be either to small or to large. Here you can see the calculated error of the mean energy as a function of the block size k.
 
 \begin{figure}[H]
-\includegraphics[width=14.0cm]{../plots/ising_06.pdf}
-\caption{Binning error as a function of the block size k. Fifty seems to be a good value for k.}
+\includegraphics[width=16.0cm]{../plots/ising_07.pdf}
+\caption{Binning error as a function of the block size k. 300 seems to be a good value for k.}
 \end{figure}
 
 However there is much more noise than we expeced. Maybe that is due to the fact the energy of a fixed configuration of the finite Ising Model can only have discrete values.
 
 \subsubsection{Mean energy}
 \begin{figure}[H]
-\includegraphics[width=14.0cm]{../plots/ising_01.pdf}
+\includegraphics[width=16.0cm]{../plots/ising_01.pdf}
 \caption{The energy becomes higher, when the temperature raises. The metropolis Monte-Carlo curve is in acceptable conformity to the exact one.}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=16.0cm]{../plots/ising_05.pdf}
+\caption{Frequency of energies as a function of temperature.}
 \end{figure}
 
 \subsubsection{Mean magnetization}
 \begin{figure}[H]
-\includegraphics[width=14.0cm]{../plots/ising_02.pdf}
+\includegraphics[width=16.0cm]{../plots/ising_02.pdf}
 \caption{The mean magnetization is around zero. This full fills our expectations because for every magnetization below zeros there's a equiprobable  magnetization above zero.}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=16.0cm]{../plots/ising_06.pdf}
+\caption{Frequency of magnetizations as a function of temperature.}
 \end{figure}
 
 \subsubsection{Mean absolute magnetization}
 \begin{figure}[H]
-\includegraphics[width=14.0cm]{../plots/ising_03.pdf}
+\includegraphics[width=16.0cm]{../plots/ising_03.pdf}
 \caption{The curve of the absolute magnetization is interesting. It clearly shows that a high temperature destroys regimes of equal orientated spins.} 
 \end{figure}
 
-
+\subsubsection{Energy as a function of magnetization}
+\begin{figure}[H]
+\includegraphics[width=16.0cm]{../plots/ising_04.pdf}
+\caption{Energy as a function of magnetization.} 
+\end{figure}
 
 
 

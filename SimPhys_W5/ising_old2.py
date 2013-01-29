@@ -227,14 +227,14 @@ if useMC:
 
 if useMC:
     p.new(name='Frequency of probabilities as a function of Temperature',xlabel='Probability',ylabel='Temperature')
-    time = (T*np.ones_like(arrayP).T).T
-    H, xedges, yedges = np.histogram2d(time.flatten(), arrayP.flatten(), bins=(len(T),100))
+    temp = (T*np.ones_like(arrayP).T).T
+    H, xedges, yedges = np.histogram2d(temp.flatten(), arrayP.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     
     """
     p.new(name='Frequency of energies',xlabel='Energy',ylabel='Temperature')
-    time = (T*np.ones_like(arrayE).T).T
-    H, xedges, yedges = np.histogram2d(time.flatten(), arrayE.flatten(), bins=(len(T),100))
+    temp = (T*np.ones_like(arrayE).T).T
+    H, xedges, yedges = np.histogram2d(temp.flatten(), arrayE.flatten(), bins=(len(T),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower')
     """
     p.new(name='Binning Analysis',xlabel='k',ylabel='error')

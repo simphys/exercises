@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  24 JAN 2013 20:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.21)  27 JAN 2013 02:17
 entering extended mode
  %&-line parsing enabled.
 **W5.tex
@@ -831,13 +831,13 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
 
 ]
-<../plots/runge.png, id=45, 578.16pt x 433.62pt>
+<../plots/runge.png, id=50, 578.16pt x 433.62pt>
 File: ../plots/runge.png Graphic file (type png)
  <use ../plots/runge.png>
-<../plots/Error2.png, id=47, 578.16pt x 433.62pt>
+<../plots/Error2.png, id=52, 578.16pt x 433.62pt>
 File: ../plots/Error2.png Graphic file (type png)
  <use ../plots/Error2.png>
-<../plots/Error3.png, id=48, 578.16pt x 433.62pt>
+<../plots/Error3.png, id=53, 578.16pt x 433.62pt>
 File: ../plots/Error3.png Graphic file (type png)
  <use ../plots/Error3.png>
 [2 <../plots/runge.png>]
@@ -845,7 +845,7 @@ Overfull \vbox (33.13216pt too high) has occurred while \output is active []
 
 
 [3 <../plots/Error2.png> <../plots/Error3.png>]
-<../plots/hist.png, id=69, 578.16pt x 433.62pt>
+<../plots/hist.png, id=74, 578.16pt x 433.62pt>
 File: ../plots/hist.png Graphic file (type png)
  <use ../plots/hist.png>
 Underfull \hbox (badness 10000) in paragraph at lines 112--113
@@ -853,40 +853,51 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--113
  []
 
 [4 <../plots/hist.png>]
-<../plots/Binning_error.pdf, id=75, 513.76166pt x 242.127pt>
-File: ../plots/Binning_error.pdf Graphic file (type pdf)
+<../plots/ising_07.pdf, id=80, 514.47989pt x 248.67122pt>
+File: ../plots/ising_07.pdf Graphic file (type pdf)
 
-<use ../plots/Binning_error.pdf>
+<use ../plots/ising_07.pdf>
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 123.
 
-<../plots/Mean_energy.pdf, id=77, 515.82709pt x 248.54958pt>
-File: ../plots/Mean_energy.pdf Graphic file (type pdf)
+<../plots/ising_01.pdf, id=82, 513.20168pt x 250.80418pt>
+File: ../plots/ising_01.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_energy.pdf>
-<../plots/Mean_magnetization.pdf, id=79, 515.82709pt x 248.54958pt>
-File: ../plots/Mean_magnetization.pdf Graphic file (type pdf)
+<use ../plots/ising_01.pdf> [5 <../plots/ising_07.pdf>]
+<../plots/ising_05.pdf, id=105, 509.14748pt x 250.80418pt>
+File: ../plots/ising_05.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_magnetization.pdf> [5 <../plots/Binning_error.pdf> <../plots
-/Mean_energy.pdf>]
-<../plots/Mean_absolute_magnetization.pdf, id=160, 513.26282pt x 248.54958pt>
-File: ../plots/Mean_absolute_magnetization.pdf Graphic file (type pdf)
+<use ../plots/ising_05.pdf>
+<../plots/ising_02.pdf, id=107, 513.45262pt x 250.80418pt>
+File: ../plots/ising_02.pdf Graphic file (type pdf)
 
-<use ../plots/Mean_absolute_magnetization.pdf> [6 <../plots/Mean_magnetization.
-pdf> <../plots/Mean_absolute_magnetization.pdf>] (./W5.aux)
+<use ../plots/ising_02.pdf> [6 <../plots/ising_01.pdf> <../plots/ising_05.pdf>]
+<../plots/ising_06.pdf, id=219, 509.14748pt x 251.1806pt>
+File: ../plots/ising_06.pdf Graphic file (type pdf)
+
+<use ../plots/ising_06.pdf>
+<../plots/ising_03.pdf, id=221, 504.32477pt x 250.80418pt>
+File: ../plots/ising_03.pdf Graphic file (type pdf)
+
+<use ../plots/ising_03.pdf> [7 <../plots/ising_02.pdf> <../plots/ising_06.pdf>]
+<../plots/ising_04.pdf, id=335, 518.5733pt x 251.1806pt>
+File: ../plots/ising_04.pdf Graphic file (type pdf)
+
+<use ../plots/ising_04.pdf> [8 <../plots/ising_03.pdf> <../plots/ising_04.pdf>]
+(./W5.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15445 strings out of 495021
- 261053 string characters out of 1181035
- 356796 words of memory out of 3000000
- 18281 multiletter control sequences out of 15000+50000
+ 15464 strings out of 495021
+ 261265 string characters out of 1181035
+ 356795 words of memory out of 3000000
+ 18294 multiletter control sequences out of 15000+50000
  12687 words of font info for 48 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 53i,11n,53p,391b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 53i,11n,53p,595b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts
@@ -898,10 +909,10 @@ exmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/
 fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mti10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on W5.pdf (6 pages, 546957 bytes).
+mti10.pfb>
+Output written on W5.pdf (8 pages, 536303 bytes).
 PDF statistics:
- 324 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 511 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 124 words of extra memory for PDF output out of 10000 (max. 10000000)
 
