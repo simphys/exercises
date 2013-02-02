@@ -10,7 +10,9 @@
 using namespace std;
 
 struct Data {
-	double E, M, T, acceptance;
+	Data(int s) : E(s), M(s), T(0), acceptance(0) { }
+	vector<double> E, M;
+	double T, acceptance;
 };
 
 int main(int argc, char* argv[]) {
@@ -27,7 +29,6 @@ int main(int argc, char* argv[]) {
 	float T_Start = 1;
 	float T_Stop = 5;
 	float T_StepSize = 0.1;
-	int Binning_K = 50;
 	char *filename = NULL;
 
     static struct option long_options[] = {
@@ -39,7 +40,6 @@ int main(int argc, char* argv[]) {
         {"T_Start", 1, 0, 0},
         {"T_Stop", 1, 0, 0},
         {"T_StepSize", 1, 0, 0},
-        {"Binning_K", 1, 0, 0},
         {"out", 1, 0, 'o'},
         {NULL, 0, NULL, 0}
     };
@@ -73,9 +73,6 @@ int main(int argc, char* argv[]) {
 			case 7:
 				T_StepSize = atof(optarg);
 				break;
-			case 8:
-				Binning_K = atof(optarg);
-				break;
 			}
 			break;
 		case 'o':
@@ -85,30 +82,28 @@ int main(int argc, char* argv[]) {
     }
 
     int V = Ising_L*Ising_L;
-
-    //====================
-	//=== CALCULATION ====
-	//====================
+    int T_Steps = (T_Stop-T_Start)/T_StepSize+1;
 
     gsl_rng *rnd;
     rnd = gsl_rng_alloc(gsl_rng_taus);
     gsl_rng_set(rnd, MC_Seed);
 
-    int T_Steps = (T_Stop-T_Start)/T_StepSize+1;
-
-    vector<Data> data(T_Steps);
+    vector<Data> data(T_Steps, Data(MC_Sweeps));
     Data *ptr = &data[0];
 
     int threads = 4;
-	omp_set_num_threads(4);
+    omp_set_num_threads(threads);
+
+    //====================
+	//=== CALCULATION ====
+	//====================
+
 	#pragma omp parallel for
 	for (int l = 0; l < threads; l++) {
 		IsingMatrix matrix(Ising_L,Ising_L,MC_Seed,Ising_J,Ising_H);
 		matrix.init();
 		for (int m = l; m < T_Steps; m+=threads) {
 			int n = T_Steps-1-m;
-			//double E[MC_Sweeps];
-			//double M[MC_Sweeps];
 			double T = T_StepSize*n + T_Start;
 			double actrate = 0;
 
@@ -131,15 +126,11 @@ int main(int argc, char* argv[]) {
 					sumE += matrix.getE();
 					sumM += matrix.getM();
 				}
-				//E[i] = sumE/V;
-				//M[i] = sumM/V;
-				ptr[n].E += sumE/V;
-				ptr[n].M += abs(sumM/V);
+				ptr[n].E[i] = sumE/V;
+				ptr[n].M[i] = abs(sumM/V);
 			}
 
 			ptr[n].T = T;
-			ptr[n].E /= MC_Sweeps;
-			ptr[n].M /= MC_Sweeps;
 			ptr[n].acceptance = actrate/MC_Sweeps;
 		}
 	}
@@ -154,7 +145,16 @@ int main(int argc, char* argv[]) {
 	if (myfile.is_open())
 	{
 		for (int n = 0; n < T_Steps; n++) {
-			myfile << ptr[n].T << " " << ptr[n].E << " "<< ptr[n].M << " " << ptr[n].acceptance << endl;
+			myfile << ptr[n].T << " "<< ptr[n].acceptance << " ";
+			for (int i = 0; i < MC_Sweeps; i++) {
+				myfile << ptr[n].E[i] << " ";
+			}
+			myfile << endl;
+			myfile << ptr[n].T << " "<< ptr[n].acceptance << " ";
+			for (int i = 0; i < MC_Sweeps; i++) {
+				myfile << ptr[n].M[i] << " ";
+			}
+			myfile << endl;
 		}
 		myfile.close();
 	}

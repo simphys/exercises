@@ -12,6 +12,8 @@ IsingMatrix::IsingMatrix(int n, int m, unsigned long int seed, double J, double 
 	for (int i = 0; i < s; ++i) {
 		matrix[i] = 0;
 	}
+	E = 0;
+	M = 0;
 	iold = 0;
 	Eold = 0;
 	Mold = 0;

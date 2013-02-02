@@ -1,0 +1,151 @@
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <getopt.h>
+#include <stdlib.h>
+#include <gsl/gsl_rng.h> //libgsl0-dev
+#include <omp.h>
+#include <vector>
+#include "IsingMatrix.h"
+using namespace std;
+
+struct Data {
+	double E, M, T, acceptance;
+};
+
+int main(int argc, char* argv[]) {
+	//====================
+	//=== SETUP ==========
+	//====================
+
+	// Parameter
+	int Ising_L = 10;
+	float Ising_J = 1;
+	float Ising_H = 0;
+	int MC_Seed = 42;
+	int MC_Steps = 1000000;
+	float T_Start = 1;
+	float T_Stop = 5;
+	float T_StepSize = 0.1;
+	int Binning_K = 50;
+	char *filename = NULL;
+
+    static struct option long_options[] = {
+        {"Ising_L", 1, 0, 0},
+        {"Ising_J", 1, 0, 0},
+        {"Ising_H", 1, 0, 0},
+        {"MC_Seed", 1, 0, 0},
+        {"MC_Steps", 1, 0, 0},
+        {"T_Start", 1, 0, 0},
+        {"T_Stop", 1, 0, 0},
+        {"T_StepSize", 1, 0, 0},
+        {"Binning_K", 1, 0, 0},
+        {"out", 1, 0, 'o'},
+        {NULL, 0, NULL, 0}
+    };
+
+    int c, option_index = 0;
+    while ((c = getopt_long(argc, argv, "o:", long_options, &option_index)) != -1) {
+    	switch (c) {
+		case 0:
+			switch (option_index) {
+			case 0:
+				Ising_L = atof(optarg);
+				break;
+			case 1:
+				Ising_J = atof(optarg);
+				break;
+			case 2:
+				Ising_H = atof(optarg);
+				break;
+			case 3:
+				MC_Seed = atof(optarg);
+				break;
+			case 4:
+				MC_Steps = atof(optarg);
+				break;
+			case 5:
+				T_Start = atof(optarg);
+				break;
+			case 6:
+				T_Stop = atof(optarg);
+				break;
+			case 7:
+				T_StepSize = atof(optarg);
+				break;
+			case 8:
+				Binning_K = atof(optarg);
+				break;
+			}
+			break;
+		case 'o':
+			filename = optarg;
+			break;
+    	}
+    }
+
+    //====================
+	//=== CALCULATION ====
+	//====================
+
+    gsl_rng *rnd;
+    rnd = gsl_rng_alloc(gsl_rng_taus);
+    gsl_rng_set(rnd, MC_Seed);
+
+    int T_Steps = (T_Stop-T_Start)/T_StepSize+1;
+
+    vector<Data> data(T_Steps,Data());
+    Data *ptr = &data[0];
+
+	IsingMatrix matrix(Ising_L,Ising_L,MC_Seed,Ising_J,Ising_H);
+
+	#pragma omp parallel for
+	for (int j = 0; j < T_Steps; j++) {
+		double E[MC_Steps+1];
+		double M[MC_Steps+1];
+		double T = T_StepSize*j + T_Start;
+		int actrate = 0;
+		cout << T <<" ";
+
+		E[0] = matrix.getE();
+		M[0] = matrix.getM();
+
+		for (int i = 1; i < MC_Steps+1; i++) {
+			matrix.flip();
+
+			double r = gsl_rng_uniform(rnd);
+			if (r < min(1.0,exp((-matrix.getE()+ E[i-1])/T))) {
+				actrate++;
+			} else {
+				matrix.unflip();
+			}
+
+			E[i] = matrix.getE();
+			M[i] = matrix.getM();
+		}
+
+		ptr[j].E = E[0];
+		ptr[j].M = M[0];
+		ptr[j].T = T;
+		ptr[j].acceptance = (double)actrate/MC_Steps;
+		cout << T <<" ";
+	}
+
+	gsl_rng_free(rnd);
+
+	//====================
+	//=== WRITING ========
+	//====================
+
+	ofstream myfile(filename);
+	if (myfile.is_open())
+	{
+		myfile << Ising_L<< "\t"<< endl;
+		myfile << Ising_J+5<< endl;
+		myfile << "3"<< endl;
+		myfile.close();
+	}
+	else cout << "Unable to open file!";
+
+	return 0;
+}
