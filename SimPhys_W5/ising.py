@@ -63,7 +63,7 @@ def calcMean(O,E,T,n=n):
 #==MC===
 def metropolisMC(N,Phi,T, n=n, i=itmp):
     # Calculate start values
-    E = (-J*np.sum(configuration*configuration[:,i]+configuration*configuration[i,:])-H*np.sum(configuration)) # Energy
+    E = (-J*np.sum(Phi*Phi[:,i]+Phi*Phi[i,:])-H*np.sum(configuration)) # Energy
     M = np.sum(Phi) # Magnetization
     P = np.exp(-E/T) # Probability
     

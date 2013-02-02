@@ -19,11 +19,11 @@ int main(int argc, char* argv[]) {
 	//====================
 
 	// Parameter
-	int Ising_L = 4;
+	int Ising_L = 10;
 	float Ising_J = 1;
 	float Ising_H = 0;
 	int MC_Seed = 42;
-	int  MC_Sweeps = 100;
+	int MC_Steps = 1000000;
 	float T_Start = 1;
 	float T_Stop = 5;
 	float T_StepSize = 0.1;
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
         {"Ising_J", 1, 0, 0},
         {"Ising_H", 1, 0, 0},
         {"MC_Seed", 1, 0, 0},
-        {"MC_Sweeps", 1, 0, 0},
+        {"MC_Steps", 1, 0, 0},
         {"T_Start", 1, 0, 0},
         {"T_Stop", 1, 0, 0},
         {"T_StepSize", 1, 0, 0},
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 				MC_Seed = atof(optarg);
 				break;
 			case 4:
-				MC_Sweeps = atof(optarg);
+				MC_Steps = atof(optarg);
 				break;
 			case 5:
 				T_Start = atof(optarg);
@@ -84,8 +84,6 @@ int main(int argc, char* argv[]) {
     	}
     }
 
-    int V = Ising_L*Ising_L;
-
     //====================
 	//=== CALCULATION ====
 	//====================
@@ -96,52 +94,41 @@ int main(int argc, char* argv[]) {
 
     int T_Steps = (T_Stop-T_Start)/T_StepSize+1;
 
-    vector<Data> data(T_Steps);
+    vector<Data> data(T_Steps,Data());
     Data *ptr = &data[0];
 
-    int threads = 4;
-	omp_set_num_threads(4);
+	IsingMatrix matrix(Ising_L,Ising_L,MC_Seed,Ising_J,Ising_H);
+
 	#pragma omp parallel for
-	for (int l = 0; l < threads; l++) {
-		IsingMatrix matrix(Ising_L,Ising_L,MC_Seed,Ising_J,Ising_H);
-		matrix.init();
-		for (int m = l; m < T_Steps; m+=threads) {
-			int n = T_Steps-1-m;
-			//double E[MC_Sweeps];
-			//double M[MC_Sweeps];
-			double T = T_StepSize*n + T_Start;
-			double actrate = 0;
+	for (int j = 0; j < T_Steps; j++) {
+		double E[MC_Steps+1];
+		double M[MC_Steps+1];
+		double T = T_StepSize*j + T_Start;
+		int actrate = 0;
+		cout << T <<" ";
 
-			for (int i = 0; i < MC_Sweeps; i++) {
-				double sumE = 0;
-				double sumM = 0;
+		E[0] = matrix.getE();
+		M[0] = matrix.getM();
 
-				for (int j = 0; j < V; j++) {
-					double Delta = matrix.getE();
-					matrix.flip();
-					Delta -= matrix.getE();
+		for (int i = 1; i < MC_Steps+1; i++) {
+			matrix.flip();
 
-					double r = gsl_rng_uniform(rnd);
-					if (r < min(1.0,exp(Delta/T))) {
-						actrate++;
-					} else {
-						matrix.unflip();
-					}
-
-					sumE += matrix.getE();
-					sumM += matrix.getM();
-				}
-				//E[i] = sumE/V;
-				//M[i] = sumM/V;
-				ptr[n].E += sumE/V;
-				ptr[n].M += abs(sumM/V);
+			double r = gsl_rng_uniform(rnd);
+			if (r < min(1.0,exp((-matrix.getE()+ E[i-1])/T))) {
+				actrate++;
+			} else {
+				matrix.unflip();
 			}
 
-			ptr[n].T = T;
-			ptr[n].E /= MC_Sweeps;
-			ptr[n].M /= MC_Sweeps;
-			ptr[n].acceptance = actrate/MC_Sweeps;
+			E[i] = matrix.getE();
+			M[i] = matrix.getM();
 		}
+
+		ptr[j].E = E[0];
+		ptr[j].M = M[0];
+		ptr[j].T = T;
+		ptr[j].acceptance = (double)actrate/MC_Steps;
+		cout << T <<" ";
 	}
 
 	gsl_rng_free(rnd);
@@ -153,9 +140,9 @@ int main(int argc, char* argv[]) {
 	ofstream myfile(filename);
 	if (myfile.is_open())
 	{
-		for (int n = 0; n < T_Steps; n++) {
-			myfile << ptr[n].T << " " << ptr[n].E << " "<< ptr[n].M << " " << ptr[n].acceptance << endl;
-		}
+		myfile << Ising_L<< "\t"<< endl;
+		myfile << Ising_J+5<< endl;
+		myfile << "3"<< endl;
 		myfile.close();
 	}
 	else cout << "Unable to open file!";

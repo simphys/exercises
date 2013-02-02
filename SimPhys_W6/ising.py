@@ -14,11 +14,11 @@ print '==Setup=='
 params = Params()
 
 params.Ising_L = 4
-params.Ising_J = 0
+params.Ising_J = 1
 params.Ising_H = 0
 
 params.MC_Seed = 42
-params.MC_Steps = 10000
+params.MC_Sweeps = 5000
 
 params.T_Start = 1
 params.T_Stop = 5
@@ -53,8 +53,8 @@ else:
     for line in iter(proc.stdout.readline, ''): print '>> '+line,
     retval = proc.wait()
     print 'Data file created.'
-    
-data = np.loadtxt(filename)
+
+[T,E,M,acceptance] = np.loadtxt(filename, unpack=True)
 print 'Data loaded.'
 
 print 'Finished calculations.'
@@ -62,6 +62,6 @@ print 'Finished calculations.'
 # PLOTS ###################################################################################################
 print '\n==Plots=='
 p.new(title='Test',xlabel='x',ylabel='y')
-p.plot(data)
+p.plot(T,M/params.Ising_L**2)
 p.make(ncols=2)
 print 'Finished plots.'
