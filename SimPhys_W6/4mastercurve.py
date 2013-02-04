@@ -31,7 +31,6 @@ useCache = True
 
 p = Plotter(show = True, pdf = False, pgf = False, latex=False, name='3beta')
 
-
 Tc = 2.27
 v = -1
 
@@ -124,14 +123,14 @@ print 'Finished calculations.'
 # PLOTS ###################################################################################################
 print '\n==Plots=='
 
-for bm in np.linspace(-0.3,-0.1,9):
-    p.new(title='bm=%s'%bm,xlabel='t*L^{-v}',ylabel='M*L^{bm/v}')
+for bm in np.linspace(-0.3,-0.0,9):
+    p.new(title='bm=%s'%bm,xlabel=r't*L^{-v}',ylabel=r'M*L^{bm/v}')
     for i in range(len(Ising_L)):
         X = (1-T[i]/Tc)*Ising_L[i]**(-v)
         Y = M[i]*Ising_L[i]**(bm/v)
         inx = np.abs(X)<20
         p.plot(X[inx],Y[inx],'o',label='L=%s'%Ising_L[i])
 
-p.make(ncols=3)
+p.make(ncols=3,savewindow=False)
 
 print 'Finished plots.'

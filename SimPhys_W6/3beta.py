@@ -4,7 +4,7 @@
 # some additions by: Patrick Kreissl, ICP Universitaet Stuttgart
 
 from __future__ import division
-from libs.simlib import Plotter, Params
+from libs.simlib import Plotter, Params, Fitter
 import numpy as np
 import subprocess
 import os.path
@@ -30,6 +30,8 @@ Binning_K = [50,200,800,800,800]
 useCache = True
 
 p = Plotter(show = True, pdf = False, pgf = False, latex=False, name='3beta')
+
+v=-1
 
 # FUNCTIONS ###############################################################################################
 #===Error analysis===
@@ -119,9 +121,12 @@ print 'Finished calculations.'
 
 # PLOTS ###################################################################################################
 print '\n==Plots=='
-
 p.new(title='magnetization',xlabel='L',ylabel='magnetization M',xscale='log',yscale='log')
-p.plot(Ising_L,M)
+func = lambda x, *p: x**(-p[0]/v)*p[1]
+f = Fitter(func, [-0.25,1])
+f.loadData(np.array(Ising_L), np.array(M).ravel(), scale='linear')
+p.plot(Ising_L,M,'o',label='Output of the simulation')
+p.plot(f.x,f.y,'-',label=r'Fitt M = L^-{bm/v)*C with ...'+'\n'+'bm = %.4f, v = %.4f, C = %.4f'%(f.params[0],v,f.params[1]))
 
 p.make(ncols=2)
 
