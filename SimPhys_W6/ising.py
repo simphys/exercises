@@ -59,7 +59,7 @@ if OverParam != 0:
 
 useCache = True
 
-p = Plotter(show = False, pdf = True, pgf = False, latex=False, name='ising')
+p = Plotter(show = False, pdf = False, pgf = False, latex=False, name='ising')
 
 # FUNCTIONS ###############################################################################################
 #==Exact===
@@ -211,7 +211,7 @@ for i in range(len(Ising_L)):
     temp = (T[i]*np.ones_like(arrM[i]).T).T
     H, xedges, yedges = np.histogram2d(temp.flatten(), arrM[i].flatten(), bins=(len(T[i]),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower',norm=LogNorm())
-#    p.make(ncols=2,show=False)
+#p.make(ncols=2,show=False)
 
 for i in range(len(Ising_L)):
     p.new(title='Binning error (L=%s)'%Ising_L[i],xlabel='k',ylabel='error')
@@ -225,17 +225,17 @@ for i in range(len(Ising_L)):
     [X, Y] = unique(np.array([np.round(arrM[i].ravel(),2),np.round(arrE[i].ravel(),2)]).T).T
     p.plot(X,Y,'o',alpha=0.1)
 
-p.new(title='Binder parameter',xlabel='Temperature',ylabel='Binder parameter')
+p.new(title='Binder parameter',xlabel='Temperature',ylabel='Binder parameter',show=True)
 n = np.shape(T)[0]
 for i in range(n): p.plot(T[i],U[i],label='for L = %s'%i)
 
-p.new(title='Binder parameter',xlabel='1/Temperature = beta*k_B',ylabel='Binder parameter')
+p.new(title='Binder parameter',xlabel='1/Temperature = beta*k_B',ylabel='Binder parameter',show=True)
 n = np.shape(T)[0]
 for i in range(n): p.plot(1./T[i],U[i],label='for L = %s'%i)
 
-p.new(title='magnetization',xlabel='L',ylabel='magnetization M',xscale='log',yscale='log')
+p.new(title='magnetization',xlabel='L',ylabel='magnetization M',xscale='log',yscale='log',show=True)
 p.plot(Ising_L,M)
 
-p.make(ncols=2,show=True)
+p.make(ncols=2)
 
 print 'Finished plots.'
