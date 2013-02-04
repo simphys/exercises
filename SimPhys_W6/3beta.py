@@ -121,13 +121,12 @@ print 'Finished calculations.'
 
 # PLOTS ###################################################################################################
 print '\n==Plots=='
-print np.array(Ising_L), np.array(M)
 p.new(title='magnetization',xlabel='L',ylabel='magnetization M',xscale='log',yscale='log')
 func = lambda x, *p: x**(-p[0]/v)*p[1]
 f = Fitter(func, [-0.25,1])
 f.loadData(np.array(Ising_L), np.array(M).ravel(), scale='linear')
 p.plot(Ising_L,M,'o',label='Output of the simulation')
-p.plot(f.x,f.y,'-',label=r'Fitt M = L^-{b/v)*C with ...'+'\n'+'b = %.4f, v = %.4f, C = %.4f'%(f.params[0],v,f.params[1]))
+p.plot(f.x,f.y,'-',label=r'Fitt M = L^-{bm/v)*C with ...'+'\n'+'bm = %.4f, v = %.4f, C = %.4f'%(f.params[0],v,f.params[1]))
 
 p.make(ncols=2)
 
