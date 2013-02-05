@@ -1,3 +1,7 @@
-\contentsline {section}{\numberline {1}Finite Size Scaling}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Determinig $T_\text {C}$}{2}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Estimating $\beta _\text {m}$}{2}{subsection.1.2}
+\contentsline {section}{\numberline {1}Speeding up the Simulation}{2}{section.1}
+\contentsline {section}{\numberline {2}Values and Errors}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Frequency distributions}{3}{subsection.2.1}
+\contentsline {section}{\numberline {3}Finite Size Scaling}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Determinig $T_\text {C}$}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Estimating $\beta _\text {m}$}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}The Master Curve}{5}{subsection.3.3}

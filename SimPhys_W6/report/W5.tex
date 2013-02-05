@@ -70,6 +70,35 @@
 \newpage
 
 % =============== Section ============
+\section{Speeding up the Simulation}
+The simulation was written in c++ because many loops were needed that slowed down python. The data analysis part was implemented in python, so that plotting was very easy.
+
+The c++ part was realized as command line tool. It was included in python by the use of the library \textit{subprocess}. We ducked out of \textit{cython} ;-).
+
+\section{Values and Errors}
+
+\subsubsection*{Mean energy}
+\begin{figure}[H]
+\includegraphics[width=13.0cm]{../plots/1simulation_01.pdf}
+\caption{Plot of the mean energy and its error (binning was used). The exact result for $L=4$ is in good conformity with the Monte Carlo simulation.}
+\end{figure}
+
+\subsubsection*{Mean absolute magnetization}
+\begin{figure}[H]
+\includegraphics[width=13.0cm]{../plots/1simulation_02.pdf}
+\caption{Plot of the mean absolute magnetization and its error (binning was used).}
+\end{figure}
+
+\subsubsection*{Dependence on L}
+The higher L is, the steeper the curves are near the critical temperature. The energy and magnetization mutate to step functions for infinite temperature.
+
+\subsection{Frequency distributions}
+\begin{figure}[H]
+\includegraphics[width=13.0cm]{../plots/1window_01.pdf}
+\caption{With an increase in L the distributions get sharper.}
+\end{figure}
+
+
 \section{Finite Size Scaling}
 
 \subsection{Determinig $T_\text{C}$}
@@ -77,7 +106,7 @@
 In this task the Binder parameter $ U = 1 - \frac{1}{3} <\mu^4>/<\mu^2>^2$ was implemented. The resulting plot of the Binder parameter over the Temperature for different L can be seen below:
 
 \begin{figure}[H]
-\includegraphics[width=16.0cm]{../plots/2binder_01.pdf}
+\includegraphics[width=13.0cm]{../plots/2binder_01.pdf}
 \caption{Plot of the Binder parameter for different lattice sizes L. From the intersection point of the different curves the critical Temperature can be determined as $T_\text{C} = 2.27 K$. In order to get a good result a 100000 sweeps and a temperature step size of $\Delta t = 0.005$ K were used.}
 \end{figure}
 
@@ -86,15 +115,23 @@ In this task the Binder parameter $ U = 1 - \frac{1}{3} <\mu^4>/<\mu^2>^2$ was i
 Here we performed different simulations at $T_\text{C} = 2.27 K$ were performed for $L \in \lbrace 8, 16, 32, 64, 128 \rbrace$. The resulting plot of the magnetization $M$ over $L$ is as follows:
 
 \begin{figure}[H]
-\includegraphics[width=16.0cm]{../plots/3beta_01.pdf}
+\includegraphics[width=13.0cm]{../plots/3beta_01.pdf}
 \caption{Plot of the magnetization $M$ over $L$ with double logarithmic scale. From the linear fit through the computet magnetizations $\beta_\text{m}$ can be determined as -0.1576.}
 \end{figure}
 
-The formula which connects the magnetization $M$, lattice size $L$ and $\beta_\text{m}$ is the following:
-\begin{equation}
-	M = L^{-\beta_\text{m}/\nu}
-\end{equation}
+The formula which connects the magnetization $M$, lattice size $L$ and $\beta_\text{m}$ is the following (for $T=T_C \Rightarrow t = 0$):
+\begin{equation*}
+	M = L^{-\beta_\text{m}/\nu} \cdot const
+\end{equation*}
 It was also used in order to get a value for $\beta_\text{m}$ from the plot.
+
+\subsection{The Master Curve}
+
+\begin{figure}[H]
+\includegraphics[width=13.0cm]{../plots/4window_01.pdf}
+\caption{The fit is bes in the core part of the curve at plot 3, so that $\beta_\text{m} \approx -0.12$}
+\end{figure}
+
 
 \end{document}
 

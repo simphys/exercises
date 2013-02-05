@@ -18,14 +18,14 @@ params.Ising_J = 1
 params.Ising_H = 0
 
 params.MC_Seed = 42
-params.MC_Sweeps = 10000
+params.MC_Sweeps = 100000
 
 params.T_Start = 1
-params.T_Stop = 5
+params.T_Stop = 3
 params.T_StepSize = 0.1
 
-Ising_L = [4,16,64]
-Binning_K = [50,200,800]
+Ising_L = [4,8,16,32,64]
+Binning_K = [50,100,200,400,800]
 
 useCache = True
 
@@ -123,14 +123,14 @@ print 'Finished calculations.'
 # PLOTS ###################################################################################################
 print '\n==Plots=='
 
-for bm in np.linspace(-0.3,-0.0,9):
+for bm in np.linspace(-0.14,-0.07,8):
     p.new(title='bm=%s'%bm,xlabel=r't*L^{-v}',ylabel=r'M*L^{bm/v}')
     for i in range(len(Ising_L)):
         X = (1-T[i]/Tc)*Ising_L[i]**(-v)
         Y = M[i]*Ising_L[i]**(bm/v)
         inx = np.abs(X)<20
-        p.plot(X[inx],Y[inx],'o',label='L=%s'%Ising_L[i])
+        p.plot(X[inx],Y[inx],'o',alpha=0.75,label='L=%s'%Ising_L[i])
 
-p.make(ncols=3,savewindow=False)
+p.make(ncols=2,savewindow=True)
 
 print 'Finished plots.'

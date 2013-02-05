@@ -29,7 +29,7 @@ Binning_K = [50,200,800]
 
 useCache = True
 
-p = Plotter(show = True, pdf = False, pgf = False, latex=False, name='ising')
+p = Plotter(show = True, pdf = True, pgf = False, latex=False, name='1simulation')
 
 # FUNCTIONS ###############################################################################################
 #==Exact===
@@ -152,13 +152,13 @@ print 'Finished calculations.'
 print '\n==Plots=='
 
 p.new(title='Mean energy',xlabel='Temperature',ylabel='Energy')
-p.plot(T_exact,E_exact,label='for L = 4, exact')
+p.plot(T_exact,E_exact,label='L = 4, exact')
 for i in range(len(Ising_L)): p.errorbar(T[i], E[i], yerr=errE[i], label='L=%s, MC'%Ising_L[i])
 
 p.new(title='Mean absolute magnetization',xlabel='Temperature',ylabel=r'$\vert Magnetization \vert$')
-p.plot(T_exact,M_exact,label='for L = 4, exact')
+p.plot(T_exact,M_exact,label='L = 4, exact')
 for i in range(len(Ising_L)): p.errorbar(T[i], M[i], yerr=errM[i], label='L=%s, MC'%Ising_L[i])
-p.make(ncols=1,show=False)
+#p.make(ncols=1,show=False)
 
 for i in range(len(Ising_L)):
     p.new(title='Frequency of energies (L=%s)'%Ising_L[i],xlabel='Energy',ylabel='Temperature')
@@ -170,7 +170,7 @@ for i in range(len(Ising_L)):
     temp = (T[i]*np.ones_like(arrM[i]).T).T
     H, xedges, yedges = np.histogram2d(temp.flatten(), arrM[i].flatten(), bins=(len(T[i]),100))
     p.imshow(H, extent=[yedges[0], yedges[-1], xedges[0], xedges[-1]], interpolation='nearest',aspect='auto',origin='lower',norm=LogNorm())
-p.make(ncols=2,show=False)
+#p.make(ncols=2,show=False)
 
 for i in range(len(Ising_L)):
     p.new(title='Binning error (L=%s)'%Ising_L[i],xlabel='k',ylabel='error')
