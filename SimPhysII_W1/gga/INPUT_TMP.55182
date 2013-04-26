@@ -1,0 +1,64 @@
+# FDF for Adenine geomtry optimization
+SystemName             Adenine.gga.DZP          # Short name for naming files
+NumberOfSpecies        3            # Number of species
+NumberOfAtoms          15           # Number of atoms
+##Basis set Defenition##
+PAO.BasisType          split        # Type of PAO basis set
+PAO.EnergyShift        50 meV
+PAO.BasisSize          DZP          # (DZP) Double-z + polarization
+%block  Chemical_Species_label
+       1  7   N
+       2  6   C
+       3  1   H
+%endblock Chemical_Species_label
+MeshCutoff            130. Ry        # Mesh cutoff. real space mesh (Ry)
+#XC functional specs
+XC.functional          GGA	    # Generalized Gradient Approximation
+XC.authors             PBE          # Perdew-Burke-Ernzerhof
+	
+## SCF options ##
+MaxSCFIterations      100           # Maximum number of SCF iter
+DM.MixingWeight       0.1           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+                                    # between input and output DM
+DM.NumberPulay         3
+DM.UseSaveDM          true          # to use continuation files
+SaveRho                 true
+NeglNonOverlapInt     false         # Neglect non-overlap interactions
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature 300 K         # Temp. for Fermi smearing (Ry)
+##Output Specification##
+WriteMDhistory         true         # Trajectory information
+WriteCoorStep          true
+WriteCoorXmol          true
+WriteMDXmol            true
+##Minimization strategy##
+MD.TypeOfRun           CG           # Type of dynamics:
+MD.NumCGsteps          600          # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxCGDispl          0.2 Bohr     # Maximum atomic displacement
+                                    #   in one CG step (Bohr)
+MD.MaxForceTol         0.04 eV/Ang  # Tolerance in the maximum
+                                    #   atomic force (Ry/Bohr)
+##Coordinate data
+AtomicCoordinatesFormat  NotScaledCartesianAng   # Format for coordinates
+%block AtomicCoordinatesAndAtomicSpecies
+   11.54100094    6.31362771    3.45960492   1  N          1
+   10.64912161    8.39014580    3.45723428   1  N          2
+    7.56179549    8.72186773    3.45660473   1  N          3
+    7.51677522    6.40414925    3.46142484   1  N          4
+    9.47608980    4.98939922    3.46149595   1  N          5
+   11.76189822    7.67603301    3.46074476   2  C          6
+    9.64861115    7.44720159    3.45786587   2  C          7
+    8.23094583    7.54071849    3.45449535   2  C          8
+    8.15660838    5.22417047    3.46779741   2  C          9
+   10.17309133    6.13279984    3.45944364   2  C         10
+   12.23801595    5.56025582    3.46916130   3  H         11
+   12.78939234    8.09812215    3.47249939   3  H         12
+    6.53979852    8.68942868    3.40251529   3  H         13
+    8.07666182    9.60511041    3.40154388   3  H         14
+    7.49916097    4.32121097    3.48644516   3  H         15
+%endblock  AtomicCoordinatesAndAtomicSpecies
+%block ExternalElectricField
+0.0000 0.000 0.0000 V/Ang
+%endblock ExternalElectricField
