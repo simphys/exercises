@@ -60,6 +60,10 @@ Hückel approximation and DFT methods}
 %%%%%%%% SONSTIGES
 \usepackage{pdfpages}
 \usepackage{pgf}
+%\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % NÜTZLICH: http://truben.no/latex/table/
 
@@ -93,6 +97,53 @@ N3-C4 & • & • & • & • & • & • & • & • & • \\
 \hline 
 \end{tabular} 
 
+\newpage
+
+\subsection{Theoretical Prediction of Watson-Crick Hydrogen-bond length in
+adenine-thymine base pair}
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{lda.jpg}
+                \caption{LDA}
+                \label{fig:gull}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{gga.jpg}
+                \caption{GGA}
+                \label{fig:tiger}
+        \end{subfigure}
+        \caption{Results for two flavours of XC functional. Blue numbers show bond lengths and red ones show bond angles.}\label{fig:ade-thy}
+\end{figure}
+
+\begin{table}[H]
+\begin{tabular}{l||l|l|l}
+Angle in \r{A} & LDA & GGA & Literature \footnotemark[1]\\ 
+\hline \hline 
+O4-H61-N6 & 176.7 & 175.6 & 175.8\\ 
+\hline 
+N1-H3-N3 & 178.1 & 179.4 & 178.1\\ 
+\end{tabular}
+\caption{Bond angles}\label{tab:angles}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{l||l|l|l|l}
+Distance in \r{A} & LDA & GGA & Experiment 1 \footnotemark[1] & Experiment 2 \footnotemark[1] \\ 
+\hline \hline 
+O4-N6 & 2.68 & 2.89 & 2.95 & 2.93 \\ 
+\hline 
+N1-N3 & 2.60 & 2.79 & 2.82 & 2.85 \\ 
+\end{tabular}
+\caption{Bond lengths}\label{tab:lengths}
+\end{table}
+
+\footnotetext[1]{source: Attachment1b.pdf}
+
+TODO: Write some text. Write down number of steps.
 
 \end{document}
 
