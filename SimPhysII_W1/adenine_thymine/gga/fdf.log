@@ -1,0 +1,393 @@
+
+#FDF: Opened INPUT_TMP.01064      for input. Unit: 12
+
+fdf-debug              0     # Default value
+SystemName     ade_thy                                                                                                                             
+SystemLabel     ade_thy_gga.DZP                                                                                                                     
+XML.Write              T     # Default value
+Write.XML              T     # Default value
+XML.AbortOnErrors              F     # Default value
+XML.AbortOnWarnings              F     # Default value
+alloc_report_level              0     # Default value
+xc.functional     GGA                                                                                                                                 
+xc.authors     PBE                                                                                                                                 
+MM.Cutoff          30.00000000     Bohr     # Default value
+MM.UnitsEnergy     eV     # Default value
+MM.UnitsDistance     Ang     # Default value
+WriteIonPlotFiles              F     # Default value
+Atom.Debug.KB.Generation              F     # Default value
+user-basis              F     # Default value
+user-basis-netcdf              F     # Default value
+ReparametrizePseudos              F     # Default value
+Restricted.Radial.Grid              T     # Default value
+Rmax.Radial.Grid          0.000000000         # Default value
+PAO.BasisSize     DZP                                                                                                                                 
+PAO.BasisType     split                                                                                                                               
+PAO.SoftDefault              F     # Default value
+PAO.SoftInnerRadius         0.9000000000         # Default value
+PAO.SoftPotential          40.00000000         # Default value
+PAO.SplitNorm         0.2000000000    
+PAO.SplitNormH         0.3500000000    
+Number_of_species                        4
+
+%block  Chemical_Species_label                                                 
+       1  6   C                                                                
+       2  1   H                                                                
+       3  7   N                                                                
+       4  8   O                                                                
+%endblock Chemical_Species_label                                               
+
+FilterCutoff          0.000000000     Ry     # Default value
+FilterTol          0.000000000     Ry     # Default value
+KB.Rmax          6.000000000     Bohr     # Default value
+PAO.EnergyShift         0.3674899422E-02         Ry
+# Above item originally: PAO.EnergyShift          50.00000000     meV       
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Keep.Findp.Bug              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.OldStylePolorbs              T     # Default value
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+Vna.Filter              F     # Default value
+PCC.Filter              F     # Default value
+FilterCutoff          0.000000000     Ry     # Default value
+FilterTol          0.000000000     Ry     # Default value
+KB.Rmax          6.000000000     Bohr     # Default value
+PAO.EnergyShift         0.3674899422E-02         Ry
+# Above item originally: PAO.EnergyShift          50.00000000     meV       
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.OldStylePolorbs              T     # Default value
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+Vna.Filter              F     # Default value
+FilterCutoff          0.000000000     Ry     # Default value
+FilterTol          0.000000000     Ry     # Default value
+KB.Rmax          6.000000000     Bohr     # Default value
+PAO.EnergyShift         0.3674899422E-02         Ry
+# Above item originally: PAO.EnergyShift          50.00000000     meV       
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.OldStylePolorbs              T     # Default value
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+Vna.Filter              F     # Default value
+PCC.Filter              F     # Default value
+FilterCutoff          0.000000000     Ry     # Default value
+FilterTol          0.000000000     Ry     # Default value
+KB.Rmax          6.000000000     Bohr     # Default value
+PAO.EnergyShift         0.3674899422E-02         Ry
+# Above item originally: PAO.EnergyShift          50.00000000     meV       
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.Filter              F     # Default value
+PAO.OldStylePolorbs              T     # Default value
+PAO.SplitTailNorm              F     # Default value
+PAO.FixSplitTable              F     # Default value
+PAO.NewSplitCode              F     # Default value
+PAO.Filter              F     # Default value
+Vna.Filter              F     # Default value
+PCC.Filter              F     # Default value
+PAO.BasisType     split                                                                                                                               
+Atom-Setup-Only              F     # Default value
+UseStructFile              F     # Default value
+MD.UseStructFile              F     # Default value
+LatticeConstant          0.000000000     Bohr     # Default value
+AtomicCoordinatesFormat     NotScaledCartesianAng                                                                                                               
+NumberOfAtoms                       30
+ZM.UnitsLength     Bohr           # Default value
+ZM.UnitsAngle     rad            # Default value
+ZM.ForceTolLength         0.1555740000E-02 Ry/Bohr     # Default value
+ZM.ForceTolAngle         0.3565490000E-02 Ry/rad     # Default value
+ZM.MaxDisplLength         0.2000000000     Bohr     # Default value
+ZM.MaxDisplAngle         0.3000000000E-02 rad     # Default value
+ZM.CalcAllForces              F     # Default value
+
+%block AtomicCoordinatesAndAtomicSpecies                                       
+   -5.71577300    3.86159700    2.98066100   3       1  N                      
+   -7.82491800    4.65816100    3.20738700   3       2  N                      
+  -10.08940800    2.75224100    4.11445600   3       3  N                      
+   -8.41114600    1.11363800    4.21799200   3       4  N                      
+   -6.08800800    1.51434000    3.64223200   3       5  N                      
+   -6.57938300    4.95247400    2.88418300   1       6  C                      
+   -7.78342500    3.30380500    3.53372300   1       7  C                      
+   -8.78933000    2.39528500    3.96027000   1       8  C                      
+   -7.11385100    0.75085300    4.05436900   1       9  C                      
+   -6.48188600    2.78135100    3.40090900   1      10  C                      
+   -4.72669700    3.84190500    2.77729100   2      11  H                      
+   -6.22481400    5.92598000    2.57648000   2      12  H                      
+  -10.77699500    2.08872200    4.47897600   2      13  H                      
+  -10.35085700    3.71191900    3.94492000   2      14  H                      
+   -6.89534700   -0.28660500    4.29948200   2      15  H                      
+   -8.41189000   -2.24992300    5.55618400   4      16  O                      
+  -11.94568700    0.70198200    5.24514900   4      17  O                      
+  -10.49736200   -2.91266200    6.30384000   3      18  N                      
+  -10.19969100   -0.78837900    5.38538500   3      19  N                      
+   -9.59818700   -1.99432900    5.72904100   1      20  C                      
+  -11.54330400   -0.42832600    5.56844500   1      21  C                      
+  -12.41257200   -1.46069700    6.15684900   1      22  C                      
+  -13.88017400   -1.14128600    6.33954300   1      23  C                      
+  -11.84435500   -2.65173900    6.50391500   1      24  C                      
+   -9.56387400   -0.07912000    4.94821600   2      25  H                      
+  -10.09175500   -3.79860500    6.57158300   2      26  H                      
+  -12.41176100   -3.45776300    6.95794300   2      27  H                      
+  -14.41443600   -1.98537400    6.78781100   2      28  H                      
+  -14.00919700   -0.25744600    6.97583700   2      29  H                      
+  -14.34340900   -0.90187100    5.37414300   2      30  H                      
+%endblock AtomicCoordinatesAndAtomicSpecies                                    
+
+UseSaveData              F     # Default value
+MD.UseSaveXV              F     # Default value
+MD.UseSaveZM              F     # Default value
+WriteCoorInitial              T     # Default value
+MD.TypeOfRun     CG                                                                                                                                  
+NetCharge          0.000000000         # Default value
+MaxBondDistance          6.000000000     Bohr     # Default value
+Output-Structure-Only              F     # Default value
+SpinPolarized              F
+NonCollinearSpin              F     # Default value
+LongOutput              T
+WriteDenchar              F     # Default value
+WriteMullikenPop              0     # Default value
+WriteHirshfeldPop              F     # Default value
+WriteVoronoiPop              F     # Default value
+PartialChargesAtEveryGeometry              F     # Default value
+PartialChargesAtEveryScfStep              F     # Default value
+MeshCutoff          150.0000000             Ry
+# Above item originally: MeshCutoff          150.0000000     Ry        
+NetCharge          0.000000000         # Default value
+MaxSCFIterations             50     # Default value
+SCFMustConverge              F     # Default value
+DM.NumberPulay                        4
+DM.NumberBroyden              0     # Default value
+DM.FIRE.Mixing              F     # Default value
+DM.MixSCF1              F     # Default value
+DM.PulayOnFile              F     # Default value
+DM.Pulay.Avoid.First.After.Kick              F     # Default value
+DM.MixingWeight         0.1000000000    
+DM.OccupancyTolerance         0.1000000000E-11     # Default value
+DM.NumberKick              0     # Default value
+DM.KickMixingWeight         0.5000000000         # Default value
+DM.Tolerance         0.1000000000E-03
+DM.RequireEnergyConvergence              F     # Default value
+DM.EnergyTolerance         0.7349806700E-05 Ry     # Default value
+DM.RequireHarrisConvergence              F     # Default value
+DM.HarrisTolerance         0.7349806700E-05 Ry     # Default value
+UseSaveData              F     # Default value
+DM.UseSaveDM              F     # Default value
+NeglNonOverlapInt              F
+SolutionMethod     diagon                                                                                                                              
+Diag.DivideAndConquer              T     # Default value
+Diag.Memory          1.000000000         # Default value
+ElectronicTemperature         0.1900069269E-02         Ry
+# Above item originally: ElectronicTemperature          300.0000000     K         
+FixSpin              F     # Default value
+ON.MaxNumIter           1000     # Default value
+ON.etol         0.1000000000E-07     # Default value
+ON.eta          0.000000000     Ry     # Default value
+ON.eta_alpha          0.000000000     Ry     # Default value
+ON.eta_beta          0.000000000     Ry     # Default value
+On.RcLWF          9.500000000     Bohr     # Default value
+ON.UseSaveLWF              F     # Default value
+ON.functional     kim     # Default value
+ON.ChemicalPotentialUse              F     # Default value
+ON.ChemicalPotential              F     # Default value
+ON.ChemicalPotentialRc          9.500000000     Bohr     # Default value
+ON.ChemicalPotentialTemperature         0.5000000000E-01 Ry     # Default value
+ON.ChemicalPotentialOrder            100     # Default value
+MD.VariableCell              F     # Default value
+MD.TypeOfRun     CG                                                                                                                                  
+MD.UseSaveCG              F     # Default value
+Optim.Broyden              F     # Default value
+MD.NumCGsteps                      100
+MD.MaxCGDispl         0.2000000000           Bohr
+# Above item originally: MD.MaxCGDispl         0.2000000000     Bohr      
+MD.MaxForceTol         0.1555739508E-02    Ry/Bohr
+# Above item originally: MD.MaxForceTol         0.4000000000E-01 eV/Ang    
+MD.MaxStressTol         0.6797730000E-04 Ry/Bohr**3     # Default value
+MD.InitialTimeStep              1     # Default value
+MD.FinalTimeStep              1     # Default value
+MD.LengthTimeStep          1.000000000     fs     # Default value
+MD.Quench              F     # Default value
+MD.FireQuench              F     # Default value
+MD.InitialTemperature          0.000000000     K     # Default value
+MD.TargetTemperature          0.000000000     K     # Default value
+MD.TargetPressure          0.000000000     Ry/Bohr**3     # Default value
+MD.NoseMass          100.0000000     Ry*fs**2     # Default value
+MD.ParrinelloRahmanMass          100.0000000     Ry*fs**2     # Default value
+MD.AnnealOption     TemperatureAndPressure     # Default value
+MD.TauRelax          100.0000000     fs     # Default value
+MD.BulkModulus         0.6797730000E-02 Ry/Bohr**3     # Default value
+MD.FCDispl         0.4000000000E-01 Bohr     # Default value
+MD.FCfirst              1     # Default value
+MD.FClast             30     # Default value
+UseSpatialDecomposition              F     # Default value
+UseDomainDecomposition              F     # Default value
+Harris_functional              F     # Default value
+WriteKpoints              T     # Default value
+WriteForces              T     # Default value
+WriteDM              T     # Default value
+WriteDM.NetCDF              T     # Default value
+WriteDM.History.NetCDF              F     # Default value
+WriteDMHS.NetCDF              T     # Default value
+WriteDMHS.History.NetCDF              F     # Default value
+SCF.Read.Charge.NetCDF              F     # Default value
+SCF.Read.Deformation.Charge.NetCDF              F     # Default value
+SaveInitialChargeDensity              F     # Default value
+UseNewDiagk              F     # Default value
+WriteBands              T     # Default value
+WriteKbands              T     # Default value
+WriteEigenvalues              T     # Default value
+WriteCoorStep              T
+WriteMDhistory              T
+WriteMDXmol              T
+UseSaveData              F     # Default value
+SaveHS              T
+FixAuxiliaryCell              F     # Default value
+NaiveAuxiliaryCell              F     # Default value
+ReInitialiseDM              T     # Default value
+DM.AllowReuse              T     # Default value
+DM.AllowExtrapolation              T     # Default value
+MullikenInSCF              F     # Default value
+WarningMinimumAtomicDistance          1.000000000     Bohr     # Default value
+BornCharge              F     # Default value
+ChangeKgridInMD              F     # Default value
+Diag.ParallelOverK              F     # Default value
+MD.RelaxCellOnly              F     # Default value
+MD.RemoveIntraMolecularPressure              F     # Default value
+COOP.Write              F     # Default value
+SaveRho              T
+SaveDeltaRho              F     # Default value
+SaveElectrostaticPotential              F     # Default value
+SaveNeutralAtomPotential              F     # Default value
+SaveTotalPotential              F     # Default value
+SaveIonicCharge              F     # Default value
+SaveBaderCharge              F     # Default value
+SaveTotalCharge              F     # Default value
+RcSpatial          0.000000000     Bohr     # Default value
+ProcessorGridX              1     # Default value
+ProcessorGridY              1     # Default value
+ProcessorGridZ              1     # Default value
+NumberOfEigenStates            302     # Default value
+TimeReversalSymmetryForKpoints              T     # Default value
+kgrid_cutoff          0.000000000     Bohr     # Default value
+WFS.EnergyMin        -0.1797693135+309 Ry     # Default value
+WFS.EnergyMax         0.1797693135+309 Ry     # Default value
+LongOutput              T
+WriteWaveFunctions              T     # Default value
+WriteWaveDebug              F     # Default value
+ForceAuxCell              F     # Default value
+AtomicCoordinatesFormat     NotScaledCartesianAng                                                                                                               
+AtomCoorFormatOut     NotScaledCartesianAng      # Default value
+LatticeConstant          0.000000000     Bohr     # Default value
+Harris_functional              F     # Default value
+MeshSubDivisions              2     # Default value
+LatticeConstant          0.000000000     Bohr     # Default value
+DirectPhi              F     # Default value
+SimulateDoping              F     # Default value
+SlabDipoleCorrection              F     # Default value
+LatticeConstant          0.000000000     Bohr     # Default value
+Diag.AllInOne              F     # Default value
+Diag.DivideAndConquer              T     # Default value
+Diag.NoExpert              F     # Default value
+Diag.PreRotate              F     # Default value
+Diag.Use2D              T     # Default value
+SingleExcitation              F     # Default value
+OccupationFunction     FD     # Default value
+OccupationFunction     FD     # Default value
+DM.FormattedFiles              F     # Default value
+DM.FormattedInput              F     # Default value
+DM.FormattedOutput              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+DM.AllowExtrapolation              F     # Default value
+WriteCoorXmol              T
+WriteCoorCerius              F     # Default value
+BasisPressure         0.2000000000     GPa     # Default value
+OpticalCalculation              F     # Default value

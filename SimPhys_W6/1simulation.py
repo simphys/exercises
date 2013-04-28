@@ -29,7 +29,7 @@ Binning_K = [50,200,800]
 
 useCache = True
 
-p = Plotter(show = True, pdf = True, pgf = False, latex=False, name='1simulation')
+p = Plotter(show = True, pdf = False, pgf = False, latex=False, name='1simulation')
 
 # FUNCTIONS ###############################################################################################
 #==Exact===

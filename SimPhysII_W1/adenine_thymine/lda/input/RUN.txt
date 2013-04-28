@@ -1,0 +1,1 @@
+mpirun -np 2 siesta < adenine_thymine_lda.fdf | tee ade_thy_lda.out

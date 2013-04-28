@@ -2,6 +2,9 @@
 # -*- coding:utf-8 -*-
 # Author: Sebastian Weber
 
+# Fuer latex texmaker, texlive-fonts-recommended und dvipng installieren.
+
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function

@@ -1,0 +1,84 @@
+# FDF for Adenine +  Thymine   coupled system
+#Modify all the lines which contains "?", "xctype".
+SystemName             ade_thy        # Descriptive name of the system
+SystemLabel            ade_thy_lda.DZP         # Short name for naming files
+NumberOfSpecies        4           # Number of species
+NumberOfAtoms          30           # Number of atoms
+##Xc flavour##
+XC.functional          LDA	    # Local Density Approximation
+XC.authors             CA           # Ceperley-Alder
+##Output specs##
+SaveHS                 true
+SaveRho                true
+LongOutput             true
+WriteCoorXmol          true
+WriteMDhistory         true         # Trajectory information
+WriteCoorStep          true
+WriteCoorXmol          true
+WriteMDXmol            true
+%block  Chemical_Species_label
+       1  6   C
+       2  1   H
+       3  7   N
+       4  8   O
+%endblock Chemical_Species_label
+SpinPolarized     false
+MeshCutoff	       150. Ry        # Mesh cutoff. real space mesh (Ry)
+DM.MixingWeight       0.1          # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+                                    # between input and output DM
+DM.NumberPulay         4
+NeglNonOverlapInt     false         # Neglect non-overlap interactions
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature 300 K         # Temp. for Fermi smearing (Ry)
+##Minimization_strategy
+MD.TypeOfRun           CG           # Type of dynamics:
+MD.NumCGsteps          100            # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxCGDispl          0.2 Bohr     # Maximum atomic displacement
+                                    #   in one CG step (Bohr)
+MD.MaxForceTol         0.04 eV/Ang  # Tolerance in the maximum
+                                    #   atomic force (Ry/Bohr)
+#Basis_defenition
+PAO.BasisType    split
+PAO.BasisSize    DZP
+PAO.EnergyShift         50.0 meV
+PAO.SplitNorm           0.20
+PAO.SplitNormH          0.35
+AtomicCoordinatesFormat    NotScaledCartesianAng    # Format for coordinates
+%block AtomicCoordinatesAndAtomicSpecies
+   -5.71577300    3.86159700    2.98066100   3       1  N
+   -7.82491800    4.65816100    3.20738700   3       2  N
+  -10.08940800    2.75224100    4.11445600   3       3  N
+   -8.41114600    1.11363800    4.21799200   3       4  N
+   -6.08800800    1.51434000    3.64223200   3       5  N
+   -6.57938300    4.95247400    2.88418300   1       6  C
+   -7.78342500    3.30380500    3.53372300   1       7  C
+   -8.78933000    2.39528500    3.96027000   1       8  C
+   -7.11385100    0.75085300    4.05436900   1       9  C
+   -6.48188600    2.78135100    3.40090900   1      10  C
+   -4.72669700    3.84190500    2.77729100   2      11  H
+   -6.22481400    5.92598000    2.57648000   2      12  H
+  -10.77699500    2.08872200    4.47897600   2      13  H
+  -10.35085700    3.71191900    3.94492000   2      14  H
+   -6.89534700   -0.28660500    4.29948200   2      15  H
+   -8.41189000   -2.24992300    5.55618400   4      16  O
+  -11.94568700    0.70198200    5.24514900   4      17  O
+  -10.49736200   -2.91266200    6.30384000   3      18  N
+  -10.19969100   -0.78837900    5.38538500   3      19  N
+   -9.59818700   -1.99432900    5.72904100   1      20  C
+  -11.54330400   -0.42832600    5.56844500   1      21  C
+  -12.41257200   -1.46069700    6.15684900   1      22  C
+  -13.88017400   -1.14128600    6.33954300   1      23  C
+  -11.84435500   -2.65173900    6.50391500   1      24  C
+   -9.56387400   -0.07912000    4.94821600   2      25  H
+  -10.09175500   -3.79860500    6.57158300   2      26  H
+  -12.41176100   -3.45776300    6.95794300   2      27  H
+  -14.41443600   -1.98537400    6.78781100   2      28  H
+  -14.00919700   -0.25744600    6.97583700   2      29  H
+  -14.34340900   -0.90187100    5.37414300   2      30  H
+%endblock AtomicCoordinatesAndAtomicSpecies
+## Simulation restart parameters ##
+#DM.UseSaveDM   true
+#MD.UseSaveXV   true
+#MD.UseSaveCG   true
