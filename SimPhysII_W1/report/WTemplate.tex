@@ -44,7 +44,7 @@ Hückel approximation and DFT methods}
 
 %%%%%%%% ANPASSUNGEN: Absätze
 \setlength{\parindent}{0em} % keine Absatzeinzüge
-\setlength{\parskip}{0em} % Absatz-Abstand
+\setlength{\parskip}{0.5em} % Absatz-Abstand
 
 %%%%%%%% ANPASSUNGEN: Abbildungsverzeichnis
 \usepackage{tocloft} % Zum Anpassen der Verzeichnisse
@@ -143,7 +143,13 @@ N1-N3 & 2.60 & 2.79 & 2.82 & 2.85 \\
 
 \footnotetext[1]{source: Attachment1b.pdf}
 
-TODO: Write some text. Write down number of steps.
+With LDA (local density approximation) and GGA (generalized gradient approximation) you get decent results. Both show that the O4-N6 bound is around $\unit[8 - 10]{\r{A}}$ longer than the N1-N3 bound. The comparison with experimental data (see table \ref{tab:lengths}) illustrates that GGA is more precise than LDA. For GGA the deviation is around $\unit[2]{\%}$ and for LDA around $\unit[10]{\%}$. However the exact error can't be specified because you don't have an isolated adenine-thymine base pair in the real world and the experimental results depend on the chemical environment.
+
+The high precision of GGA can be explained by the fact that it uses the gradient which is non-local. In contrast LDA is a local approximation. It overestimates the bond strength regularly. Therefor the bond lengths are to short. LDA is highly precise only if you have a structure with uniform electron density.
+
+The calculated bond angles are in conformity with calculated values that were found in Attachment1b.pdf (see Table \ref{tab:angles}). It's virtually impossible to figure out whether their calculation is more exact than ours.
+
+For convergence GGA needed 64 steps and LDA 70 steps. A GGA step is more time consuming than a LDA step due to the use of the gradient. Therefore GGA ran for $\unit[52]{min}$ and LDA for $\unit[49]{min}$. As you can see the difference in run time is very small so that you should use GGA for all similar problems because of higher precision.
 
 \end{document}
 
