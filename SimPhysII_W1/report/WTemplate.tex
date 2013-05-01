@@ -79,8 +79,9 @@ Hückel approximation and DFT methods}
 
 \subsection{Geometry optimization of adenine}
 
+\begin{table}
 \begin{tabular}{c|c|c|c||c|c|c|c} 
-Distance & GGA & LDA & Exp & Angle & GGA & LDA  & Exp \\ 
+Distance in \r{A} & GGA & LDA & Exp\footnotemark[1] & Angle in degrees & GGA & LDA  & Exp\footnotemark[1]\\ 
 \hline 
 \hline
 C2-N3 & 1.353 & 1.338 & 1.332 & N3-C4-C5 & 127.37 & 127.17 & 126.9 \\ 
@@ -95,6 +96,10 @@ C4-C5 & 1.415 & 1.406 & 1.382 & N7-C8-N9 & 113.51 & 113.28 & 113.8 \\
 \hline 
 N3-C4 & 1.351 & 1.336 & 1.342 & C5-N7-C8 & 103.60 & 103.88 & 103.9 \\  
 \end{tabular} 
+\caption{Bond lengths and bond angles predicted by siesta and experimental data.}\label{tab:distances_and_angles}
+\end{table}
+
+\footnotetext[1]{source: Attachment1a.pdf}
 
 \newpage
 
@@ -120,7 +125,7 @@ adenine-thymine base pair}
 
 \begin{table}[H]
 \begin{tabular}{l||l|l|l}
-Angle in \r{A} & LDA & GGA & Literature \footnotemark[1]\\ 
+Angle in \r{A} & LDA & GGA & Literature \footnotemark[2]\\ 
 \hline \hline 
 O4-H61-N6 & 176.7 & 175.6 & 175.8\\ 
 \hline 
@@ -131,7 +136,7 @@ N1-H3-N3 & 178.1 & 179.4 & 178.1\\
 
 \begin{table}[H]
 \begin{tabular}{l||l|l|l|l}
-Distance in \r{A} & LDA & GGA & Experiment 1 \footnotemark[1] & Experiment 2 \footnotemark[1] \\ 
+Distance in \r{A} & LDA & GGA & Experiment 1 \footnotemark[2] & Experiment 2 \footnotemark[2] \\ 
 \hline \hline 
 O4-N6 & 2.68 & 2.89 & 2.95 & 2.93 \\ 
 \hline 
@@ -140,7 +145,7 @@ N1-N3 & 2.60 & 2.79 & 2.82 & 2.85 \\
 \caption{Bond lengths}\label{tab:lengths}
 \end{table}
 
-\footnotetext[1]{source: Attachment1b.pdf}
+\footnotetext[2]{source: Attachment1b.pdf}
 
 With LDA (local density approximation) and GGA (generalized gradient approximation) you get decent results. Both show that the O4-N6 bound is around $\unit[8 - 10]{\r{A}}$ longer than the N1-N3 bound. The comparison with experimental data (see table \ref{tab:lengths}) illustrates that GGA is more precise than LDA. For GGA the deviation is around $\unit[2]{\%}$ and for LDA around $\unit[10]{\%}$. However the exact error can't be specified because you don't have an isolated adenine-thymine base pair in the real world and the experimental results depend on the chemical environment.
 
