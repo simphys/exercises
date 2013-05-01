@@ -79,7 +79,7 @@ Hückel approximation and DFT methods}
 
 \subsection{Geometry optimization of adenine}
 
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{c|c|c|c||c|c|c|c} 
 Distance in \r{A} & GGA & LDA & Exp\footnotemark[1] & Angle in degrees & GGA & LDA  & Exp\footnotemark[1]\\ 
 \hline 
@@ -100,6 +100,10 @@ N3-C4 & 1.351 & 1.336 & 1.342 & C5-N7-C8 & 103.60 & 103.88 & 103.9 \\
 \end{table}
 
 \footnotetext[1]{source: Attachment1a.pdf}
+
+With both used methods (generalized gradient approximation GGA and local density approximation LDA) the results predicted by siesta are quite close to the experimental data (table \ref{tab:distances_and_angles}). In general for the bond lengths the with LDA predicted data is quite close to the experimental results while the GGA data always overestimate the bond lengths. \\
+For nearly all predicted bond angles the GGA data is closer to the experiments than the LDA data. However the LDA results vary only a litte from the GGA results.\\
+So from this little trial run it seem that if one is looking for bond lengths using LDA for predictions would be a better choice than using GGA. Also the predicted angles would be pretty close to the experimental data. For more accuracy computing the bond angles GGA would possibly be an even better choice.
 
 \newpage
 
@@ -125,7 +129,7 @@ adenine-thymine base pair}
 
 \begin{table}[H]
 \begin{tabular}{l||l|l|l}
-Angle in \r{A} & LDA & GGA & Literature \footnotemark[2]\\ 
+Angle in degrees & LDA & GGA & Literature \footnotemark[2]\\ 
 \hline \hline 
 O4-H61-N6 & 176.7 & 175.6 & 175.8\\ 
 \hline 
