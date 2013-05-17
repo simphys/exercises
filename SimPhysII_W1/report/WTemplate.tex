@@ -3,7 +3,7 @@
 
 %%%%%%%% PAKETE: unverzichtbare Pakete mit Einstellungen
 \usepackage[left=2.5cm, right=2cm, top=3cm, bottom=3cm, a4paper]{geometry} %Seitenr√§nde
-\usepackage[utf8x]{inputenc} % utf8-Kodierung und direkte Eingabe von Sonderzeichen
+\usepackage[applemac]{inputenc} % utf8-Kodierung und direkte Eingabe von Sonderzeichen
 \usepackage{fixltx2e} % Verbessert einige Kernkompetenzen von LaTeX2e
 
 %%%%%%%% PAKETE: AMS-Pakete
@@ -27,7 +27,7 @@
 %%%%%%%% DEFINITIONEN: Titelseite
 \author{April Cooper, Patrick Kreissl und Sebastian Weber}
 \title{Worksheet 1: Quantum mechanical approaches:
-H√ºckel approximation and DFT methods}
+Hückel approximation and DFT methods}
 \publishers{University of Stuttgart}
 \date{\today}
 
@@ -75,6 +75,88 @@ H√ºckel approximation and DFT methods}
 \newpage
 
 % =============== Section ============
+\section{Theoretical Task: Hückel approximation for Benzene}
+Due to the fact that we only consider $\pi$ - electrons we have to study the $p_z$ orbitals.
+The hamiltonian for the $\pi$-electrons is : $H=\sum_n -\frac{\hbar^2}{2m_0}\Delta_n + V(r_n)$ with $n= 1,2, ... ,6$.
+As the hamiltonian obviously is a sum of one-electron-hamiltonians the Schrödinger equation which results from H can be solved by finding the one-electron-wavefunctions with this Schrödinger equation:
+$-\frac{\hbar^2}{2m_0}\Delta \psi(r)= E \psi(r)$.
+Where  $\psi=\sum_{j=1}^N c_j\phi_j(r)$, with $\phi_j(r)$ being the atomic wave $2p_z$ functions of the carbon atoms.
+The coefficients $c_j$ still have to be determined.
+To calculate them we use the variational principle trying to minimize  the left side of $\frac{\int \psi^*H\psi dV}{\int \psi*\psi dV}=E$ by choosing the right set of coefficients. Using our description of $\psi $ as a linear combination of atomic wave functions we get 
+\[\frac{\sum_{jj}c_j^*c_j'\int \phi_j H \phi_{jj'} dV } {\sum_{jj}c_j^*c_j'\int \phi_j \phi_{jj'} dV} = E \,(*)\]  and we define $\int \phi_j H \phi_{jj'} dV =: H_{jj'}$ and $\int \phi_j \phi_{jj'} dV=: S_{jj'}$.
+Therefore it is clear that the energy is a function of the coefficients $c_j$ respectively $c_j^*$.
+ Instead of using $(*)$ we can also have a look at 
+\begin{equation}
+\sum_{jj'}c_j^*c_j'H_{jj'}=E \,\sum_{jj'}c_j^*c_j'S_{jj'}
+\end{equation}
+Deriving this regarding $c_j^*$ and keeping in mind that in order to get a minimum it is a necessary condition that they have to vanish this derivative leads us to $\sum_{j'}c_{j'}H_{jj'}=E \,\sum_{j'}c_{j'}S_{jj'}$.
+This is equal to the following matrix equation:
+\begin{equation}
+\left(
+\begin{matrix}
+(H_{11}-S_{11}E)c_1&(H_{12}-S_{12}E)c_2& \dots&(H_{1N}-S_{1N}E)c_N\\ 
+&\vdots&&\\
+(H_{N1}-S_{N1}E)c_1&(H_{N2}-S_{N2}E)c_2& \dots&(H_{NN}-S_{NN}E)c_N\\
+\end{matrix}
+\right)
+\times
+\left(
+\begin{matrix}
+c_1\\
+c_2\\
+\vdots\\
+c_6\\
+\end{matrix}
+\right)
+= 0
+\end{equation}
+
+As this is a homogenous system of equations the determinant has to vanish:
+\[
+ \begin{vmatrix} 
+
+        H_{11}-S_{11}E &H_{12}-S_{12}E   &\dots& H_{1N}-S_{1N}E \\ 
+
+        \vdots & &&\vdots \\ 
+
+        H_{N1}-S_{N1}E&H_{N2}-S_{N2}E & \dots&H_{NN}-S_{NN}E \\  
+
+    \end{vmatrix}
+    =0
+    \]
+ 
+This is quite a complex determinant which can be avoided to be calculated using the symmetry of the benzene molecule. In order to do this we first have to show, that every atomic wave function $\phi_j(r)$ for the corresponding carbon atom j in the benzene molecule can be written as $\phi_j(r)=\phi(r-R_j)$ where $R_j$ is the vector of the centre of the molecule to the carbon atom j.  A turn if the molecule by $60°$ shall be described by the turning operator $C_6$.
+Using this operator in the equation for $\phi_j(r)$ we get: $C_6\phi_j(r)=\phi_j(C_6r)=\phi(C_6r-R_j)$.
+As benzene is symmetric we can also say that $R_j$ is the vector $R_{j-1}$which was turned by $60°$ which means:$ R_j = C_6 R_{j-1}$ and results in  $C_6\phi_j(r)=\phi(C_6(r-R_{j-1}))$.
+As we're only looking at $p_z$ orbitals and the z direction is not affected by the turn around the z axis and since $r-R_j$ stays constant under this rotation the last equation can be simplyfied to:   $C_6\phi_j(r)=\phi(r-R_{j-1})=\phi_{j-1}(r)$. This means that the $p_z$ wave function of the carbon atom j is merged into the one of the one of the atom j-1 by doing a turn of $60°$. Having a look on the Schrödinger equation under this operator $C_6$ and using that the hamiltonian is not affected by turns we get: $H(r)C_6\psi(r)=EC_6\psi(r) \Leftrightarrow C_6H(r)\psi(r) = C_6E\psi(r) $. This means that not only $\psi(r)$ is a solution of the Schrödinger equation but also $C_6\psi(r)$. Making the assumption that the energy E is not degenerated we know that the only way that two different wave functions can belong to the same energy is when they vary by a constant factor $\lambda$ alone and therefore it is $C_6\psi(r)=\lambda\psi(r)$ $(+)$.
+It can be mathematically shown that this relation can be postulated in general, wherefore we don't make a mistake by doing so. Using this relation to get the coefficients $c_j$ of $\psi$ we get:
+\[c_1C_6\phi_1(r)+c_2C_6\phi_2(r)+\dots+c_6C_6\phi_6(r) = \lambda \\(c_1\phi_1(r)+c_2\phi_2(r)+\dots+c_6\phi_6(r)\\)\] Using $(+)$ this equals to \[c_1\phi_6(r)+c_2\phi_1(r)+\dots+c_6\phi_5(r) = \lambda \\(c_1\phi_1(r)+c_2\phi_2(r)+\dots+c_6\phi_6(r)\\)\]
+As the wave functions $\phi_j$ are linear independent this last equation can only be true if the coefficients for the same wave function $\phi_j$ coincide on both sides which leads us to the following equations:
+\[ c_1=\lambda c_6\]
+\[ c_2=\lambda c_1\]
+\[\vdots\]
+\[c_6=\lambda c_5\]
+To solve these equations we make the ansatz: $c_j=\lambda^jc_0$ $(\Delta)$, where $c_0$ is a normalization constant.
+If we turn the  benzene molecule 6 times using $C_6$ the molecule is in the state in which we started which means: $\lambda^6=1$. 
+Using complex numbers $(\Delta)$  has the following solution: $\lambda = exp(\frac{2\pi ki}{6})$ with $k = 0, \pm 1, \pm 2, \pm 3$
+
+Using these values for $c_j $ in the system of equations (2) and taking into account that \\$S_{jj}=1, S_{jj'}=0, H_{jj}=\alpha, H_{jj\pm1}=\beta$ and otherwise $H_{jj'}=0$ we get for example in the first line of (2) :
+\[exp\left(\frac{2\pi ik}{6}\right)(\alpha-E)+exp\left(\frac{2\pi i2k}{6}\right)\beta+exp\left(\frac{2\pi i6k}{6}\right) = 0\]
+Which can be directly solved for E resulting in \[E=\alpha+\beta\left(exp\left(\frac{2\pi ik}{6}\right)+exp\left(-\frac{2\pi ik}
+{6}\right)\right) = \alpha+2\beta cos\left(\frac{2\pi k}{6}\right)\] with $k = 0, \pm 1, \pm 2, \pm 3$
+Plotting the possible energy values and the corresponding wave functions we get the following - keeping in mind that $\beta$ is negative
+
+\begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{theo.png}
+                \caption{Plot of energy, electron distribution and corresponding wave functions}
+                \label{fig:wavef}
+ \end{figure}
+ 
+ It can easily be seen that the HOMO is $E = \beta$ and the LUMO is $E=-\beta$.
+
+\newpage
+ 
 \section{Computational Task: DFT calculations with Siesta}
 
 \subsection{Geometry optimization of adenine}

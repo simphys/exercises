@@ -1,0 +1,1867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml convention="CMLComp" fileId="siesta.xml" xmlns="http://www.xml-cml.org/schema" xmlns:siesta="http://www.uam.es/siesta/namespace" xmlns:siestaUnits="http://www.uam.es/siesta/namespace/units" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fpx="http://www.uszla.me.uk/fpx" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:units="http://www.uszla.me.uk/FoX/units" xmlns:cmlUnits="http://www.xml-cml.org/units/units" xmlns:siUnits="http://www.xml-cml.org/units/siUnits" xmlns:atomicUnits="http://www.xml-cml.org/units/atomic">
+  <metadata name="UUID" content="34cc3900-bbda-11e2-7108-8381e82482c2"/>
+  <metadataList>
+    <metadata name="siesta:Program" content="Siesta"/>
+    <metadata name="siesta:Version" content="                                       siesta-3.2"/>
+    <metadata name="siesta:Arch" content="i686-apple-darwin10.8.0--unknown"/>
+    <metadata name="siesta:Flags" content="g95 -g -O2"/>
+    <metadata name="siesta:StartTime" content="2013-05-13T12-34-00"/>
+    <metadata name="siesta:Mode" content="Serial"/>
+    <metadata name="siesta:Nodes" content="         1"/>
+    <metadata name="siesta:NetCDF" content="false"/>
+  </metadataList>
+  <module title="Initial System">
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="0.000000000000e0" y3="0.000000000000e0" z3="0.000000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.360000000000e0" y3="1.360000000000e0" z3="1.360000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.720000000000e0" y3="2.720000000000e0" z3="0.000000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.080000000000e0" y3="4.080000000000e0" z3="1.360000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.720000000000e0" y3="0.000000000000e0" z3="2.720000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.080000000000e0" y3="1.360000000000e0" z3="4.080000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="0.000000000000e0" y3="2.720000000000e0" z3="2.720000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.360000000000e0" y3="4.080000000000e0" z3="4.080000000000e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">9.637607076649e0 0.000000000000e0 0.000000000000e0</latticeVector>
+      <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">0.000000000000e0 9.637607076649e0 0.000000000000e0</latticeVector>
+      <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">0.000000000000e0 0.000000000000e0 9.637607076649e0</latticeVector>
+    </lattice>
+    <property dictRef="siesta:shape">
+      <scalar dataType="xsd:string">bulk</scalar>
+    </property>
+  </module>
+  <parameterList title="Input Parameters">
+    <parameter dictRef="siesta:sname" name="SystemName">
+      <scalar dataType="xsd:string"></scalar>
+    </parameter>
+    <parameter dictRef="siesta:slabel" name="SystemLabel">
+      <scalar dataType="xsd:string">siesta</scalar>
+    </parameter>
+    <parameter dictRef="siesta:verbosity" name="LongOutput">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter title="NumberOfSpecies" dictRef="siesta:ns">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">1</scalar>
+    </parameter>
+    <parameter name="WriteDenChar">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter name="WriteMullikenPop">
+      <scalar dataType="xsd:integer" units="cmlUnits:dimensionless">1</scalar>
+    </parameter>
+    <parameter dictRef="siesta:g2max" name="MeshCutOff">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry">1.000000000000e2</scalar>
+    </parameter>
+    <parameter dictRef="siesta:NetCharge" name="NetCharge">
+      <scalar dataType="fpx:real" units="siestaUnits:e__">0.000000000000e0</scalar>
+    </parameter>
+    <parameter dictRef="siesta:maxscf" name="MaxSCFIterations">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">50</scalar>
+    </parameter>
+    <parameter dictRef="siesta:maxsav" name="DM.NumberPulay">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">3</scalar>
+    </parameter>
+    <parameter dictRef="siesta:broyden_maxit" name="DM.NumberBroyden">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">0</scalar>
+    </parameter>
+    <parameter dictRef="siesta:mix" name="DM.MixSCF1">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:pulfile" name="DM.PulayOnFile">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:avoid_first_after_kick" name="DM.Pulay.Avoid.First.After.Kick">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:wmix" name="DM.MixingWeight">
+      <scalar dataType="fpx:real" units="cmlUnits:dimensionless">3.000000000000e-1</scalar>
+    </parameter>
+    <parameter dictRef="siesta:occtol" name="DM.OccupancyTolerance">
+      <scalar dataType="fpx:real" units="cmlUnits:dimensionless">1.000000000000e-12</scalar>
+    </parameter>
+    <parameter dictRef="siesta:nkick" name="DM.NumberKick">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">0</scalar>
+    </parameter>
+    <parameter dictRef="siesta:wmixkick" name="DM.KickMixingWeight">
+      <scalar dataType="fpx:real" units="cmlUnits:dimensionless">5.000000000000e-1</scalar>
+    </parameter>
+    <parameter dictRef="siesta:dDtol" name="DM.Tolerance">
+      <scalar dataType="fpx:real" units="siestaUnits:eAng_3">1.000000000000e-3</scalar>
+    </parameter>
+    <parameter dictRef="siesta:ReqEnergyConv" name="DM.RequireEnergyConvergence">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:dEtol" name="DM.EnergyTolerance">
+      <scalar dataType="fpx:real" units="siestaUnits:eV">1.000000000000e-4</scalar>
+    </parameter>
+    <parameter dictRef="siesta:ReqHarrisConv" name="DM.RequireHarrisConvergence">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:Harris_tolerance" name="DM.HarrisTolerance">
+      <scalar dataType="fpx:real" units="siestaUnits:eV">7.349806700084e-6</scalar>
+    </parameter>
+    <parameter dictRef="siesta:usesavedm" name="DM.UseSaveDM">
+      <scalar dataType="xsd:boolean">true</scalar>
+    </parameter>
+    <parameter dictRef="siesta:negl" name="NeglNonOverlapInt">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:SCFmethod" name="SolutionMethod">
+      <scalar dataType="xsd:string">diagon</scalar>
+    </parameter>
+    <parameter dictRef="siesta:DaC" name="Diag.DivideAndConquer">
+      <scalar dataType="xsd:boolean">true</scalar>
+    </parameter>
+    <parameter dictRef="siesta:MemoryFactor" name="Diag.Memory">
+      <scalar dataType="fpx:real" units="cmlUnits:dimensionless">1.000000000000e0</scalar>
+    </parameter>
+    <parameter dictRef="siesta:etemp" name="ElectronicTemperature">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry">1.837449711227e-3</scalar>
+    </parameter>
+    <parameter dictRef="siesta:fixspin" name="FixSpin">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter dictRef="siesta:ts" name="TotalSpin">
+      <scalar dataType="fpx:real" units="siestaUnits:eSpin">0.000000000000e0</scalar>
+    </parameter>
+    <parameter name="MD.TypeOfRun">
+      <scalar dataType="xsd:string">CG</scalar>
+    </parameter>
+    <parameter name="MD.UseSaveCG">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter name="MD.NumCGSteps">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">100</scalar>
+    </parameter>
+    <parameter name="MD.MaxCGDispl">
+      <scalar dataType="fpx:real" units="siestaUnits:Bohr">2.000000000000e-1</scalar>
+    </parameter>
+    <parameter name="MD.MaxForceTol">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry_Bohr">1.555739507650e-3</scalar>
+    </parameter>
+    <parameter name="MD.MaxStressTol">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry_Bohr__3">6.797730000000e-5</scalar>
+    </parameter>
+    <parameter name="MD.BulkModulus">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry_Bohr__3">6.797730000000e-3</scalar>
+    </parameter>
+  </parameterList>
+  <propertyList dictRef="siesta:kpoints" title="k-points">
+    <property dictRef="siesta:nkpnt">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">365</scalar>
+    </property>
+    <kpoint coords="-2.897531286534e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.897531286534e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.173148464900e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -1.448765643267e-1 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -7.243828216334e-2 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 0.000000000000e0 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 0.000000000000e0 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 0.000000000000e0 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 0.000000000000e0 0.000000000000e0" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 0.000000000000e0 0.000000000000e0" weight="1.371742112483e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 0.000000000000e0 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 7.243828216334e-2 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 1.448765643267e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.173148464900e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.897531286534e-1 7.243828216334e-2" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 0.000000000000e0 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 7.243828216334e-2 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 1.448765643267e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.173148464900e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.897531286534e-1 1.448765643267e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 0.000000000000e0 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 7.243828216334e-2 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 1.448765643267e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.173148464900e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.897531286534e-1 2.173148464900e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 -7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 0.000000000000e0 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 7.243828216334e-2 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 1.448765643267e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.173148464900e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.897531286534e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-2.173148464900e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-1.448765643267e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="-7.243828216334e-2 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="0.000000000000e0 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="7.243828216334e-2 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="1.448765643267e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.173148464900e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <kpoint coords="2.897531286534e-1 2.897531286534e-1 2.897531286534e-1" weight="2.743484224966e-3"/>
+    <property dictRef="siesta:kcutof">
+      <scalar dataType="fpx:real" units="siestaUnits:angstrom">2.295000000000e1</scalar>
+    </property>
+  </propertyList>
+  <property dictRef="siesta:kscell">
+    <matrix rows="3" columns="3" dataType="xsd:integer" units="siestaUnits:Ang">0 9 0 0 0 9 9 0 0</matrix>
+  </property>
+  <property dictRef="siesta:kdispl">
+    <array size="3" dataType="fpx:real" units="siestaUnits:Ang">0.000000000000e0 0.000000000000e0 0.000000000000e0</array>
+  </property>
+  <module serial="1" dictRef="CG" role="step">
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="0.000000000000e0" y3="0.000000000000e0" z3="0.000000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.360000000000e0" y3="1.360000000000e0" z3="1.360000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.720000000000e0" y3="2.720000000000e0" z3="0.000000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.080000000000e0" y3="4.080000000000e0" z3="1.360000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.720000000000e0" y3="0.000000000000e0" z3="2.720000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.080000000000e0" y3="1.360000000000e0" z3="4.080000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="0.000000000000e0" y3="2.720000000000e0" z3="2.720000000000e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.360000000000e0" y3="4.080000000000e0" z3="4.080000000000e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">5.100000000000e0 0.000000000000e0 0.000000000000e0</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">0.000000000000e0 5.100000000000e0 0.000000000000e0</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">0.000000000000e0 0.000000000000e0 5.100000000000e0</latticeVector>
+    </lattice>
+    <crystal title="Lattice Parameters">
+      <cellParameter latticeType="real" parameterType="length" units="units:angstrom">5.100000 5.100000 5.100000</cellParameter>
+      <cellParameter latticeType="real" parameterType="angle" units="units:degree">90.000000 90.000000 90.000000</cellParameter>
+    </crystal>
+    <module serial="1" dictRef="SCF" role="step">
+      <propertyList>
+        <property dictRef="siesta:ntm" title="Mesh">
+          <array size="3" dataType="xsd:integer" units="cmlUnits:countable">32 32 32</array>
+        </property>
+        <property dictRef="siesta:g2max" title="Requested Cut-Off">
+          <scalar dataType="fpx:real" units="siestaUnits:Ry">1.000000000000e2</scalar>
+        </property>
+        <property dictRef="siesta:g2mesh" title="Actual Cut-Off">
+          <scalar dataType="fpx:real" units="siestaUnits:Ry">1.088081107215e2</scalar>
+        </property>
+      </propertyList>
+      <propertyList title="Energy Decomposition">
+        <property dictRef="siesta:Ebs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-378.617809</scalar>
+        </property>
+        <property dictRef="siesta:Eions">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">1510.441798</scalar>
+        </property>
+        <property dictRef="siesta:Ena">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">455.130393</scalar>
+        </property>
+        <property dictRef="siesta:Ekin">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">288.667622</scalar>
+        </property>
+        <property dictRef="siesta:Enl">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">166.805752</scalar>
+        </property>
+        <property dictRef="siesta:DEna">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000      </scalar>
+        </property>
+        <property dictRef="siesta:DUscf">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000               </scalar>
+        </property>
+        <property dictRef="siesta:DUext">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:Exc">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-457.041276</scalar>
+        </property>
+        <property dictRef="siesta:Ecorrec">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:Emad">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:Emeta">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:Emm">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:Ekinion">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">0.000000</scalar>
+        </property>
+        <property dictRef="siesta:EharrsK">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1025.172977</scalar>
+        </property>
+        <property dictRef="siesta:EtotK">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1056.879306</scalar>
+        </property>
+        <property dictRef="siesta:FreeEK">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1056.879306</scalar>
+        </property>
+      </propertyList>
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1025.1729774</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1056.8793057</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.8682090</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="2" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.7950995</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.5037194</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5061728</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="3" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6732052</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.9219547</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5854594</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="4" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6685671</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1025.0365134</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5932860</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="5" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6680297</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.7134350</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5958298</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="6" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6679925</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.7371207</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5976881</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="7" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6680157</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.7293290</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5979096</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="8" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6679597</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.7030072</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5975551</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="9" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6679156</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.6860253</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5973401</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module title="SCF Finalization">
+      <propertyList title="Final KS Energy">
+        <property dictRef="siesta:E_KS">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.670806</scalar>
+        </property>
+        <property dictRef="siesta:E_KS_egg">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1024.670806</scalar>
+        </property>
+      </propertyList>
+      <propertyList title="Forces">
+        <property dictRef="siesta:forces">
+          <matrix rows="3" columns="8" dataType="fpx:real" units="siestaUnits:evpa">3.025440619347e0 3.025438682725e0 3.025440243187e0 4.842033479456e-1 4.842009894140e-1 4.842027789480e-1 -5.054537485776e-1 -5.054518250977e-1 2.865536940174e0 -3.963660736472e0 -3.963657567894e0 2.561944486260e0 -5.054575007477e-1 2.865520960519e0 -5.054453375178e-1 -3.963647578803e0 2.561956740197e0 -3.963655708915e0 2.865521694464e0 -5.054594540794e-1 -5.054493919238e-1 2.561955995071e0 -3.963650671586e0 -3.963653780681e0</matrix>
+        </property>
+        <property dictRef="siesta:ftot">
+          <array size="3" dataType="fpx:real" units="siestaUnits:evpa">-1.097907773163e-3 -1.102145801486e-3 -1.079770468036e-3</array>
+        </property>
+        <property dictRef="siesta:fmax">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">3.963660736472e0</scalar>
+        </property>
+        <property dictRef="siesta:fres">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">2.647986436432e0</scalar>
+        </property>
+        <property dictRef="siesta:cfmax">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">3.963660736472e0</scalar>
+        </property>
+      </propertyList>
+      <property dictRef="siesta:stress" title="Stress">
+        <matrix rows="3" columns="3" dataType="fpx:real" units="siestaUnits:evpa3">-1.706745460683e-2 4.721364960880e-3 4.721351787849e-3 4.721364914080e-3 -1.706745727045e-2 4.721351509797e-3 4.721351734307e-3 4.721351409961e-3 -1.706746269496e-2</matrix>
+      </property>
+      <property dictRef="siesta:psol" title="Pressure (Static)">
+        <scalar dataType="fpx:real" units="siestaUnits:kBar">2.529133343606e-3</scalar>
+      </property>
+      <property dictRef="siesta:tstress" title="Total Stress">
+        <matrix rows="3" columns="3" dataType="fpx:real" units="siestaUnits:evpa3">-1.706745460683e-2 4.721364960880e-3 4.721351787849e-3 4.721364914080e-3 -1.706745727045e-2 4.721351509797e-3 4.721351734307e-3 4.721351409961e-3 -1.706746269496e-2</matrix>
+      </property>
+      <property dictRef="siesta:tpsol" title="Pressure (Total)">
+        <scalar dataType="fpx:real" units="siestaUnits:kBar">2.529133343606e-3</scalar>
+      </property>
+      <propertyList dictRef="siesta:mulliken" title="Mulliken Population Analysis">
+        <propertyList title="Unpolarized">
+          <propertyList title="Si">
+            <property title="Orbital list">
+              <array size="13" delimiter=" " dataType="xsd:string">3s       3s       3py      3pz      3px      3py      3pz      3px      3Pdxy    3Pdyz    3Pdz2    3Pdxz    3Pdx2-y2</array>
+            </property>
+            <propertyList title="atom        1">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.234002780156e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">2.339114417338e-1 8.185617410665e-1 6.608993950691e-2 6.609001631321e-2 6.609018753902e-2 7.173019125004e-1 7.173018789074e-1 7.173017223627e-1 1.793897706092e-1 1.793897579382e-1 1.465923244024e-1 1.793897619509e-1 1.465923253256e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        2">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.867452127893e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">6.304867591185e-1 5.932213498119e-1 7.020894514998e-2 7.020896648364e-2 7.020912104695e-2 6.211290441217e-1 6.211290240617e-1 6.211289142802e-1 1.360739221340e-1 1.360739135832e-1 8.075412935684e-2 1.360739145214e-1 8.075412422350e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        3">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.922329659494e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.005676096583e-1 6.535187373151e-1 1.939465635652e-2 1.161928839857e-1 1.939484866784e-2 6.770739571971e-1 6.203079199941e-1 6.770738153838e-1 1.568719238297e-1 1.440951004811e-1 8.534028581244e-2 1.440951029805e-1 1.084028178316e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        4">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.043851805002e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">3.783196605359e-1 7.218414992920e-1 7.892194630431e-2 -3.197163227722e-2 7.892207329541e-2 6.785455218803e-1 7.419225830288e-1 6.785454245669e-1 1.566077839634e-1 1.622881038598e-1 1.370414812314e-1 1.622881077966e-1 1.005792515245e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        5">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.922329529120e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.005676101591e-1 6.535187345389e-1 1.161927538094e-1 1.939454814890e-2 1.939480918017e-2 6.203079874102e-1 6.770740211343e-1 6.770738110990e-1 1.440951081861e-1 1.440951122788e-1 1.026371947529e-1 1.568719193954e-1 9.110591902669e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        6">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.043852344017e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">3.783195775450e-1 7.218416117696e-1 -3.197168703199e-2 7.892199681698e-2 7.892220888373e-2 7.419227562098e-1 6.785455903393e-1 6.785453940453e-1 1.622881403371e-1 1.622881552558e-1 1.096948381792e-1 1.566077963728e-1 1.279259652944e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        7">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.922329474789e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.005676344627e-1 6.535187155980e-1 1.939464201591e-2 1.939453857075e-2 1.161928543394e-1 6.770739345037e-1 6.770740332172e-1 6.203078798189e-1 1.440951030793e-1 1.568719175521e-1 1.026371930395e-1 1.440951108679e-1 9.110591772411e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        8">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.043852279528e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">3.783195748954e-1 7.218416076218e-1 7.892198462194e-2 7.892193189051e-2 -3.197157445606e-2 6.785455591044e-1 6.785456381375e-1 7.419226687964e-1 1.622881373630e-1 1.566077937826e-1 1.096948356240e-1 1.622881586616e-1 1.279259634851e-1</array>
+              </property>
+            </propertyList>
+          </propertyList>
+          <property title="Total Charge">
+            <scalar dataType="fpx:real" units="siestaUnits:e">3.200000000000e1</scalar>
+          </property>
+        </propertyList>
+      </propertyList>
+    </module>
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="1.883897492624e-2" y3="1.883896281586e-2" z3="1.883897275053e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.367660708876e0" y3="1.367660695907e0" z3="1.367660718479e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.731852963382e0" y3="2.731852978679e0" z3="6.425161654929e-3" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.074923453566e0" y3="4.074923478446e0" z3="1.369263210385e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.731852955976e0" y3="6.425045615461e-3" z3="2.731853042146e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.074923551475e0" y3="1.369263259530e0" z3="4.074923523532e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="6.425049895923e-3" y3="2.731852947414e0" z3="2.731853017174e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.369263252697e0" y3="4.074923537506e0" z3="4.074923536001e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">5.138996100633e0 -1.078747982450e-2 -1.078744971876e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-1.078747982450e-2 5.138996106719e0 -1.078744903057e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-1.078744971876e-2 -1.078744903057e-2 5.138996119113e0</latticeVector>
+    </lattice>
+  </module>
+  <module serial="2" dictRef="CG" role="step">
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="1.883897492624e-2" y3="1.883896281586e-2" z3="1.883897275053e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.367660708876e0" y3="1.367660695907e0" z3="1.367660718479e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.731852963382e0" y3="2.731852978679e0" z3="6.425161654929e-3" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.074923453566e0" y3="4.074923478446e0" z3="1.369263210385e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.731852955976e0" y3="6.425045615461e-3" z3="2.731853042146e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.074923551475e0" y3="1.369263259530e0" z3="4.074923523532e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="6.425049895923e-3" y3="2.731852947414e0" z3="2.731853017174e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.369263252697e0" y3="4.074923537506e0" z3="4.074923536001e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">5.138996100633e0 -1.078747982450e-2 -1.078744971876e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-1.078747982450e-2 5.138996106719e0 -1.078744903057e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-1.078744971876e-2 -1.078744903057e-2 5.138996119113e0</latticeVector>
+    </lattice>
+    <propertyList dictRef="siesta:kpoints" title="k-points">
+      <property dictRef="siesta:nkpnt">
+        <scalar dataType="xsd:integer" units="cmlUnits:countable">365</scalar>
+      </property>
+      <kpoint coords="-2.881618350294e-1 -2.881618346887e-1 -1.209781495530e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.162725993845e-1 -2.880106115762e-1 -1.058558803696e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.443833637396e-1 -2.878593884637e-1 -9.073361118621e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.249412809473e-2 -2.877081653513e-1 -7.561134200281e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.048924498556e-4 -2.875569422388e-1 -6.048907281940e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.128434319502e-2 -2.874057191263e-1 -4.536680363600e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="1.431735788399e-1 -2.872544960139e-1 -3.024453445259e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.150628144848e-1 -2.871032729014e-1 -1.512226526918e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.869520501297e-1 -2.869520497889e-1 3.914221041474e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.880106119169e-1 -2.162725991290e-1 -1.058558813482e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.161213762720e-1 -2.161213760165e-1 -9.073361216477e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.442321406271e-1 -2.159701529040e-1 -7.561134298136e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.234290498227e-2 -2.158189297916e-1 -6.048907379796e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-4.536693373917e-4 -2.156677066791e-1 -4.536680461455e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.143556630748e-2 -2.155164835666e-1 -3.024453543115e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="1.433248019524e-1 -2.153652604542e-1 -1.512226624774e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.152140375972e-1 -2.152140373417e-1 2.935665778395e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="2.871032732421e-1 -2.150628142292e-1 1.512227211907e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.878593888044e-1 -1.443833635693e-1 -9.073361314332e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.159701531596e-1 -1.442321404568e-1 -7.561134395992e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.440809175147e-1 -1.440809173443e-1 -6.048907477651e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.219168186980e-2 -1.439296942319e-1 -4.536680559311e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.024462249278e-4 -1.437784711194e-1 -3.024453640970e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.158678941995e-2 -1.436272480069e-1 -1.512226722630e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="1.434760250648e-1 -1.434760248945e-1 1.957110520737e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="2.153652607097e-1 -1.433248017820e-1 1.512227114052e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.872544963546e-1 -1.431735786695e-1 3.024454032392e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.877081656920e-1 -7.249412800956e-2 -7.561134493847e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.158189300471e-1 -7.234290489709e-2 -6.048907575507e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.439296944022e-1 -7.219168178463e-2 -4.536680657166e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.204045875734e-2 -7.204045867216e-2 -3.024453738826e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.512231124639e-4 -7.188923555970e-2 -1.512226820485e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.173801253241e-2 -7.173801244724e-2 9.785552603685e-12" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436272481773e-1 -7.158678933477e-2 1.512227016196e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.155164838222e-1 -7.143556622231e-2 3.024453934537e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.874057194670e-1 -7.128434310984e-2 4.536680852877e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.875569425795e-1 -6.048924498556e-4 -6.048907673362e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.156677069346e-1 -4.536693373917e-4 -4.536680755022e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.437784712898e-1 -3.024462249278e-4 -3.024453836681e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.188923564488e-2 -1.512231124639e-4 -1.512226918341e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="0.000000000000e0 0.000000000000e0 0.000000000000e0" weight="1.371742112483e-3"/>
+      <kpoint coords="-2.880106123375e-1 -2.880106120066e-1 7.067945388902e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.161213766927e-1 -2.878593888941e-1 7.083067658086e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.442321410478e-1 -2.877081657817e-1 7.098189927269e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.234290540290e-2 -2.875569426692e-1 7.113312196452e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-4.536697580216e-4 -2.874057195568e-1 7.128434465636e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.143556588685e-2 -2.872544964443e-1 7.143556734819e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.433248015317e-1 -2.871032733318e-1 7.158679004003e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.152140371766e-1 -2.869520502194e-1 7.173801273186e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.871032728215e-1 -2.868008271069e-1 7.188923542369e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.878593892251e-1 -2.161213764469e-1 7.083067657107e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.159701535802e-1 -2.159701533344e-1 7.098189926290e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.440809179353e-1 -2.158189302220e-1 7.113312195474e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.219168229043e-2 -2.156677071095e-1 7.128434464657e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.024466455577e-4 -2.155164839971e-1 7.143556733841e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.158678899932e-2 -2.153652608846e-1 7.158679003024e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.434760246442e-1 -2.152140377721e-1 7.173801272207e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.153652602891e-1 -2.150628146597e-1 7.188923541391e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.872544959339e-1 -2.149115915472e-1 7.204045810574e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.877081661126e-1 -1.442321408872e-1 7.098189925312e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.158189304677e-1 -1.440809177747e-1 7.113312194495e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.439296948228e-1 -1.439296946623e-1 7.128434463679e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.204045917797e-2 -1.437784715498e-1 7.143556732862e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.512235330938e-4 -1.436272484374e-1 7.158679002045e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.173801211178e-2 -1.434760253249e-1 7.173801271229e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436272477567e-1 -1.433248022124e-1 7.188923540412e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.155164834015e-1 -1.431735791000e-1 7.204045809596e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.874057190464e-1 -1.430223559875e-1 7.219168078779e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.875569430001e-1 -7.234290532751e-2 7.113312193517e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.156677073553e-1 -7.219168221504e-2 7.128434462700e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.437784717104e-1 -7.204045910258e-2 7.143556731883e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.188923606551e-2 -7.188923599012e-2 7.158679001067e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-4.206298498258e-10 -7.173801287765e-2 7.173801270250e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.188923522425e-2 -7.158678976519e-2 7.188923539434e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.437784708691e-1 -7.143556665272e-2 7.204045808617e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.156677065140e-1 -7.128434354026e-2 7.219168077801e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.875569421589e-1 -7.113312042780e-2 7.234290346984e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.874057198877e-1 -4.536697678071e-4 7.128434461722e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.155164842428e-1 -3.024466553432e-4 7.143556730905e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.436272485979e-1 -1.512235428793e-4 7.158679000088e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.173801295304e-2 -4.304154024295e-10 7.173801269272e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.512226918341e-4 1.512226820485e-4 7.188923538455e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.204045833671e-2 3.024457945124e-4 7.204045807639e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439296939816e-1 4.536689069763e-4 7.219168076822e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.158189296265e-1 6.048920194402e-4 7.234290346005e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.877081652713e-1 7.561151319041e-4 7.249412615189e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.872544967752e-1 7.143556579189e-2 7.143556729926e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.153652611303e-1 7.158678890436e-2 7.158678999110e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.434760254855e-1 7.173801201682e-2 7.173801268293e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.158678984058e-2 7.188923512928e-2 7.188923537477e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="3.024458042980e-4 7.204045824175e-2 7.204045806660e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.219168144917e-2 7.219168135421e-2 7.219168075843e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.440809170941e-1 7.234290446668e-2 7.234290345027e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.159701527389e-1 7.249412757914e-2 7.249412614210e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.878593883838e-1 7.264535069160e-2 7.264534883394e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.871032736627e-1 1.433248013516e-1 7.158678998131e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.152140380179e-1 1.434760244641e-1 7.173801267315e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.433248023730e-1 1.436272475765e-1 7.188923536498e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.143556672811e-2 1.437784706890e-1 7.204045805681e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="4.536689167619e-4 1.439296938014e-1 7.219168074865e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.234290456164e-2 1.440809169139e-1 7.234290344048e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.442321402065e-1 1.442321400264e-1 7.249412613232e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.161213758514e-1 1.443833631388e-1 7.264534882415e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.880106114963e-1 1.445345862513e-1 7.279657151598e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.869520505503e-1 2.152140369113e-1 7.173801266336e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.150628149054e-1 2.153652600238e-1 7.188923535519e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.431735792605e-1 2.155164831362e-1 7.204045804703e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.128434361565e-2 2.156677062487e-1 7.219168073886e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="6.048920292258e-4 2.158189293611e-1 7.234290343070e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.249412767410e-2 2.159701524736e-1 7.249412612253e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443833633190e-1 2.161213755861e-1 7.264534881437e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.162725989639e-1 2.162725986985e-1 7.279657150620e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.881618346087e-1 2.164238218110e-1 7.294779419803e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.868008274378e-1 2.871032724710e-1 7.188923534541e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.149115917929e-1 2.872544955835e-1 7.204045803724e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.430223561481e-1 2.874057186959e-1 7.219168072908e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.113312050319e-2 2.875569418084e-1 7.234290342091e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.561151416897e-4 2.877081649208e-1 7.249412611275e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.264535078657e-2 2.878593880333e-1 7.264534880458e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.445345864314e-1 2.880106111458e-1 7.279657149641e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.164238220763e-1 2.881618342582e-1 7.294779418825e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.883130577212e-1 2.883130573707e-1 7.309901688008e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.878593896457e-1 -2.878593893246e-1 1.425686892736e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.159701540008e-1 -2.877081662121e-1 1.427199119654e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.440809183559e-1 -2.875569430996e-1 1.428711346572e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.219168271106e-2 -2.874057199872e-1 1.430223573491e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.024470661875e-4 -2.872544968747e-1 1.431735800409e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.158678857869e-2 -2.871032737622e-1 1.433248027327e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.434760242236e-1 -2.869520506498e-1 1.434760254246e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.153652598684e-1 -2.868008275373e-1 1.436272481164e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.872544955133e-1 -2.866496044248e-1 1.437784708082e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.877081665332e-1 -2.159701537649e-1 1.427199119556e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.158189308884e-1 -2.158189306524e-1 1.428711346475e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.439296952435e-1 -2.156677075399e-1 1.430223573393e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.204045959860e-2 -2.155164844275e-1 1.431735800311e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.512239537236e-4 -2.153652613150e-1 1.433248027230e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.173801169115e-2 -2.152140382025e-1 1.434760254148e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436272473360e-1 -2.150628150901e-1 1.436272481066e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.155164829809e-1 -2.149115919776e-1 1.437784707985e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.874057186258e-1 -2.147603688651e-1 1.439296934903e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.875569434208e-1 -1.440809182052e-1 1.428711346377e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.156677077759e-1 -1.439296950927e-1 1.430223573295e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.437784721310e-1 -1.437784719802e-1 1.431735800213e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.188923648614e-2 -1.436272488678e-1 1.433248027132e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-8.412596996517e-10 -1.434760257553e-1 1.434760254050e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.188923480362e-2 -1.433248026428e-1 1.436272480968e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.437784704485e-1 -1.431735795304e-1 1.437784707887e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.156677060934e-1 -1.430223564179e-1 1.439296934805e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.875569417382e-1 -1.428711333054e-1 1.440809161723e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.874057203083e-1 -7.219168264546e-2 1.430223573197e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.155164846634e-1 -7.204045953299e-2 1.431735800116e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.436272490185e-1 -7.188923642053e-2 1.433248027034e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.173801337367e-2 -7.173801330807e-2 1.434760253952e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.512222712042e-4 -7.158679019560e-2 1.436272480871e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.204045791608e-2 -7.143556708314e-2 1.437784707789e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439296935610e-1 -7.128434397068e-2 1.439296934707e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.158189292058e-1 -7.113312085821e-2 1.440809161626e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.877081648507e-1 -7.098189774575e-2 1.442321388544e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.872544971958e-1 -3.024470857586e-4 1.431735800018e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.153652615510e-1 -1.512239732947e-4 1.433248026936e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.434760259061e-1 -8.608308048590e-10 1.434760253854e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.158679026121e-2 1.512222516331e-4 1.436272480773e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.024453836681e-4 3.024453640970e-4 1.437784707691e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.219168102854e-2 4.536684765609e-4 1.439296934609e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.440809166734e-1 6.048915890248e-4 1.440809161528e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.159701523183e-1 7.561147014887e-4 1.442321388446e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.878593879632e-1 9.073378139526e-4 1.443833615364e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.871032740834e-1 7.158678847394e-2 1.433248026838e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.152140384385e-1 7.173801158641e-2 1.434760253756e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.433248027936e-1 7.188923469887e-2 1.436272480675e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.143556714874e-2 7.204045781133e-2 1.437784707593e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="4.536684961320e-4 7.219168092380e-2 1.439296934512e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.234290414101e-2 7.234290403626e-2 1.440809161430e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.442321397859e-1 7.249412714873e-2 1.442321388348e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.161213754308e-1 7.264535026119e-2 1.443833615267e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.880106110756e-1 7.279657337365e-2 1.445345842185e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.869520509709e-1 1.434760240336e-1 1.434760253659e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.150628153260e-1 1.436272471461e-1 1.436272480577e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.431735796812e-1 1.437784702586e-1 1.437784707495e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.128434403628e-2 1.439296933710e-1 1.439296934414e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="6.048916085959e-4 1.440809164835e-1 1.440809161332e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.249412725347e-2 1.442321395960e-1 1.442321388250e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443833628983e-1 1.443833627084e-1 1.443833615169e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.162725985432e-1 1.445345858209e-1 1.445345842087e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.881618341881e-1 1.446858089334e-1 1.446858069005e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.868008278584e-1 2.153652595933e-1 1.436272480479e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.149115922136e-1 2.155164827058e-1 1.437784707397e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.430223565687e-1 2.156677058183e-1 1.439296934316e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.113312092382e-2 2.158189289307e-1 1.440809161234e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.561147210598e-4 2.159701520432e-1 1.442321388152e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.264535036594e-2 2.161213751557e-1 1.443833615071e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.445345860108e-1 2.162725982681e-1 1.445345841989e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.164238216557e-1 2.164238213806e-1 1.446858068908e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.883130573006e-1 2.165750444931e-1 1.448370295826e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.866496047460e-1 2.872544951530e-1 1.437784707300e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.147603691011e-1 2.874057182655e-1 1.439296934218e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428711334562e-1 2.875569413780e-1 1.440809161136e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.098189781135e-2 2.877081644904e-1 1.442321388055e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="9.073378335237e-4 2.878593876029e-1 1.443833614973e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.279657347840e-2 2.880106107154e-1 1.445345841891e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.446858091233e-1 2.881618338278e-1 1.446858068810e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.165750447682e-1 2.883130569403e-1 1.448370295728e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.884642804130e-1 2.884642800528e-1 1.449882522646e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.877081669539e-1 -2.877081666425e-1 2.144579246581e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.158189313090e-1 -2.875569435300e-1 2.146091473500e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.439296956641e-1 -2.874057204176e-1 2.147603700418e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.204046001923e-2 -2.872544973051e-1 2.149115927336e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.512243743535e-4 -2.871032741927e-1 2.150628154255e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.173801127052e-2 -2.869520510802e-1 2.152140381173e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436272469154e-1 -2.868008279677e-1 2.153652608091e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.155164825603e-1 -2.866496048553e-1 2.155164835010e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.874057182052e-1 -2.864983817428e-1 2.156677061928e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.875569438414e-1 -2.158189310828e-1 2.146091473402e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.156677081965e-1 -2.156677079703e-1 2.147603700320e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.437784725516e-1 -2.155164848579e-1 2.149115927238e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.188923690677e-2 -2.153652617454e-1 2.150628154157e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.261889549505e-9 -2.152140386330e-1 2.152140381075e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.188923438299e-2 -2.150628155205e-1 2.153652607993e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.437784700279e-1 -2.149115924080e-1 2.155164834912e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.156677056727e-1 -2.147603692956e-1 2.156677061830e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.875569413176e-1 -2.146091461831e-1 2.158189288748e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.874057207289e-1 -1.439296955231e-1 2.147603700222e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.155164850841e-1 -1.437784724106e-1 2.149115927141e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.436272494392e-1 -1.436272492982e-1 2.150628154059e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.173801379430e-2 -1.434760261857e-1 2.152140380977e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.512218505744e-4 -1.433248030733e-1 2.153652607896e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.204045749545e-2 -1.431735799608e-1 2.155164834814e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439296931403e-1 -1.430223568483e-1 2.156677061732e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.158189287852e-1 -1.428711337359e-1 2.158189288651e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.877081644301e-1 -1.427199106234e-1 2.159701515569e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.872544976165e-1 -7.204045996341e-2 2.149115927043e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.153652619716e-1 -7.188923685095e-2 2.150628153961e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.434760263267e-1 -7.173801373848e-2 2.152140380879e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.158679068184e-2 -7.158679062602e-2 2.153652607798e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.024449630383e-4 -7.143556751355e-2 2.155164834716e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.219168060791e-2 -7.128434440109e-2 2.156677061634e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.440809162528e-1 -7.113312128863e-2 2.158189288553e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.159701518977e-1 -7.098189817616e-2 2.159701515471e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.878593875425e-1 -7.083067506370e-2 2.161213742389e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.871032745040e-1 -1.512244037101e-4 2.150628153863e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.152140388591e-1 -1.291246207289e-9 2.152140380782e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.433248032143e-1 1.512218212177e-4 2.153652607700e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.143556756937e-2 3.024449336816e-4 2.155164834618e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="4.536680755022e-4 4.536680461455e-4 2.156677061537e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.234290372038e-2 6.048911586094e-4 2.158189288455e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.442321393653e-1 7.561142710733e-4 2.159701515373e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.161213750101e-1 9.073373835372e-4 2.161213742292e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.880106106550e-1 1.058560496001e-3 2.162725969210e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.869520513915e-1 7.173801115599e-2 2.152140380684e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.150628157467e-1 7.188923426845e-2 2.153652607602e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.431735801018e-1 7.204045738092e-2 2.155164834520e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.128434445691e-2 7.219168049338e-2 2.156677061439e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="6.048911879661e-4 7.234290360585e-2 2.158189288357e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.249412683284e-2 7.249412671831e-2 2.159701515275e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443833624777e-1 7.264534983077e-2 2.161213742194e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.162725981226e-1 7.279657294324e-2 2.162725969112e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.881618337675e-1 7.294779605570e-2 2.164238196030e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.868008282791e-1 1.436272467157e-1 2.153652607504e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.149115926342e-1 1.437784698282e-1 2.155164834422e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.430223569893e-1 1.439296929406e-1 2.156677061341e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.113312134445e-2 1.440809160531e-1 2.158189288259e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.561143004300e-4 1.442321391655e-1 2.159701515178e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.264534994531e-2 1.443833622780e-1 2.161213742096e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.445345855902e-1 1.445345853905e-1 2.162725969014e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.164238212351e-1 1.446858085029e-1 2.164238195933e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.883130568799e-1 1.448370316154e-1 2.165750422851e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.866496051666e-1 2.155164822754e-1 2.155164834325e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.147603695217e-1 2.156677053879e-1 2.156677061243e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428711338769e-1 2.158189285003e-1 2.158189288161e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.098189823198e-2 2.159701516128e-1 2.159701515080e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="9.073374128939e-4 2.161213747252e-1 2.161213741998e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.279657305777e-2 2.162725978377e-1 2.162725968916e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.446858087026e-1 2.164238209502e-1 2.164238195835e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.165750443475e-1 2.165750440626e-1 2.165750422753e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.884642799924e-1 2.167262671751e-1 2.167262649671e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.864983820541e-1 2.874057178351e-1 2.156677061145e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.146091464093e-1 2.875569409476e-1 2.158189288063e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.427199107644e-1 2.877081640600e-1 2.159701514982e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.083067511952e-2 2.878593871725e-1 2.161213741900e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.058560525358e-3 2.880106102849e-1 2.162725968818e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.294779617023e-2 2.881618333974e-1 2.164238195737e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.448370318151e-1 2.883130565099e-1 2.165750422655e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.167262674600e-1 2.884642796223e-1 2.167262649574e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.886155031049e-1 2.886155027348e-1 2.168774876492e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.875569442620e-1 -2.875569439605e-1 2.863471600427e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.156677086171e-1 -2.874057208480e-1 2.864983827345e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.437784729723e-1 -2.872544977355e-1 2.866496054263e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.188923732740e-2 -2.871032746231e-1 2.868008281182e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.682519399303e-9 -2.869520515106e-1 2.869520508100e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.188923396236e-2 -2.868008283981e-1 2.871032735018e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.437784696072e-1 -2.866496052857e-1 2.872544961937e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.156677052521e-1 -2.864983821732e-1 2.874057188855e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.875569408970e-1 -2.863471590608e-1 2.875569415773e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.874057211496e-1 -2.156677084008e-1 2.864983827247e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.155164855047e-1 -2.155164852883e-1 2.866496054166e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.436272498598e-1 -2.153652621758e-1 2.868008281084e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.173801421493e-2 -2.152140390634e-1 2.869520508002e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.512214299445e-4 -2.150628159509e-1 2.871032734921e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.204045707482e-2 -2.149115928384e-1 2.872544961839e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439296927197e-1 -2.147603697260e-1 2.874057188757e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.158189283646e-1 -2.146091466135e-1 2.875569415676e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.877081640095e-1 -2.144579235011e-1 2.877081642594e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.872544980371e-1 -1.437784728411e-1 2.866496054068e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.153652623922e-1 -1.436272497286e-1 2.868008280986e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.434760267473e-1 -1.434760266161e-1 2.869520507904e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.158679110247e-2 -1.433248035037e-1 2.871032734823e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.024445424084e-4 -1.431735803912e-1 2.872544961741e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.219168018728e-2 -1.430223572787e-1 2.874057188659e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.440809158322e-1 -1.428711341663e-1 2.875569415578e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.159701514770e-1 -1.427199110538e-1 2.877081642496e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.878593871219e-1 -1.425686879414e-1 2.878593869414e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.871032749246e-1 -7.188923728136e-2 2.868008280888e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.152140392798e-1 -7.173801416890e-2 2.869520507807e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.433248036349e-1 -7.158679105643e-2 2.871032734725e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.143556799000e-2 -7.143556794397e-2 2.872544961643e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="4.536676548723e-4 -7.128434483151e-2 2.874057188562e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.234290329975e-2 -7.113312171904e-2 2.875569415480e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.442321389446e-1 -7.098189860658e-2 2.877081642398e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.161213745895e-1 -7.083067549411e-2 2.878593869317e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.880106102344e-1 -7.067945238165e-2 2.880106096235e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.869520518122e-1 -1.721661609718e-9 2.869520507709e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.150628161673e-1 1.512213908023e-4 2.871032734627e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.431735805224e-1 3.024445032662e-4 2.872544961545e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.128434487754e-2 4.536676157301e-4 2.874057188464e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="6.048907673362e-4 6.048907281940e-4 2.875569415382e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.249412641221e-2 7.561138406579e-4 2.877081642300e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443833620571e-1 9.073369531218e-4 2.878593869219e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.162725977020e-1 1.058560065586e-3 2.880106096137e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.881618333468e-1 1.209783178050e-3 2.881618323055e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.868008286997e-1 7.188923383804e-2 2.871032734529e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.149115930548e-1 7.204045695050e-2 2.872544961448e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.430223574100e-1 7.219168006297e-2 2.874057188366e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.113312176508e-2 7.234290317543e-2 2.875569415284e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.561138798001e-4 7.249412628789e-2 2.877081642203e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.264534952468e-2 7.264534940036e-2 2.878593869121e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.445345851696e-1 7.279657251282e-2 2.880106096039e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.164238208144e-1 7.294779562529e-2 2.881618322958e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.883130564593e-1 7.309901873775e-2 2.883130549876e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.866496055872e-1 1.437784693977e-1 2.872544961350e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.147603699424e-1 1.439296925102e-1 2.874057188268e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428711342975e-1 1.440809156227e-1 2.875569415186e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.098189865261e-2 1.442321387351e-1 2.877081642105e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="9.073369922640e-4 1.443833618476e-1 2.878593869023e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.279657263714e-2 1.445345849601e-1 2.880106095941e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.446858082820e-1 1.446858080725e-1 2.881618322860e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.165750439269e-1 1.448370311850e-1 2.883130549778e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.884642795718e-1 1.449882542975e-1 2.884642776696e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.864983824748e-1 2.156677049574e-1 2.874057188170e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.146091468299e-1 2.158189280699e-1 2.875569415088e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.427199111850e-1 2.159701511824e-1 2.877081642007e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.083067554015e-2 2.161213742948e-1 2.878593868925e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.058560104728e-3 2.162725974073e-1 2.880106095844e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.294779574960e-2 2.164238205198e-1 2.881618322762e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.448370313945e-1 2.165750436322e-1 2.883130549680e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.167262670394e-1 2.167262667447e-1 2.884642776599e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.886155026842e-1 2.168774898572e-1 2.886155003517e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.863471593623e-1 2.875569405171e-1 2.875569414991e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.144579237174e-1 2.877081636296e-1 2.877081641909e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.425686880726e-1 2.878593867421e-1 2.878593868827e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.067945242768e-2 2.880106098545e-1 2.880106095746e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.209783217192e-3 2.881618329670e-1 2.881618322664e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.309901886207e-2 2.883130560795e-1 2.883130549582e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.449882545069e-1 2.884642791919e-1 2.884642776501e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.168774901518e-1 2.886155023044e-1 2.886155003419e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.887667257967e-1 2.887667254169e-1 2.887667230337e-1" weight="2.743484224966e-3"/>
+      <property dictRef="siesta:kcutof">
+        <scalar dataType="fpx:real" units="siestaUnits:angstrom">2.312558435235e1</scalar>
+      </property>
+    </propertyList>
+    <property dictRef="siesta:kscell">
+      <matrix rows="3" columns="3" dataType="xsd:integer" units="siestaUnits:Ang">9 0 0 0 9 0 0 0 9</matrix>
+    </property>
+    <property dictRef="siesta:kdispl">
+      <array size="3" dataType="fpx:real" units="siestaUnits:Ang">0.000000000000e0 0.000000000000e0 0.000000000000e0</array>
+    </property>
+    <crystal title="Lattice Parameters">
+      <cellParameter latticeType="real" parameterType="length" units="units:angstrom">5.139019 5.139019 5.139019</cellParameter>
+      <cellParameter latticeType="real" parameterType="angle" units="units:degree">90.240290 90.240289 90.240289</cellParameter>
+    </crystal>
+    <module serial="1" dictRef="SCF" role="step">
+      <propertyList>
+        <property dictRef="siesta:ntm" title="Mesh">
+          <array size="3" dataType="xsd:integer" units="cmlUnits:countable">32 32 32</array>
+        </property>
+        <property dictRef="siesta:g2max" title="Requested Cut-Off">
+          <scalar dataType="fpx:real" units="siestaUnits:Ry">1.000000000000e2</scalar>
+        </property>
+        <property dictRef="siesta:g2mesh" title="Actual Cut-Off">
+          <scalar dataType="fpx:real" units="siestaUnits:Ry">1.071658854205e2</scalar>
+        </property>
+      </propertyList>
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3415193</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1025.0157304</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5706117</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="2" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3653976</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3173180</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5242194</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="3" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3326601</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.2572926</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5497183</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module serial="4" dictRef="SCF" role="step">
+      <propertyList title="SCF Cycle">
+        <property dictRef="siesta:Eharrs">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3323873</scalar>
+        </property>
+        <property dictRef="siesta:FreeE">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.3157332</scalar>
+        </property>
+        <property dictRef="siesta:Ef">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-5.5525271</scalar>
+        </property>
+      </propertyList>
+    </module>
+    <module title="SCF Finalization">
+      <propertyList title="Final KS Energy">
+        <property dictRef="siesta:E_KS">
+          <scalar dataType="fpx:real" units="siestaUnits:eV">-1026.323851</scalar>
+        </property>
+      </propertyList>
+      <propertyList title="Forces">
+        <property dictRef="siesta:forces">
+          <matrix rows="3" columns="8" dataType="fpx:real" units="siestaUnits:evpa">2.447431506856e0 2.447422626464e0 2.447423861082e0 5.017058342631e-1 5.017024452301e-1 5.017035886898e-1 -5.387052351829e-1 -5.387052028795e-1 2.552366942828e0 -2.954156506921e0 -2.954149198394e0 1.472932700424e0 -5.386931404396e-1 2.552365534561e0 -5.386924175337e-1 -2.954150002816e0 1.472921135818e0 -2.954153002002e0 2.552363138297e0 -5.386973702649e-1 -5.386869388468e-1 1.472919135697e0 -2.954150426128e0 -2.954151393101e0</matrix>
+        </property>
+        <property dictRef="siesta:ftot">
+          <array size="3" dataType="fpx:real" units="siestaUnits:evpa">-1.128527024551e-2 -1.129045559377e-2 -1.125665845960e-2</array>
+        </property>
+        <property dictRef="siesta:fmax">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">2.954156506921e0</scalar>
+        </property>
+        <property dictRef="siesta:fres">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">2.029781040220e0</scalar>
+        </property>
+        <property dictRef="siesta:cfmax">
+          <scalar dataType="fpx:real" units="siestaUnits:evpa">2.954156506921e0</scalar>
+        </property>
+      </propertyList>
+      <property dictRef="siesta:stress" title="Stress">
+        <matrix rows="3" columns="3" dataType="fpx:real" units="siestaUnits:evpa3">-1.422061572689e-2 3.226243968252e-3 3.226244507656e-3 3.226243754474e-3 -1.422061289157e-2 3.226247806312e-3 3.226244500176e-3 3.226247987572e-3 -1.422060931568e-2</matrix>
+      </property>
+      <property dictRef="siesta:psol" title="Pressure (Static)">
+        <scalar dataType="fpx:real" units="siestaUnits:kBar">2.107274862156e-3</scalar>
+      </property>
+      <property dictRef="siesta:tstress" title="Total Stress">
+        <matrix rows="3" columns="3" dataType="fpx:real" units="siestaUnits:evpa3">-1.422061572689e-2 3.226243968252e-3 3.226244507656e-3 3.226243754474e-3 -1.422061289157e-2 3.226247806312e-3 3.226244500176e-3 3.226247987572e-3 -1.422060931568e-2</matrix>
+      </property>
+      <property dictRef="siesta:tpsol" title="Pressure (Total)">
+        <scalar dataType="fpx:real" units="siestaUnits:kBar">2.107274862156e-3</scalar>
+      </property>
+      <propertyList dictRef="siesta:mulliken" title="Mulliken Population Analysis">
+        <propertyList title="Unpolarized">
+          <propertyList title="Si">
+            <property title="Orbital list">
+              <array size="13" delimiter=" " dataType="xsd:string">3s       3s       3py      3pz      3px      3py      3pz      3px      3Pdxy    3Pdyz    3Pdz2    3Pdxz    3Pdx2-y2</array>
+            </property>
+            <propertyList title="atom        1">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.156958418567e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">3.085175845101e-1 7.640456338941e-1 5.914358963702e-2 5.914308872605e-2 5.914491924627e-2 7.104705417730e-1 7.104709004609e-1 7.104695174243e-1 1.719665627578e-1 1.719665322467e-1 1.298264992444e-1 1.719665434665e-1 1.298265051800e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        2">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.886784278171e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">6.315115945877e-1 5.870392576338e-1 9.134645387671e-2 9.134839589313e-2 9.134861786258e-2 6.110673436345e-1 6.110658491430e-1 6.110657661966e-1 1.338239601241e-1 1.338239286881e-1 7.975960260018e-2 1.338239310255e-1 7.975957690479e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        3">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.949310270100e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.169993948110e-1 6.404404031177e-1 4.870347909714e-2 1.248472820764e-1 4.870463596746e-2 6.629453874700e-1 6.169785387279e-1 6.629444632207e-1 1.533991184904e-1 1.427320379883e-1 8.466504722229e-2 1.427320439334e-1 1.032184379771e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        4">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.036107653134e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">4.111792547142e-1 6.990514121295e-1 9.376162108865e-2 -1.285093909515e-2 9.376225231474e-2 6.639412361288e-1 7.275929759030e-1 6.639407805932e-1 1.526477432650e-1 1.594229651487e-1 1.274404349765e-1 1.594229667264e-1 9.679494924075e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        5">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.949310691919e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.169994303102e-1 6.404404185440e-1 1.248475579850e-1 4.870428199799e-2 4.870504803687e-2 6.169783586697e-1 6.629447750655e-1 6.629442003164e-1 1.427320303916e-1 1.427320138392e-1 9.858008904779e-2 1.533990952460e-1 8.930339246837e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        6">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.036109109462e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">4.111793152556e-1 6.990514398236e-1 -1.285039399588e-2 9.376385235722e-2 9.376345699354e-2 7.275927242939e-1 6.639396500062e-1 6.639398610721e-1 1.594229954720e-1 1.594230240846e-1 1.044563492767e-1 1.526477390514e-1 1.197790957713e-1</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        7">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">3.949310996140e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">5.170007782873e-1 6.404395474050e-1 4.870462406607e-2 4.870420145527e-2 1.248477547969e-1 6.629444759732e-1 6.629447953816e-1 6.169781517898e-1 1.427320354178e-1 1.533991309117e-1 9.858009314560e-2 1.427320174297e-1 8.930339007953e-2</array>
+              </property>
+            </propertyList>
+            <propertyList title="atom        8">
+              <property title="Atomic Charge">
+                <scalar dataType="fpx:real" units="siestaUnits:e">4.036108582508e0</scalar>
+              </property>
+              <property title="Orbital Charges">
+                <array size="13" dataType="fpx:real" units="siestaUnits:e">4.111780551322e-1 6.990522104030e-1 9.376259041369e-2 9.376369090252e-2 -1.284973930614e-2 6.639405849368e-1 6.639397884487e-1 7.275921433247e-1 1.594229984581e-1 1.526477704178e-1 1.044563577193e-1 1.594230347089e-1 1.197790969479e-1</array>
+              </property>
+            </propertyList>
+          </propertyList>
+          <property title="Total Charge">
+            <scalar dataType="fpx:real" units="siestaUnits:e">3.200000000000e1</scalar>
+          </property>
+        </propertyList>
+      </propertyList>
+    </module>
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="4.924812937929e-2" y3="4.924809750802e-2" z3="4.924812438224e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.379960542064e0" y3="1.379960507767e0" z3="1.379960567010e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.750589060173e0" y3="2.750589100425e0" z3="1.732625795227e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.066095120609e0" y3="4.066095185982e0" z3="1.385022925813e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.750589040183e0" y3="1.732595284327e-2" z3="2.750589267689e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.066095376003e0" y3="1.385023055632e0" z3="4.066095301332e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.732596435888e-2" y3="2.750589017700e0" z3="2.750589202015e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.385023037717e0" y3="4.066095338874e0" z3="4.066095334320e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">5.201389861646e0 -2.804744754369e-2 -2.804736926877e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-2.804744754369e-2 5.201389877469e0 -2.804736747949e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-2.804736926877e-2 -2.804736747949e-2 5.201389909693e0</latticeVector>
+    </lattice>
+  </module>
+  <module serial="3" dictRef="CG" role="step">
+    <molecule>
+      <atomArray>
+        <atom elementType="Si" x3="4.924812937929e-2" y3="4.924809750802e-2" z3="4.924812438224e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.379960542064e0" y3="1.379960507767e0" z3="1.379960567010e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.750589060173e0" y3="2.750589100425e0" z3="1.732625795227e-2" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.066095120609e0" y3="4.066095185982e0" z3="1.385022925813e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="2.750589040183e0" y3="1.732595284327e-2" z3="2.750589267689e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="4.066095376003e0" y3="1.385023055632e0" z3="4.066095301332e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.732596435888e-2" y3="2.750589017700e0" z3="2.750589202015e0" ref="siesta:e001"/>
+        <atom elementType="Si" x3="1.385023037717e0" y3="4.066095338874e0" z3="4.066095334320e0" ref="siesta:e001"/>
+      </atomArray>
+    </molecule>
+    <lattice dictRef="siesta:ucell">
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">5.201389861646e0 -2.804744754369e-2 -2.804736926877e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-2.804744754369e-2 5.201389877469e0 -2.804736747949e-2</latticeVector>
+      <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">-2.804736926877e-2 -2.804736747949e-2 5.201389909693e0</latticeVector>
+    </lattice>
+    <propertyList dictRef="siesta:kpoints" title="k-points">
+      <property dictRef="siesta:nkpnt">
+        <scalar dataType="xsd:integer" units="cmlUnits:countable">365</scalar>
+      </property>
+      <kpoint coords="-2.856620042699e-1 -2.856620034045e-1 -3.080740952407e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.146315968998e-1 -2.852769097072e-1 -2.695648320622e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.436011895297e-1 -2.848918160098e-1 -2.310555688837e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.257078215954e-2 -2.845067223125e-1 -1.925463057051e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.540374789403e-3 -2.841216286151e-1 -1.540370425266e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="6.949003258073e-2 -2.837365349178e-1 -1.155277793481e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="1.405204399509e-1 -2.833514412204e-1 -7.701851616956e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.115508473210e-1 -2.829663475231e-1 -3.850925299104e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.825812546911e-1 -2.825812538257e-1 1.018748479673e-10" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.852769105726e-1 -2.146315962507e-1 -2.695648346091e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.142465032025e-1 -2.142465025534e-1 -2.310555714305e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.432160958323e-1 -2.138614088560e-1 -1.925463082520e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.218568846219e-2 -2.134763151587e-1 -1.540370450735e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.155281092053e-3 -2.130912214613e-1 -1.155277818950e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="6.987512627808e-2 -2.127061277640e-1 -7.701851871644e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="1.409055336482e-1 -2.123210340666e-1 -3.850925553791e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.119359410183e-1 -2.119359403693e-1 7.640613597544e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="2.829663483885e-1 -2.115508466719e-1 3.850927081914e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.848918168752e-1 -1.436011890970e-1 -2.310555739774e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.138614095051e-1 -1.432160953996e-1 -1.925463107989e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428310021350e-1 -1.428310017023e-1 -1.540370476204e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.180059476483e-2 -1.424459080049e-1 -1.155277844418e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.701873947017e-4 -1.420608143076e-1 -7.701852126331e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.026021997543e-2 -1.416757206102e-1 -3.850925808478e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="1.412906273456e-1 -1.412906269129e-1 5.093742398363e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="2.123210347157e-1 -1.409055332155e-1 3.850926827227e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.833514420858e-1 -1.405204395182e-1 7.701853145079e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.845067231779e-1 -7.257078194318e-2 -1.925463133458e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.134763158077e-1 -7.218568824583e-2 -1.540370501672e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.424459084376e-1 -7.180059454848e-2 -1.155277869887e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.141550106748e-2 -7.141550085113e-2 -7.701852381018e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.850936973509e-4 -7.103040715378e-2 -3.850926063165e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="7.064531367278e-2 -7.064531345643e-2 2.546871199181e-11" weight="2.743484224966e-3"/>
+      <kpoint coords="1.416757210429e-1 -7.026021975908e-2 3.850926572540e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.127061284130e-1 -6.987512606173e-2 7.701852890392e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="2.837365357832e-1 -6.949003236438e-2 1.155277920824e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.841216294805e-1 -1.540374789403e-3 -1.540370527141e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.130912221104e-1 -1.155281092053e-3 -1.155277895356e-3" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.420608147403e-1 -7.701873947017e-4 -7.701852635705e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.103040737013e-2 -3.850936973509e-4 -3.850926317852e-4" weight="2.743484224966e-3"/>
+      <kpoint coords="0.000000000000e0 0.000000000000e0 0.000000000000e0" weight="1.371742112483e-3"/>
+      <kpoint coords="-2.852769116382e-1 -2.852769107982e-1 6.794966574977e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.142465042680e-1 -2.848918171009e-1 6.833475838156e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.432160968979e-1 -2.845067234035e-1 6.871985101334e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.218568952775e-2 -2.841216297062e-1 6.910494364513e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.155282157618e-3 -2.837365360088e-1 6.949003627691e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="6.987512521251e-2 -2.833514423114e-1 6.987512890870e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.409055325826e-1 -2.829663486141e-1 7.026022154048e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.119359399528e-1 -2.825812549167e-1 7.064531417227e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.829663473229e-1 -2.821961612194e-1 7.103040680405e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.848918179408e-1 -2.142465036444e-1 6.833475835609e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.138614105707e-1 -2.138614099471e-1 6.871985098787e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428310032005e-1 -2.134763162497e-1 6.910494361966e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.180059583040e-2 -2.130912225524e-1 6.949003625144e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.701884602673e-4 -2.127061288550e-1 6.987512888323e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.026021890987e-2 -2.123210351577e-1 7.026022151501e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.412906262800e-1 -2.119359414603e-1 7.064531414680e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.123210336501e-1 -2.115508477630e-1 7.103040677858e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.833514410203e-1 -2.111657540656e-1 7.141549941037e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.845067242434e-1 -1.432160964906e-1 6.871985096240e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.134763168733e-1 -1.428310027933e-1 6.910494359419e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.424459095032e-1 -1.424459090959e-1 6.949003622597e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.141550213305e-2 -1.420608153986e-1 6.987512885776e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.850947629165e-4 -1.416757217012e-1 7.026022148955e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.064531260722e-2 -1.412906280039e-1 7.064531412133e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.416757199773e-1 -1.409055343065e-1 7.103040675312e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.127061273475e-1 -1.405204406092e-1 7.141549938490e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.837365347176e-1 -1.401353469118e-1 7.180059201669e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.841216305461e-1 -7.218568933687e-2 6.910494356872e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.130912231760e-1 -7.180059563951e-2 6.949003620051e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.420608158058e-1 -7.141550194216e-2 6.987512883229e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.103040843570e-2 -7.103040824481e-2 7.026022146408e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.065565616266e-9 -7.064531454746e-2 7.064531409586e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.103040630457e-2 -7.026022085011e-2 7.103040672765e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.420608136747e-1 -6.987512715276e-2 7.141549935943e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.130912210448e-1 -6.949003345541e-2 7.180059199122e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.841216284150e-1 -6.910493975806e-2 7.218568462300e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.837365368487e-1 -1.155282183087e-3 6.949003617504e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.127061294786e-1 -7.701884857361e-4 6.987512880682e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.416757221085e-1 -3.850947883852e-4 7.026022143861e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.064531473835e-2 -1.091034328258e-9 7.064531407039e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="3.850926317852e-4 3.850926063165e-4 7.103040670218e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.141550000192e-2 7.701863036674e-4 7.141549933396e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.424459073721e-1 1.155280001018e-3 7.180059196575e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.134763147422e-1 1.540373698369e-3 7.218568459753e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.845067221123e-1 1.925467395720e-3 7.257077722932e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.833514431514e-1 6.987512497069e-2 6.987512878135e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.123210357813e-1 7.026021866804e-2 7.026022141314e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.412906284111e-1 7.064531236539e-2 7.064531404492e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.026022104100e-2 7.103040606274e-2 7.103040667671e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.701863291361e-4 7.141549976010e-2 7.141549930849e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.180059369927e-2 7.180059345745e-2 7.180059194028e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.428310010694e-1 7.218568715480e-2 7.218568457207e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.138614084395e-1 7.257078085215e-2 7.257077720385e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.848918158097e-1 7.295587454950e-2 7.295586983564e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.829663494540e-1 1.409055321245e-1 7.026022138767e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.119359420839e-1 1.412906258218e-1 7.064531401946e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.409055347138e-1 1.416757195192e-1 7.103040665124e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.987512734365e-2 1.420608132165e-1 7.141549928303e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.155280026487e-3 1.424459069139e-1 7.180059191481e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.218568739662e-2 1.428310006112e-1 7.218568454660e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.432160947668e-1 1.432160943086e-1 7.257077717838e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.142465021369e-1 1.436011880059e-1 7.295586981017e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.852769095070e-1 1.439862817033e-1 7.334096244195e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.825812557567e-1 2.119359392782e-1 7.064531399399e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.115508483866e-1 2.123210329756e-1 7.103040662577e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.405204410164e-1 2.127061266730e-1 7.141549925756e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.949003364630e-2 2.130912203703e-1 7.180059188934e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.540373723838e-3 2.134763140677e-1 7.218568452113e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.257078109397e-2 2.138614077650e-1 7.257077715291e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436011884641e-1 2.142465014624e-1 7.295586978470e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.146315958342e-1 2.146315951597e-1 7.334096241648e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.856620032044e-1 2.150166888571e-1 7.372605504827e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.821961620593e-1 2.829663464320e-1 7.103040660030e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.111657546892e-1 2.833514401294e-1 7.141549923209e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.401353473191e-1 2.837365338267e-1 7.180059186387e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.910493994894e-2 2.841216275241e-1 7.218568449566e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.925467421189e-3 2.845067212214e-1 7.257077712744e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="7.295587479132e-2 2.848918149188e-1 7.295586975923e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439862821615e-1 2.852769086161e-1 7.334096239101e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.150166895316e-1 2.856620023135e-1 7.372605502280e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="2.860470969017e-1 2.860470960108e-1 7.411114765459e-2" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.848918190064e-1 -2.848918181919e-1 1.389800724519e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.138614116362e-1 -2.845067244945e-1 1.393651650837e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.428310042661e-1 -2.841216307972e-1 1.397502577155e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.180059689597e-2 -2.837365370998e-1 1.401353503473e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.701895258330e-4 -2.833514434025e-1 1.405204429791e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.026021784430e-2 -2.829663497051e-1 1.409055356109e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.412906252144e-1 -2.825812560078e-1 1.412906282427e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.123210325846e-1 -2.821961623104e-1 1.416757208744e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.833514399547e-1 -2.818110686131e-1 1.420608135062e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.845067253090e-1 -2.138614110381e-1 1.393651650583e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.134763179389e-1 -2.134763173408e-1 1.397502576901e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.424459105687e-1 -2.130912236434e-1 1.401353503218e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.141550319862e-2 -2.127061299461e-1 1.405204429536e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.850958284821e-4 -2.123210362487e-1 1.409055355854e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.064531154165e-2 -2.119359425514e-1 1.412906282172e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.416757189118e-1 -2.115508488540e-1 1.416757208490e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.127061262819e-1 -2.111657551567e-1 1.420608134808e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.837365336521e-1 -2.107806614593e-1 1.424459061125e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.841216316117e-1 -1.428310038843e-1 1.397502576646e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.130912242415e-1 -1.424459101870e-1 1.401353502964e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.420608168714e-1 -1.420608164896e-1 1.405204429282e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.103040950126e-2 -1.416757227923e-1 1.409055355599e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.131131232532e-9 -1.412906290949e-1 1.412906281917e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.103040523900e-2 -1.409055353976e-1 1.416757208235e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.420608126091e-1 -1.405204417002e-1 1.420608134553e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.130912199793e-1 -1.401353480029e-1 1.424459060871e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.841216273494e-1 -1.397502543055e-1 1.428309987189e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.837365379143e-1 -7.180059673055e-2 1.401353502709e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.127061305442e-1 -7.141550303320e-2 1.405204429027e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.416757231740e-1 -7.103040933585e-2 1.409055355345e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.064531580391e-2 -7.064531563850e-2 1.412906281663e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.850915662196e-4 -7.026022194115e-2 1.416757207980e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.141549893635e-2 -6.987512824379e-2 1.420608134298e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.424459063065e-1 -6.949003454644e-2 1.424459060616e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.134763136766e-1 -6.910494084909e-2 1.428309986934e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.845067210468e-1 -6.871984715174e-2 1.432160913252e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.833514442170e-1 -7.701895767704e-4 1.405204428772e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.123210368468e-1 -3.850958794195e-4 1.409055355090e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.412906294767e-1 -2.182068656515e-9 1.412906281408e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.026022210656e-2 3.850915152822e-4 1.416757207726e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.701852635705e-4 7.701852126331e-4 1.420608134044e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.180059263370e-2 1.155278909984e-3 1.424459060361e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.428310000038e-1 1.540372607335e-3 1.428309986679e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.138614073740e-1 1.925466304686e-3 1.432160912997e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.848918147441e-1 2.310560002037e-3 1.436011839315e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.829663505196e-1 7.026021757701e-2 1.409055354835e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.119359431495e-1 7.064531127436e-2 1.412906281153e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.409055357793e-1 7.103040497171e-2 1.416757207471e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.987512840921e-2 7.141549866906e-2 1.420608133789e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.155278960921e-3 7.180059236641e-2 1.424459060107e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.218568633105e-2 7.218568606376e-2 1.428309986425e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.432160937012e-1 7.257077976111e-2 1.432160912742e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.142465010713e-1 7.295587345846e-2 1.436011839060e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.852769084415e-1 7.334096715582e-2 1.439862765378e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.825812568223e-1 1.412906247308e-1 1.412906280898e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.115508494521e-1 1.416757184281e-1 1.416757207216e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.405204420820e-1 1.420608121255e-1 1.420608133534e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.949003471186e-2 1.424459058228e-1 1.424459059852e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.540372658272e-3 1.428309995202e-1 1.428309986170e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.257078002841e-2 1.432160932175e-1 1.432160912488e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436011873985e-1 1.436011869149e-1 1.436011838806e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.146315947687e-1 1.439862806122e-1 1.439862765123e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.856620021388e-1 1.443713743096e-1 1.443713691441e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.821961631249e-1 2.123210318846e-1 1.416757206962e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.111657557548e-1 2.127061255819e-1 1.420608133280e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.401353483846e-1 2.130912192793e-1 1.424459059597e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.910494101451e-2 2.134763129766e-1 1.428309985915e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.925466355623e-3 2.138614066740e-1 1.432160912233e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.295587372576e-2 2.142465003713e-1 1.436011838551e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439862810959e-1 2.146315940687e-1 1.439862764869e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.150166884660e-1 2.150166877660e-1 1.443713691187e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.860470958362e-1 2.154017814634e-1 1.447564617504e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.818110694276e-1 2.833514390383e-1 1.420608133025e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.107806620574e-1 2.837365327357e-1 1.424459059343e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.397502546873e-1 2.841216264330e-1 1.428309985661e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.871984731716e-2 2.845067201304e-1 1.432160911978e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.310560052974e-3 2.848918138277e-1 1.436011838296e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.334096742311e-2 2.852769075251e-1 1.439862764614e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443713747932e-1 2.856620012225e-1 1.443713690932e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.154017821634e-1 2.860470949198e-1 1.447564617250e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.864321895335e-1 2.864321886172e-1 1.451415543568e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.845067263746e-1 -2.845067255856e-1 2.100104791541e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.134763190044e-1 -2.841216318882e-1 2.103955717859e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.424459116343e-1 -2.837365381909e-1 2.107806644177e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.141550426418e-2 -2.833514444935e-1 2.111657570495e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.850968940477e-4 -2.829663507962e-1 2.115508496813e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.064531047609e-2 -2.825812570988e-1 2.119359423131e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.416757178462e-1 -2.821961634015e-1 2.123210349448e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.127061252164e-1 -2.818110697041e-1 2.127061275766e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.837365325865e-1 -2.814259760068e-1 2.130912202084e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.841216326772e-1 -2.134763184318e-1 2.103955717604e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.130912253071e-1 -2.130912247344e-1 2.107806643922e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.420608179370e-1 -2.127061310371e-1 2.111657570240e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.103041056683e-2 -2.123210373397e-1 2.115508496558e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-3.196696848635e-9 -2.119359436424e-1 2.119359422876e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.103040417344e-2 -2.115508499450e-1 2.123210349194e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.420608115436e-1 -2.111657562477e-1 2.127061275512e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.130912189137e-1 -2.107806625503e-1 2.130912201829e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.841216262838e-1 -2.103955688530e-1 2.134763128147e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.837365389799e-1 -1.424459112780e-1 2.107806643668e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.127061316097e-1 -1.420608175807e-1 2.111657569985e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.416757242396e-1 -1.416757238833e-1 2.115508496303e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.064531686948e-2 -1.412906301860e-1 2.119359422621e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.850905006540e-4 -1.409055364886e-1 2.123210348939e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.141549787079e-2 -1.405204427913e-1 2.127061275257e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.424459052409e-1 -1.401353490939e-1 2.130912201575e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.134763126111e-1 -1.397502553966e-1 2.134763127893e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.845067199812e-1 -1.393651616992e-1 2.138614054210e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.833514452825e-1 -7.141550412423e-2 2.111657569731e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.123210379124e-1 -7.103041042688e-2 2.115508496049e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.412906305423e-1 -7.064531672953e-2 2.119359422366e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.026022317213e-2 -7.026022303218e-2 2.123210348684e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.701841980049e-4 -6.987512933483e-2 2.127061275002e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.180059156814e-2 -6.949003563748e-2 2.130912201320e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.428309989383e-1 -6.910494194013e-2 2.134763127638e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.138614063084e-1 -6.871984824278e-2 2.138614053956e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.848918136785e-1 -6.833475454543e-2 2.142464980274e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.829663515852e-1 -3.850969704538e-4 2.115508495794e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.119359442150e-1 -3.273102984827e-9 2.119359422112e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.409055368449e-1 3.850904242479e-4 2.123210348430e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.987512947478e-2 7.701841215987e-4 2.127061274747e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.155277895356e-3 1.155277818950e-3 2.130912201065e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.218568526549e-2 1.540371516300e-3 2.134763127383e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.432160926356e-1 1.925465213651e-3 2.138614053701e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.142465000058e-1 2.310558911002e-3 2.142464980019e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.852769073759e-1 2.695652608353e-3 2.146315906337e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.825812578878e-1 7.064531018333e-2 2.119359421857e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.115508505177e-1 7.103040388068e-2 2.123210348175e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.405204431476e-1 7.141549757803e-2 2.127061274493e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.949003577743e-2 7.180059127538e-2 2.130912200811e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.540371592707e-3 7.218568497273e-2 2.134763127129e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.257077896284e-2 7.257077867008e-2 2.138614053446e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436011863330e-1 7.295587236743e-2 2.142464979764e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.146315937031e-1 7.334096606478e-2 2.146315906082e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.856620010732e-1 7.372605976213e-2 2.150166832400e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.821961641905e-1 1.416757173371e-1 2.123210347920e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.111657568203e-1 1.420608110345e-1 2.127061274238e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.401353494502e-1 1.424459047318e-1 2.130912200556e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.910494208008e-2 1.428309984292e-1 2.134763126874e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.925465290057e-3 1.432160921265e-1 2.138614053192e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.295587266019e-2 1.436011858239e-1 2.142464979510e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439862800303e-1 1.439862795212e-1 2.146315905827e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.150166874005e-1 1.443713732186e-1 2.150166832145e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.860470947706e-1 1.447564669159e-1 2.154017758463e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.818110704931e-1 2.127061244909e-1 2.127061273983e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.107806631230e-1 2.130912181882e-1 2.130912200301e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.397502557529e-1 2.134763118856e-1 2.134763126619e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.871984838272e-2 2.138614055829e-1 2.138614052937e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.310558987408e-3 2.142464992803e-1 2.142464979255e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.334096635754e-2 2.146315929776e-1 2.146315905573e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443713737277e-1 2.150166866750e-1 2.150166831891e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.154017810978e-1 2.154017803723e-1 2.154017758208e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.864321884679e-1 2.157868740697e-1 2.157868684526e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.814259767958e-1 2.837365316447e-1 2.130912200047e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.103955694256e-1 2.841216253420e-1 2.134763126364e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.393651620555e-1 2.845067190394e-1 2.138614052682e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.833475468537e-2 2.848918127367e-1 2.142464979000e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.695652684759e-3 2.852769064341e-1 2.146315905318e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.372606005489e-2 2.856620001314e-1 2.150166831636e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.447564674250e-1 2.860470938288e-1 2.154017757954e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.157868747952e-1 2.864321875261e-1 2.157868684272e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.868172821653e-1 2.868172812235e-1 2.161719610589e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.841216337428e-1 -2.841216329793e-1 2.810408858563e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.130912263727e-1 -2.837365392819e-1 2.814259784881e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.420608190025e-1 -2.833514455846e-1 2.818110711199e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.103041163240e-2 -2.829663518872e-1 2.821961637517e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-4.262262465063e-9 -2.825812581898e-1 2.825812563834e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.103040310787e-2 -2.821961644925e-1 2.829663490152e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.420608104780e-1 -2.818110707951e-1 2.833514416470e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.130912178481e-1 -2.814259770978e-1 2.837365342788e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.841216252183e-1 -2.810408834004e-1 2.841216269106e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.837365400454e-1 -2.130912258255e-1 2.814259784626e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.127061326753e-1 -2.127061321281e-1 2.818110710944e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.416757253052e-1 -2.123210384308e-1 2.821961637262e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.064531793504e-2 -2.119359447334e-1 2.825812563580e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.850894350884e-4 -2.115508510361e-1 2.829663489898e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.141549680522e-2 -2.111657573387e-1 2.833514416215e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.424459041754e-1 -2.107806636414e-1 2.837365342533e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.134763115455e-1 -2.103955699440e-1 2.841216268851e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.845067189156e-1 -2.100104762467e-1 2.845067195169e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.833514463481e-1 -1.420608186717e-1 2.818110710689e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.123210389780e-1 -1.416757249743e-1 2.821961637007e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.412906316078e-1 -1.412906312770e-1 2.825812563325e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-7.026022423769e-2 -1.409055375796e-1 2.829663489643e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.701831324393e-4 -1.405204438823e-1 2.833514415961e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.180059050257e-2 -1.401353501849e-1 2.837365342279e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.428309978727e-1 -1.397502564876e-1 2.841216268597e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.138614052428e-1 -1.393651627902e-1 2.845067194914e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.848918126130e-1 -1.389800690929e-1 2.848918121232e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.829663526507e-1 -7.103041151792e-2 2.821961636753e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.119359452806e-1 -7.064531782057e-2 2.825812563070e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.409055379105e-1 -7.026022412321e-2 2.829663489388e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.987513054034e-2 -6.987513042586e-2 2.833514415706e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.155276829790e-3 -6.949003672851e-2 2.837365342024e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.218568419992e-2 -6.910494303116e-2 2.841216268342e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.432160915701e-1 -6.871984933381e-2 2.845067194660e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.142464989402e-1 -6.833475563646e-2 2.848918120978e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.852769063103e-1 -6.794966193911e-2 2.852769047295e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.825812589534e-1 -4.364137313030e-9 2.825812562816e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.115508515833e-1 3.850893332136e-4 2.829663489134e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.405204442131e-1 7.701830305644e-4 2.833514415451e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.949003684299e-2 1.155276727915e-3 2.837365341769e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.540370527141e-3 1.540370425266e-3 2.841216268087e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.257077789727e-2 1.925464122617e-3 2.845067194405e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.436011852674e-1 2.310557819968e-3 2.848918120723e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.146315926375e-1 2.695651517319e-3 2.852769047041e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.856620000077e-1 3.080745214670e-3 2.856619973359e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.821961652560e-1 7.103040278964e-2 2.829663488879e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.111657578859e-1 7.141549648699e-2 2.833514415197e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.401353505158e-1 7.180059018434e-2 2.837365341515e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.910494314564e-2 7.218568388169e-2 2.841216267832e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.925464224492e-3 7.257077757905e-2 2.845067194150e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.295587159462e-2 7.295587127640e-2 2.848918120468e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.439862789648e-1 7.334096497375e-2 2.852769046786e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.150166863349e-1 7.372605867110e-2 2.856619973104e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.860470937050e-1 7.411115236845e-2 2.860470899422e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.818110715587e-1 1.420608099434e-1 2.833514414942e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.107806641886e-1 1.424459036408e-1 2.837365341260e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.397502568184e-1 1.428309973381e-1 2.841216267578e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.871984944829e-2 1.432160910355e-1 2.845067193896e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.310557921843e-3 1.436011847328e-1 2.848918120213e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.334096529198e-2 1.439862784302e-1 2.852769046531e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.443713726621e-1 1.443713721275e-1 2.856619972849e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.154017800322e-1 1.447564658249e-1 2.860470899167e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.864321874024e-1 1.451415595222e-1 2.864321825485e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.814259778613e-1 2.130912170972e-1 2.837365341005e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.103955704912e-1 2.134763107946e-1 2.841216267323e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.393651631211e-1 2.138614044919e-1 2.845067193641e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.833475575094e-2 2.142464981893e-1 2.848918119959e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.695651619194e-3 2.146315918866e-1 2.852769046277e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.372605898933e-2 2.150166855840e-1 2.856619972594e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.447564663595e-1 2.154017792813e-1 2.860470898912e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.157868737296e-1 2.157868729787e-1 2.864321825230e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.868172810997e-1 2.161719666760e-1 2.868172751548e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.810408841640e-1 2.841216242510e-1 2.841216267068e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-2.100104767939e-1 2.845067179483e-1 2.845067193386e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-1.389800694237e-1 2.848918116457e-1 2.848918119704e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="-6.794966205359e-2 2.852769053430e-1 2.852769046022e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="3.080745316544e-3 2.856619990404e-1 2.856619972340e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="7.411115268668e-2 2.860470927377e-1 2.860470898658e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="1.451415600568e-1 2.864321864351e-1 2.864321824975e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.161719674269e-1 2.868172801324e-1 2.868172751293e-1" weight="2.743484224966e-3"/>
+      <kpoint coords="2.872023747971e-1 2.872023738298e-1 2.872023677611e-1" weight="2.743484224966e-3"/>
+      <property dictRef="siesta:kcutof">
+        <scalar dataType="fpx:real" units="siestaUnits:angstrom">2.340693494657e1</scalar>
+      </property>
+    </propertyList>
+    <property dictRef="siesta:kscell">
+      <matrix rows="3" columns="3" dataType="xsd:integer" units="siestaUnits:Ang">9 0 0 0 9 0 0 0 9</matrix>
+    </property>
+    <property dictRef="siesta:kdispl">
+      <array size="3" dataType="fpx:real" units="siestaUnits:Ang">0.000000000000e0 0.000000000000e0 0.000000000000e0</array>
+    </property>
+    <crystal title="Lattice Parameters">
+      <cellParameter latticeType="real" parameterType="length" units="units:angstrom">5.201541 5.201541 5.201541</cellParameter>
+      <cellParameter latticeType="real" parameterType="angle" units="units:degree">90.616222 90.616220 90.616220</cellParameter>
+    </crystal>
+    <module serial="1" dictRef="SCF" role="step">
+      <propertyList>
+        <property dictRef="siesta:ntm" title="Mesh">
+          <array size="3" dataType="xsd:integer" units="cmlUnits:countable">32 32 32</array>
+        </property>
+        <property dictRef="siesta:g2max" title="Requested Cut-Off">

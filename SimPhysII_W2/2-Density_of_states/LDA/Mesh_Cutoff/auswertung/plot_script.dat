@@ -1,0 +1,9 @@
+set term aqua font "Helvetica, 13"
+set nokey
+set xlabel 'Mesh cutoff [Ry]'
+set ylabel 'Total energy [eV]'
+set xrange [95:265]
+set yrange [-861.971400:- 861.970800]
+set ytics ("-861.970800"-861.970800, "-861.971000"-861.971000, "-861.971400"-861.971400)
+plot "total_energies.dat"
+

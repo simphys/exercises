@@ -1,0 +1,7 @@
+set term aqua font "Helvetica, 13"
+set nokey
+set xlabel 'Number of k points'
+set xrange [29:46]
+set ylabel 'Total energy [eV]'
+
+plot "k_points.dat"

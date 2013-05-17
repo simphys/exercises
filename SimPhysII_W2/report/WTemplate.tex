@@ -1,0 +1,255 @@
+%%%%%%%% Klassen-Optionen
+\documentclass[12pt,a4paper]{scrartcl}
+
+%%%%%%%% PAKETE: unverzichtbare Pakete mit Einstellungen
+\usepackage[left=2.5cm, right=2cm, top=3cm, bottom=3cm, a4paper]{geometry} %Seitenrände
+\usepackage[utf8x]{inputenc} % utf8-Kodierung und direkte Eingabe von Sonderzeichen
+\usepackage{fixltx2e} % Verbessert einige Kernkompetenzen von LaTeX2e
+
+%%%%%%%% PAKETE: AMS-Pakete
+\usepackage{amsmath} % Mathe-Erweiterung
+\usepackage{amsfonts} % Schrift-Erweiterung
+\usepackage{amssymb} % Sonderzeichen-Erweiterung
+
+%%%%%%%% PAKETE: Sonstiges
+\usepackage[colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black]{hyperref} % Links
+\usepackage{wrapfig} % ausgeklügekte Floatumgebung
+\usepackage{float} % normale Floatumgebung
+\restylefloat{figure} % ermöglicht die Verwendung von "H" (ist noch stärker als "h!")
+\usepackage[small,it,singlelinecheck=false]{caption} % Bildunterschriften formatieren
+\usepackage{multirow} % ermöglich Verbinden von Tabellenzeilen
+\usepackage{multicol} % ermöglicht Spalten
+\usepackage{fancyhdr} % ermöglicht Kopf- und Fußzeilen
+\usepackage{graphicx} % Einbinden von Bildern möglich
+\usepackage{units} % Einheiten
+\usepackage{subcaption}
+
+%%%%%%%% DEFINITIONEN: Titelseite
+\author{April Cooper, Patrick Kreissl und Sebastian Weber}
+\title{Worksheet 2: Properties of fermions and Density Functional Theory}
+\publishers{University of Stuttgart}
+\date{\today}
+
+%%%%%%%% ANPASSUNGEN: Kopf-und Fußzeile
+\fancypagestyle{plain}{} % redefine the plain pagestyle to match the fancy layout
+\pagestyle{fancy} % aktiviere eigenen Seitenstil
+\fancyhf{} % alle Kopf- und Fußzeilen bereinigen
+\fancyhead[L]{Worksheet 2: Properties of fermions and Density Functional Theory}
+\fancyhead[R]{\today}
+\renewcommand{\headrulewidth}{0.6pt} % obere Trennlinie
+\fancyfoot[L]{April Cooper, Patrick Kreissl und Sebastian Weber}
+\fancyfoot[R]{Page \thepage}
+\renewcommand{\footrulewidth}{0.6pt} % untere Trennlinie
+
+%%%%%%%% ANPASSUNGEN: Absätze
+\setlength{\parindent}{0em} % keine Absatzeinzüge
+\setlength{\parskip}{0.5em} % Absatz-Abstand
+
+%%%%%%%% ANPASSUNGEN: Abbildungsverzeichnis
+\usepackage{tocloft} % Zum Anpassen der Verzeichnisse
+%\renewcommand{\cftfigpresnum}{Abb. }
+%\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+\setlength{\cftfignumwidth}{2cm}
+\setlength{\cfttabnumwidth}{2cm}
+\setlength{\cftfigindent}{0cm}
+\setlength{\cfttabindent}{0cm}
+
+%%%%%%%% SONSTIGES
+\usepackage{pdfpages}
+\usepackage{pgf}
+%\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% NÜTZLICH: http://truben.no/latex/table/
+
+% Anfang des eigentlichen Dokuments
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Short Questions - Short Answers}
+
+
+\subsubsection*{Difference between the LDA and GGA approach}
+LDA is a local approximation of the exchange-correlation functional, which only uses the density . GGA is in a way global, because it uses the gradient of the density as well.
+
+\subsubsection*{Born-Oppenheimer approximation}
+From  the electrons' point of view the nucleus stand still. Therefore one can neglect the kinetic term of the nucleus in the SE for the electrons.
+
+The nucleus move in the resulting electronic potential.
+
+\subsubsection*{Simplifications of the Hartree-Fock approach}
+It's a mean-field approximation.
+\begin{itemize}
+\item Non-correlated, non-interacting electrons (however the fermionic character of electrons is included by the use of the Slater determinant)
+\item Born-Oppenheimer approximation
+\item No relativity
+\end{itemize}
+
+\subsubsection*{Kohn-Sham equation}
+It is a set of single particle SEs that generates the same density as the SE of interacting particles.
+
+\subsubsection*{When is it useful to use DFT compared to Hartree-Fock?}
+DFT is especially useful for huge systems, because the density only depends on the 3 space coordinates. For the tolal wave function of N electrons you would need 3N coordinates, so that more computing time would be needed. Moreover DFT can include correlation of electrons which  Hartree-Fock can't do.
+
+\newpage
+\section{Theoretical Task: Fermi energy and partition sums}
+\subsection{T1: Grand canonical partition sum for bosons and electrons}
+Using that \(H = \sum_{k=1}^n \epsilon_k \hat n_k\) and \(\sum_{k=1}^n \hat  n_k = N\) it follows:
+
+\begin{align*}
+ Z_{GC} &=Tr(exp(-\beta(H-\mu N))) \\
+&=Tr(exp(-\beta \sum_{k=1}^N \epsilon_k \hat n_k - \mu \sum_{k=1}^N \hat n_k))\\
+&=Tr(exp(-\beta \sum_{k=1}^N (\epsilon_k -\mu)\hat n_k))\\
+&=\prod_{k=1}^N Tr(exp(-\beta (\epsilon_k -\mu) \hat n_k))\\
+&= \prod_{k=1}^N \sum_{n_k} exp(-\beta (\epsilon_k-\mu)n_k)
+\end{align*}
+
+Therefore it follows for Bosons:
+\begin{align*}
+Z_{GC}^{Boson}&= \prod_{k=1}^N\sum_{n_k=0}^\infty exp(-\beta(\epsilon_k-\mu)n_k)\\
+&= \prod_{k=1}^N \sum_{n_k=0}^\infty exp(-\beta (\epsilon_k-\mu))^{n_k}\\
+&= \prod_{k=1}^N \frac{1}{1-exp(-\beta (\epsilon_k-\mu))}
+\end{align*}
+In the last step we have used that $Z_{GC}$ is a geometric series.
+
+For Fermions we make another conjecture, namely that our system of n fermions can be described using n one-fermion-systems.
+In case of only one fermion being present the product in $Z_{GC}$ runs from 1 to 1 wherefore the only term that remains is: 
+\begin{align*}
+	Z_{GC}^{1f}&=\sum_{n_k=0}^1 exp(-\beta(\epsilon_k-\mu)n_k)\\	
+	&= 1+ exp(-\beta(\epsilon_k-\mu)n_k)
+\end{align*} 
+Due to our conjecture it follows that 
+\begin{align*}
+	Z_{GC}^{Fermion} &= \prod_{k=1}^N (1+exp(-\beta(\epsilon_k-\mu)n_k))
+\end{align*}
+
+\subsection{T2: Average occupation of a state}
+\begin{align*}
+	\langle{ n_i}\rangle &= \frac{1}{Z_{GC}}Tr(exp(-\beta(H-\mu N))n_i)\\
+	&= \frac{1}{Z_{GC}}\sum_{n_1 \dots n_i \dots  } \langle \dots,n_i,\dots | exp(-\beta(E-\mu N))n_i| \dots, n_i, \dots 	\rangle
+\end{align*}
+The trace is calculated using the basis of symmetrisized  n-particle states, which allows us to substitute the occurring operators with their eigenvalues. 
+Using that for an interaction free system it is \[ E=\sum_j \epsilon_j n_j \] it is easy to be seen that:
+\begin{align*}
+	\langle n_i \rangle &= \frac{1}{Z_{GC}}\sum_{n_1 \dots n_i \dots }\bigg\langle \dots , n_i , \dots \bigg| \frac{\partial  	exp(-\beta \sum_j n_j (\epsilon_j-\mu))}{\partial(-\beta \epsilon_i)} \bigg|_{T,V,\mu,\epsilon_i\neq \epsilon_j} 		\bigg| \dots,n_i, \dots \bigg\rangle \\
+	&= \frac{1}{Z_{GC}}\frac{\partial Z}{\partial(-\beta \epsilon_i)} \bigg|_{T,V,\mu,\epsilon_i \epsilon_j} = \frac			{\partial }{\partial(-\beta \epsilon_i)} ln(Z_{GC})  \bigg|_{T,V,\mu,\epsilon_i \epsilon_j} 
+\end{align*}
+Plugging in our Terms $Z_{GC}^{Boson}$ and executing the stated derivative we get:
+\begin{align*} 
+	\langle n_i^{Boson} \rangle &= -\frac{-exp(-\beta(\epsilon_i-\mu))}{1-exp(-\beta(\epsilon_i-\mu))} = \frac{1}{exp	(\beta(\epsilon_i -\mu))-1} \\
+	\langle n_i^{Fermion} \rangle &= -\frac{exp(-\beta(\epsilon_i-\mu))}{1+exp(-\beta(\epsilon_i-\mu))} = \frac{1}{exp	(\beta(\epsilon_i -\mu))+1} 
+\end{align*}
+These are the Bose-Einstein resp. Fermi-Dirac statistics .
+
+\subsection{T3: Fermi energy}
+\begin{align*}
+N &= V \int_0^{\epsilon_F} d\epsilon \, n(\epsilon) \cdot D(\epsilon) \\
+&= V \int_0^{\epsilon_F} d\epsilon \, n(\epsilon) \cdot \frac{4\pi}{2} \left(\frac{2m}{h^2}\right)^{3/2} (2s+1) \sqrt{\epsilon}
+\end{align*}
+For $\nu \rightarrow \infty$, $\epsilon = \ll \nu \Rightarrow n(\epsilon) = \frac{1}{\exp\left(\beta(\epsilon-\mu)\right)-1} \rightarrow 1$:
+\begin{align*}
+N &= \frac{4V\pi(2s+1)}{2} \left(\frac{2m}{h^2}\right)^{3/2} \int_0^{\epsilon_F} d\epsilon \, \sqrt{\epsilon} \\
+&= \frac{4V\pi(2s+1)}{3} \left(\frac{2m\cdot \epsilon_F}{h^2}\right)^{3/2}
+\end{align*}
+Activating the equation towards $\epsilon_F$:
+\begin{equation}
+\epsilon_F = \left(\frac{3N}{4V\pi(2s+1)}\right)^{2/3} \frac{h^2}{2m} = \frac{\hbar^2}{2m} \left(\frac{6N\pi^2}{2s+1}\right)^{2/3}
+\end{equation}
+
+%%% Comp. Task%%%
+\section{Computational Task: DFT- simulations of silicon}
+
+\subsection{T1: Energy-Volume curve and lattice constant}
+
+For different lattice constants around \unit[5.43]{Ang} DFT simulations were run. Both total energy and cell volume were taken from the output file and plotted against each other. A second plot shows the dependence between the cell volume and the lattice constant.
+
+\subsubsection{LDA}
+
+\begin{figure}[H]
+        \begin{subfigure}[a]{\textwidth}
+			\resizebox{\linewidth}{!}{\input{./plots/LDA_energy.pgf}}
+    		\caption[LDA: energy against volume]{Energy plotted against volume for LDA}
+		\end{subfigure}
+        \begin{subfigure}[a]{\textwidth}
+			\resizebox{\linewidth}{!}{\input{./plots/LDA_lattice.pgf}}
+    		\caption[LDA: lattice constant against volume]{Lattice constant plotted against volume for LDA}
+		\end{subfigure}
+        \caption[Plots to determine the lowest energy lattice constant (LDA)]{A lattice constant of around $\unit[5.15]{Ang}$ corresponds to the lowest total energy. The minima at $\unit[5.05]{Ang}$ and $\unit[5.70]{Ang}$ are outlier.}
+        \label{fig:latticeLDA}
+\end{figure}
+
+\subsubsection{GGA}
+
+\begin{figure}[H]
+        \begin{subfigure}[a]{\textwidth}
+			\resizebox{\linewidth}{!}{\input{./plots/GGA_energy.pgf}}
+    		\caption[GGA: energy against volume]{Energy plotted against volume for GGA}
+		\end{subfigure}
+        \begin{subfigure}[a]{\textwidth}
+			\resizebox{\linewidth}{!}{\input{./plots/GGA_lattice.pgf}}
+    		\caption[GGA: lattice constant against volume]{Lattice constant plotted against volume for GGA}
+		\end{subfigure}
+        \caption[Plots to determine the lowest energy lattice constant (GGA)]{A lattice constant of around $\unit[5.30]{Ang}$ corresponds to the lowest total energy.}
+        \label{fig:latticeGGA}
+\end{figure}
+
+\subsubsection{Comparison}
+The literature value for the lattice constant of silicon is $\unit[5.43]{Ang}$. So the errors in the calculation of the lattice constant are as follows:
+
+\begin{table}[H]
+\begin{tabular}{l|l|l|l}
+  & value $[\unit{Ang}]$ & abs. error $[\unit{Ang}]$ & rel. error $[\unit{\%}]$ \\ 
+\hline
+LDA & 5.15 & 0.28 & 5.1 \\ 
+\hline 
+GGA & 5.30 & 0.13 & 2.4 \\  
+\end{tabular}
+\end{table}
+
+\subsection{T2: Density of States bulk Silicon}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=12.0cm]{GGA_mesh.pdf}
+\end{center}
+\caption{GGA: Total energy depending on the Mesh cutoff}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=12.0cm]{LDA_mesh.pdf}
+\end{center}
+\caption{LDA: Total energy depending on the Mesh cutoff}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=12.0cm]{GGA_kgrid.pdf}
+\end{center}
+\caption{GGA: Total energy depending on the number of k-points}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=12.0cm]{LDA_kgrid.pdf}
+\end{center}
+\caption{LDA: Total energy depending on the number of k-points}
+\end{figure}
+
+
+
+\end{document}
+
+
+% =============== Comments ============
+\begin{comment}
+\verb{x_init {}}
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!{\input{../plots/GGA_mesh.pdf}}
+	\caption{CAPTION}\label{fig:NAME}
+\end{figure}
+\end{comment}

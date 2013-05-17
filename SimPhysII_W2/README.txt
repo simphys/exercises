@@ -1,0 +1,1 @@
+mpirun -np 2 siesta < FILENAME.fdf | tee OUT.out

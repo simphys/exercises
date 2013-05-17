@@ -1,0 +1,40 @@
+Neighbors of:   1 Si at:   0.0086  0.0086  0.0086
+  2 Si                    2.3910  Ang. Really at:   2.6172  2.6172  2.6172
+  4 Si                    2.3928  Ang. Really at:  -2.6023 -2.6023  2.6188
+  8 Si                    2.3928  Ang. Really at:   2.6188 -2.6023 -2.6023
+  6 Si                    2.3928  Ang. Really at:  -2.6023  2.6188 -2.6023
+Neighbors of:   2 Si at:   2.6172  2.6172  2.6172
+  3 Si                    2.3880  Ang. Really at:   5.2201  5.2201  0.0069
+  5 Si                    2.3880  Ang. Really at:   5.2201  0.0069  5.2201
+  7 Si                    2.3880  Ang. Really at:   0.0069  5.2201  5.2201
+  1 Si                    2.3910  Ang. Really at:   0.0086  0.0086  0.0086
+Neighbors of:   3 Si at:   5.2201  5.2201  0.0069
+  2 Si                    2.3880  Ang. Really at:   2.6172  2.6172  2.6172
+  6 Si                    2.3903  Ang. Really at:   7.8300  2.6172 -2.6039
+  8 Si                    2.3903  Ang. Really at:   2.6172  7.8300 -2.6039
+  4 Si                    2.3909  Ang. Really at:   7.8285  7.8285  2.6156
+Neighbors of:   4 Si at:   7.8285  7.8285  2.6156
+  5 Si                    2.3903  Ang. Really at:   5.2185 10.4392  5.2185
+  7 Si                    2.3903  Ang. Really at:  10.4392  5.2185  5.2185
+  3 Si                    2.3909  Ang. Really at:   5.2201  5.2201  0.0069
+  1 Si                    2.3928  Ang. Really at:  10.4393 10.4393  0.0054
+Neighbors of:   5 Si at:   5.2201  0.0069  5.2201
+  2 Si                    2.3880  Ang. Really at:   2.6172  2.6172  2.6172
+  8 Si                    2.3903  Ang. Really at:   2.6172 -2.6039  7.8300
+  4 Si                    2.3903  Ang. Really at:   7.8300 -2.6039  2.6172
+  6 Si                    2.3909  Ang. Really at:   7.8285  2.6156  7.8285
+Neighbors of:   6 Si at:   7.8285  2.6156  7.8285
+  7 Si                    2.3903  Ang. Really at:  10.4392  5.2185  5.2185
+  3 Si                    2.3903  Ang. Really at:   5.2185  5.2185 10.4392
+  5 Si                    2.3909  Ang. Really at:   5.2201  0.0069  5.2201
+  1 Si                    2.3928  Ang. Really at:  10.4393  0.0054 10.4393
+Neighbors of:   7 Si at:   0.0069  5.2201  5.2201
+  2 Si                    2.3880  Ang. Really at:   2.6172  2.6172  2.6172
+  6 Si                    2.3903  Ang. Really at:  -2.6039  2.6172  7.8300
+  4 Si                    2.3903  Ang. Really at:  -2.6039  7.8300  2.6172
+  8 Si                    2.3909  Ang. Really at:   2.6156  7.8285  7.8285
+Neighbors of:   8 Si at:   2.6156  7.8285  7.8285
+  5 Si                    2.3903  Ang. Really at:   5.2185 10.4392  5.2185
+  3 Si                    2.3903  Ang. Really at:   5.2185  5.2185 10.4392
+  7 Si                    2.3909  Ang. Really at:   0.0069  5.2201  5.2201
+  1 Si                    2.3928  Ang. Really at:   0.0054 10.4393 10.4393
