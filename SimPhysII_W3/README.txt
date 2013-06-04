@@ -24,7 +24,7 @@ Analyzation
 -------------------------------------------------------------------
 - radio distribution function
 - number of H-bonds (hydrogen to oxygen distance is bellow 0.35 nm, angle is less than 30 deg)
-- mean squared displacement and difussion coefficient
+- mean squared displacement and diffusion coefficient
 < DELTA r(t)^2 > = 6 D t
 
 1) g_rdf -n index
