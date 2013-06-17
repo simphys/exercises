@@ -111,9 +111,38 @@ Since the average force in the Langevin equation is already included in the firs
 \end{equation}
 This differential equation can be easily solved by separation of variables, which leads to to following solution (with $v_0 = v(t=0)$):
 \begin{equation} 
-	v = v_0 \cdot \exp{(-\gamma t)}
+	v(t) = v_0 \cdot \text{e}^{(-\gamma t)}
 \end{equation}
-
+The stochastic fluctuations of the second term also fulfil the following relation:
+\begin{equation}
+	\langle\text{d}W(t)\text{d}W(t')\rangle = \text{d}t'
+\end{equation}
+An explicit formal solution can be obtained as
+\begin{equation}
+	v(t) = v_0 \cdot \text{e}^{(-\gamma t)} + \frac{\Gamma}{m} \int_0^t \text{e}^ {(-\gamma(t-s))}~\text{d}W(s)
+\end{equation}
+Now one can calculate:
+\begin{align}
+	\langle v(t_1)v(t_2) \rangle &= \langle v_0(t_1) v_0(t_2)\rangle \cdot \text{e}^{(-\gamma (t_1+t_2))}
+ + \frac{\Gamma}{m} \int_0^{t_1} \int_0^{t_2} \text{e}^ {-\gamma\cdot(t_1+t_2-(s_1+s_2))}~\text{d}W(s_2)\text{d}W(s_1)\\
+	&= \langle v_0(t)^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}	
+	 + \frac{\Gamma}{m} \int_0^{\min{t_1, t_2}} \text{e}^ {-\gamma\cdot(t_1+t_2-2s)}~\text{d}W(s)\\
+	&= \langle v_0(t)^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}+ \frac{\Gamma}{2 m\gamma} \text{e}^ {-\gamma\cdot(t_1+t_2)}\left( \text{e}^ {2\gamma \min{t_1, t_2}} - 1 \right)
+\end{align}
+For $t_1=t_2=t$ this results in
+\begin{align}
+	\langle v(t)^2\rangle &= \langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t}+ \frac{\Gamma}{2 m\gamma} \text{e}^ {-2\gamma t}\left( \text{e}^ {2\gamma t} - 1 \right)\\
+	&=\langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t} - \frac{\Gamma}{2 m\gamma} \text{e}^ {-2\gamma t} + \frac{\Gamma}{2 m\gamma}\\
+	&=\left( \langle v_0(t)^2\rangle - \frac{\Gamma}{2 m\gamma} \right) \text{e}^ {-2\gamma t} + \frac{\Gamma}{2 m\gamma} \label{eq:velsqrt}
+\end{align}
+Since in equilibrium we must have the equipartition theorem for one dimension ($\langle v(t)^2\rangle_{\text{eq}} = k_\text{B} \cdot T$, in three dimensions the right hand side would have to be multiplied by three) $\Gamma$ can be calculated (for $t \rightarrow \infty$ the first part of equation \ref{eq:velsqrt} vanishes):
+\begin{equation}
+	\Gamma = 2 m\gamma k_\text{B} T
+\end{equation}
+Therefore the velocity of one particle can is given by
+\begin{equation}
+	v(t) = v_0 \cdot \text{e}^{(-\gamma t)} + 2\gamma k_\text{B} T \int_0^t \text{e}^ {(-\gamma(t-s))}~\text{d}W(s)
+\end{equation}
 \end{document}
 
 
