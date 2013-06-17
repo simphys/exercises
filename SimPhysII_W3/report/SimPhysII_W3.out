@@ -1,3 +1,7 @@
-\BOOKMARK [1][-]{section.1}{Short Questions - Short Answers}{}
-\BOOKMARK [1][-]{section.2}{Theoretical Task: Langevin equation - Calculation of particle positions and velocities}{}
-\BOOKMARK [2][-]{subsection.2.1}{Velocities of the particle}{section.2}
+\BOOKMARK [1][-]{section.1}{Short Questions - Short Answers}{}% 1
+\BOOKMARK [1][-]{section.2}{Theoretical Task: Langevin equation - Calculation of particle positions and velocities}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Velocities of the particle}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Computational Task: Atomistic water simulations with GROMACS}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Radial distribution function}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Hydrogen bond analysis}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.3}{Mean-square displacement}{section.3}% 7
