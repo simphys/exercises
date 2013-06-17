@@ -1,0 +1,111 @@
+%%%%%%%% Klassen-Optionen
+\documentclass[12pt,a4paper]{scrartcl}
+
+%%%%%%%% PAKETE: unverzichtbare Pakete mit Einstellungen
+\usepackage[left=2.5cm, right=2cm, top=3cm, bottom=3cm, a4paper]{geometry} %Seitenrände
+\usepackage[utf8x]{inputenc} % utf8-Kodierung und direkte Eingabe von Sonderzeichen
+\usepackage{fixltx2e} % Verbessert einige Kernkompetenzen von LaTeX2e
+
+%%%%%%%% PAKETE: AMS-Pakete
+\usepackage{amsmath} % Mathe-Erweiterung
+\usepackage{amsfonts} % Schrift-Erweiterung
+\usepackage{amssymb} % Sonderzeichen-Erweiterung
+
+%%%%%%%% PAKETE: Sonstiges
+\usepackage[colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black]{hyperref} % Links
+\usepackage{wrapfig} % ausgeklügekte Floatumgebung
+\usepackage{float} % normale Floatumgebung
+\restylefloat{figure} % ermöglicht die Verwendung von "H" (ist noch stärker als "h!")
+\usepackage[small,it,singlelinecheck=false]{caption} % Bildunterschriften formatieren
+\usepackage{multirow} % ermöglich Verbinden von Tabellenzeilen
+\usepackage{multicol} % ermöglicht Spalten
+\usepackage{fancyhdr} % ermöglicht Kopf- und Fußzeilen
+\usepackage{graphicx} % Einbinden von Bildern möglich
+\usepackage{units} % Einheiten
+\usepackage{subcaption}
+
+%%%%%%%% DEFINITIONEN: Titelseite
+\author{April Cooper, Patrick Kreissl und Sebastian Weber}
+\title{Worksheet 3: Diffusion processes and atomistic water model properties}
+\publishers{University of Stuttgart}
+\date{\today}
+
+%%%%%%%% ANPASSUNGEN: Kopf-und Fußzeile
+\fancypagestyle{plain}{} % redefine the plain pagestyle to match the fancy layout
+\pagestyle{fancy} % aktiviere eigenen Seitenstil
+\fancyhf{} % alle Kopf- und Fußzeilen bereinigen
+\fancyhead[L]{Worksheet 3: Diffusion processes and atomistic water model properties}
+\fancyhead[R]{\today}
+\renewcommand{\headrulewidth}{0.6pt} % obere Trennlinie
+\fancyfoot[L]{April Cooper, Patrick Kreissl und Sebastian Weber}
+\fancyfoot[R]{Page \thepage}
+\renewcommand{\footrulewidth}{0.6pt} % untere Trennlinie
+
+%%%%%%%% ANPASSUNGEN: Absätze
+\setlength{\parindent}{0em} % keine Absatzeinzüge
+\setlength{\parskip}{0.5em} % Absatz-Abstand
+
+%%%%%%%% ANPASSUNGEN: Abbildungsverzeichnis
+\usepackage{tocloft} % Zum Anpassen der Verzeichnisse
+%\renewcommand{\cftfigpresnum}{Abb. }
+%\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+\setlength{\cftfignumwidth}{2cm}
+\setlength{\cfttabnumwidth}{2cm}
+\setlength{\cftfigindent}{0cm}
+\setlength{\cfttabindent}{0cm}
+
+%%%%%%%% SONSTIGES
+\usepackage{pdfpages}
+\usepackage{pgf}
+%\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% NÜTZLICH: http://truben.no/latex/table/
+
+% Anfang des eigentlichen Dokuments
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Short Questions - Short Answers}
+
+
+\subsubsection*{What are the main differences between various atomistic water models?}
+\begin{itemize}
+\item Geometry - some are planar, some tetrahedral, also the location and size of partial charges can differ 
+\item Polarizability - some models take it into account some don't
+\item Rigidness - some have fixed atom positions, others model atoms connected by "springs"
+\end{itemize}
+
+\subsubsection*{What is the difference between the SPC and the SPC/E water model? }
+The SPC/E model takes the averaged polarization effects  into account, SPC doesn't.
+
+\subsubsection*{What are the typical terms in an atomistic classical force field?}
+Typical terms for the potential are: $E_{bond}$,$E_{torsion}$,$E_{angular}$,$E_{van-der-Waals}$, $E_{LJ}$ and 
+$E_{coulomb}$
+
+\subsubsection*{How is the Pauli exclusion principle incorporated into a classical force field?}
+It is incorporated into the energy expression of the Lennard-Jones interactions $E_{LJ}$. If two (non-bonded) atoms get too close to each other their electron clouds overlap which results due to Pauli repulsion in a very strong repulsive force between these atoms. In the Lennard-Jones  potential the $r^{-12}$- term describes this strong (Pauli -) repulsion.
+
+
+
+
+
+\end{document}
+
+
+% =============== Comments ============
+\begin{comment}
+\verb{x_init {}}
+
+\begin{figure}[H]
+	\resizebox{1\textwidth}{!{\input{../plots/GGA_mesh.pdf}}
+	\caption{CAPTION}\label{fig:NAME}
+\end{figure}
+\end{comment}
