@@ -4,16 +4,14 @@
 from __future__ import division
 import os, sys, pickle, shutil, fileinput, glob, re, subprocess
 import numpy as np
-from libeval import Plotter
+from libeval import Plotter, Fitter
 
 patternTitle = re.compile(r'@    title "(?P<title>.*)"')
 patternComment = re.compile(r'[@#]')
 
 datadict = {}
 
-for item in os.listdir('./'):
-    if not item in ['spc','spce','tip3p']:
-        continue
+for item in ['spc','spce','tip3p']:
 
     for task in ['hbnum','msd','rdf']:
         filepath = './'+item+'/'+task+'.xvg'
@@ -46,19 +44,53 @@ for item in os.listdir('./'):
             for col in table:
                 datadict[task][item].append(col)
 
-p = Plotter(show = True, pgf = True, pdf = True, latex=False, sfile=(8,3.5), directory='./report/plots/', loc = 2)
+p = Plotter(show = True, pgf = False, pdf = False, latex=False, sfile=(8,3.5), directory='./report/plots/', loc = 2)
+f = Fitter()
 
-p.new(xlabel=r'time', ylabel=r'number of hydrogen bonds',name='hbnum')
+p.new(xlabel=r'time [ps]', ylabel=r'number of hydrogen bonds',name='hbnum')
 for medium, values in sorted(datadict['hbnum'].iteritems()):
-    p.plot(values[1], values[2], '-', label=medium)
+    t = values[1]
+    num = values[2]
 
-p.new(xlabel=r'time', ylabel=r'mean aquare displacement',name='msd')
+    i = t > 100
+    m = [np.mean(num[i]), np.mean(num[i])]
+    x = [t[i][0],t[i][-1]]
+
+    p.plot(t, num, '-', label=medium+', mean: %f'%m[0])
+    p.plot(x, m, 'k-')
+
+p.new(xlabel=r'time [ps]', ylabel=r'mean aquare displacement',name='msd')
 for medium, values in sorted(datadict['msd'].iteritems()):
     p.plot(values[1], values[2], '-', label=medium)
 
-p.new(xlabel=r'time', ylabel=r'diffusion coefficient',name='diffusion')
+f.loadFunction(lambda x, *p: p[1]*x**p[0], [1,1])
+p.new(xlabel=r'time [ps]', ylabel=r'mean aquare displacement',name='regimes', xscale='log',yscale='log')
 for medium, values in sorted(datadict['msd'].iteritems()):
-    p.plot(values[1][1:], values[2][1:]/values[1][1:]/6, '-', label=medium)
+    i = values[1] < 600
+
+    '''j = values[1][i] < 0.3
+    f.loadData(values[1][i][j], values[2][i][j], scale='log')
+    x = np.linspace(0.1, 10,2)
+    p.plot(x, f(x), 'k-')
+
+    j = values[1][i] > 0.5
+    f.loadData(values[1][i][j], values[2][i][j], scale='log')
+    x = np.linspace(0.1, 1,2)
+    p.plot(x, f(x), 'k-')'''
+
+    p.plot(values[1][i], values[2][i], '-', label=medium)
+
+p.new(xlabel=r'time [ps]', ylabel=r'diffusion coefficient',name='diffusion')
+for medium, values in sorted(datadict['msd'].iteritems()):
+    t = values[1][1:]
+    D = values[2][1:]/values[1][1:]/6
+
+    i = t > 200
+    m = [np.mean(D[i]), np.mean(D[i])]
+    x = [t[i][0],t[i][-1]]
+
+    p.plot(t, D, '-', label=medium+', mean: %f'%m[0])
+    p.plot(x, m, 'k-')
 
 p.new(xlabel=r'radius', ylabel=r'radial distribution function',name='rdf')
 for medium, values in sorted(datadict['rdf'].iteritems()):
