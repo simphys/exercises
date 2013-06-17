@@ -64,6 +64,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+
 % NÜTZLICH: http://truben.no/latex/table/
 
 % Anfang des eigentlichen Dokuments
@@ -93,9 +94,25 @@ $E_{coulomb}$
 \subsubsection*{How is the Pauli exclusion principle incorporated into a classical force field?}
 It is incorporated into the energy expression of the Lennard-Jones interactions $E_{LJ}$. If two (non-bonded) atoms get too close to each other their electron clouds overlap which results due to Pauli repulsion in a very strong repulsive force between these atoms. In the Lennard-Jones  potential the $r^{-12}$- term describes this strong (Pauli -) repulsion.
 
+\section{Theoretical Task: Langevin equation - Calculation of particle
+positions and velocities}
+In this theoretical task, the Langevin equation describing the Brownian motion has to be solved:
 
+\begin{equation}
+	\text{d}v = - \gamma v \text ~ \text{d}t + \frac{\Gamma}{m}~\text{d}W
+\end{equation}
 
+The first term on the right hand side describes the dissipative force, the second the stochastic force.
 
+\subsection{Velocities of the particle}
+Since the average force in the Langevin equation is already included in the first force term, the stochastic second one has to be zero on average: $\langle \text{d}W(t) \rangle = 0$. Therefore the second term can be neglected if one is only interested in computing the average force (force term one):
+\begin{equation}
+	\text{d} v = - \gamma v ~ \text{d} t
+\end{equation}
+This differential equation can be easily solved by separation of variables, which leads to to following solution (with $v_0 = v(t=0)$):
+\begin{equation} 
+	v = v_0 \cdot \exp{(-\gamma t)}
+\end{equation}
 
 \end{document}
 

@@ -1,1 +1,3 @@
 \contentsline {section}{\numberline {1}Short Questions - Short Answers}{2}{section.1}
+\contentsline {section}{\numberline {2}Theoretical Task: Langevin equation - Calculation of particle positions and velocities}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Velocities of the particle}{2}{subsection.2.1}
