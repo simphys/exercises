@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.17)  18 JUN 2013 20:01
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.17)  18 JUN 2013 20:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,11 +871,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
 Here is how much of TeX's memory you used:
  16722 strings out of 495059
  282851 string characters out of 3182030
- 945782 words of memory out of 3000000
+ 945780 words of memory out of 3000000
  19530 multiletter control sequences out of 15000+200000
  13633 words of font info for 51 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 56i,12n,65p,451b,463s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,12n,65p,463b,463s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
@@ -892,7 +892,7 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on SimPhysII_W3.pdf (6 pages, 356770 bytes).
+Output written on SimPhysII_W3.pdf (6 pages, 356769 bytes).
 PDF statistics:
  188 PDF objects out of 1000 (max. 8388607)
  161 compressed objects within 2 object streams

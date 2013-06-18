@@ -63,7 +63,7 @@ for medium, values in sorted(datadict['hbnum'].iteritems()):
     t = values[1]
     num = values[2]
 
-    i = t > 100
+    i = t > 30
     m = [np.mean(num[i]), np.mean(num[i])]
     x = [t[i][0],t[i][-1]]
 
@@ -88,7 +88,7 @@ for medium, values in sorted(datadict['msd'].iteritems()):
     t = values[1][1:]
     D = values[2][1:]/values[1][1:]/6*1e-6*1e4*1e5
 
-    i = np.array(t > 100) & np.array(t < 400)
+    i = np.array(t > 100) & np.array(t < 450)
     m = np.array([np.mean(D[i]), np.mean(D[i])])
     x = [t[i][0],t[i][-1]]
 

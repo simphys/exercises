@@ -4093,8 +4093,8 @@
 \definecolor{currentstroke}{rgb}{0.000000,0.000000,1.000000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{2.241240in}{1.624440in}}%
-\pgfpathlineto{\pgfqpoint{7.200000in}{1.624440in}}%
+\pgfpathmoveto{\pgfqpoint{1.373240in}{1.624226in}}%
+\pgfpathlineto{\pgfqpoint{7.200000in}{1.624226in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -8131,8 +8131,8 @@
 \definecolor{currentstroke}{rgb}{0.000000,0.500000,0.000000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{2.241240in}{2.065125in}}%
-\pgfpathlineto{\pgfqpoint{7.200000in}{2.065125in}}%
+\pgfpathmoveto{\pgfqpoint{1.373240in}{2.064013in}}%
+\pgfpathlineto{\pgfqpoint{7.200000in}{2.064013in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -12187,8 +12187,8 @@
 \definecolor{currentstroke}{rgb}{1.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{2.241240in}{1.244002in}}%
-\pgfpathlineto{\pgfqpoint{7.200000in}{1.244002in}}%
+\pgfpathmoveto{\pgfqpoint{1.373240in}{1.243526in}}%
+\pgfpathlineto{\pgfqpoint{7.200000in}{1.243526in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -13098,7 +13098,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=0.832502in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spc, mean: 374.148000}}
+\pgftext[left,bottom,x=1.513683in,y=0.832502in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spc, mean: 374.140851}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -13114,7 +13114,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=0.628726in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spce, mean: 388.837500}}
+\pgftext[left,bottom,x=1.513683in,y=0.628726in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spce, mean: 388.800426}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -13130,7 +13130,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=0.424950in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont tip3p, mean: 361.466750}}
+\pgftext[left,bottom,x=1.513683in,y=0.424950in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont tip3p, mean: 361.450851}}
 %
 \end{pgfscope}%
 \end{pgfpicture}%
