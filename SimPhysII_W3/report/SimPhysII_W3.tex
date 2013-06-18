@@ -104,8 +104,13 @@ In this theoretical task, the Langevin equation describing the Brownian motion h
 
 The first term on the right hand side describes the dissipative force, the second the stochastic force.
 
+\newpage
 \subsection{Velocities of the particle}
-Since the average force in the Langevin equation is already included in the first force term, the stochastic second one has to be zero on average: $\langle \text{d}W(t) \rangle = 0$. Therefore the second term can be neglected if one is only interested in computing the average force (force term one):
+Since the average force in the Langevin equation is already included in the first force term, the stochastic second one has to be zero on average: 
+\begin{equation}
+	\langle \text{d}W(t) \rangle = 0
+\end{equation}
+Therefore the second term can be neglected if one is only interested in computing the average force (force term one):
 \begin{equation}
 	\text{d} v = - \gamma v ~ \text{d} t
 \end{equation}
@@ -113,36 +118,81 @@ This differential equation can be easily solved by separation of variables, whic
 \begin{equation} 
 	v(t) = v_0 \cdot \text{e}^{(-\gamma t)}
 \end{equation}
-The stochastic fluctuations of the second term also fulfil the following relation:
+The stochastic fluctuations of the second term also fulfill the following relation:
 \begin{equation}
-	\langle\text{d}W(t)\text{d}W(t')\rangle = \text{d}t'
+	\langle\text{d}W(t_1)\text{d}W(t_2)\rangle =  \delta_{t_1,t_2} ~ \text{d}t_1
 \end{equation}
 An explicit formal solution can be obtained as
 \begin{equation}
 	v(t) = v_0 \cdot \text{e}^{-\gamma t} + \frac{\Gamma}{m} \int_0^t \text{e}^ {-\gamma(t-s)}~\text{d}W(s)
+	\label{eqn:v}
 \end{equation}
 Now one can calculate:
 \begin{align}
-	\langle v(t_1)v(t_2) \rangle &= \langle v_0(t_1) v_0(t_2)\rangle \cdot \text{e}^{(-\gamma (t_1+t_2))}
- + \frac{\Gamma}{m} \int_0^{t_1} \int_0^{t_2} \text{e}^ {-\gamma\cdot(t_1+t_2-(s_1+s_2))}~\text{d}W(s_2)\text{d}W(s_1)\\
-	&= \langle v_0(t)^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}	
-	 + \frac{\Gamma}{m} \int_0^{\min{t_1, t_2}} \text{e}^ {-\gamma\cdot(t_1+t_2-2s)}~\text{d}W(s)\\
-	&= \langle v_0(t)^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}+ \frac{\Gamma}{2 m\gamma} \text{e}^ {-\gamma\cdot(t_1+t_2)}\left( \text{e}^ {2\gamma \min{t_1, t_2}} - 1 \right)
+	\langle v(t_1)v(t_2) \rangle &= \langle v_0 \cdot  v_0\rangle \cdot \text{e}^{-\gamma (t_1+t_2)}
+ + \left( \frac{\Gamma}{m} \right)^2 \int_0^{t_1} \int_0^{t_2} \text{e}^ {-\gamma\cdot(t_1+t_2-(s_1+s_2))}~\langle\text{d}W(s_2)\text{d}W(s_1)\rangle\\
+	&= \langle v_0^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}	
+	 + \left( \frac{\Gamma}{m} \right)^2  \int_0^{\min{t_1, t_2}} \text{e}^ {-\gamma\cdot(t_1+t_2-2s)}~\text{d}s\\
+	&= \langle v_0^2\rangle \cdot \text{e}^{-\gamma\cdot (t_1+t_2)}+ \left( \frac{\Gamma}{m} \right)^2 \frac{1}{2 \gamma} \text{e}^ {-\gamma\cdot(t_1+t_2)}\left( \text{e}^ {2\gamma \min{t_1, t_2}} - 1 \right)
 \end{align}
 For $t_1=t_2=t$ this results in
 \begin{align}
-	\langle v(t)^2\rangle &= \langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t}+ \frac{\Gamma}{2 m\gamma} \text{e}^ {-2\gamma t}\left( \text{e}^ {2\gamma t} - 1 \right)\\
-	&=\langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t} - \frac{\Gamma}{2 m\gamma} \text{e}^ {-2\gamma t} + \frac{\Gamma}{2 m\gamma}\\
-	&=\left( \langle v_0(t)^2\rangle - \frac{\Gamma}{2 m\gamma} \right) \text{e}^ {-2\gamma t} + \frac{\Gamma}{2 m\gamma} \label{eq:velsqrt}
+	\langle v(t)^2\rangle &= \langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t}+ \left( \frac{\Gamma}{m} \right)^2 \frac{1}{2 \gamma} \text{e}^ {-2\gamma t}\left( \text{e}^ {2\gamma t} - 1 \right)\\
+	&=\langle v_0(t)^2\rangle \cdot \text{e}^{-2\gamma t} - \frac{\Gamma}{2 m\gamma} \text{e}^ {-2\gamma t} + \left( \frac{\Gamma}{m} \right)^2 \frac{1}{2 \gamma}\\
+	&=\left( \langle v_0(t)^2\rangle - \frac{\Gamma}{2 m\gamma} \right) \text{e}^ {-2\gamma t} + \left( \frac{\Gamma}{m} \right)^2 \frac{1}{2 \gamma} \label{eq:velsqrt}
 \end{align}
-Since in equilibrium we must have the equipartition theorem for one dimension ($\langle v(t)^2\rangle_{\text{eq}} = k_\text{B} \cdot T$, in three dimensions the right hand side would have to be multiplied by three) $\Gamma$ can be calculated (for $t \rightarrow \infty$ the first part of equation \ref{eq:velsqrt} vanishes):
+Since in equilibrium we must have the equipartition theorem for one dimension ($\langle v(t)^2\rangle_{\text{eq}} = k_\text{B} \cdot T / m$, in three dimensions the right hand side would have to be multiplied by three) $\Gamma$ can be calculated (for $t \rightarrow \infty$ the first part of equation \ref{eq:velsqrt} vanishes):
 \begin{equation}
-	\Gamma = 2 m\gamma k_\text{B} T
+	\Gamma = \sqrt{2 \gamma k_\text{B} T m}
 \end{equation}
-Therefore the velocity of one particle can is given by
+
+\subsection{Position of the particle}
+
+By integrating equation \ref{eqn:v} we get an expression for the position.
+
+\begin{align}
+x(t) &= x_0 +  \int_0^t \left[ v_0 \cdot \text{e}^{-\gamma u} + \frac{\Gamma}{m} \int_0^u \text{e}^ {-\gamma(u-s)}~\text{d}W(s) \right] du \\
+&= x_0 + \frac{v_0}{\gamma} \left(1-\text{e}^{-\gamma t} \right) + \frac{\Gamma}{m} \int_0^t \text{d}W(s) \int_s^t \text{e}^{-\gamma (u-s)} du \\
+&= x_0 + \frac{v_0}{\gamma} \left(1-\text{e}^{-\gamma t} \right) +\frac{\Gamma}{m \gamma} \int_0^t \left(1-\text{e}^{-\gamma (t-s)} \right) ~\text{d}W(s) \label{eqn:x}
+\end{align}
+For the mean position, the last term gets zero because of it dependents on $\text{d}W(s)$. So the result is:
 \begin{equation}
-	v(t) = v_0 \cdot \text{e}^{-\gamma t} + 2\gamma k_\text{B} T \int_0^t \text{e}^ {-\gamma(t-s)}~\text{d}W(s)
+\langle x(t) \rangle = x_0 + \frac{v_0}{\gamma} \left(1-\text{e}^{-\gamma t} \right)
 \end{equation}
+This gives us in the limit of ...
+\begin{itemize}
+\item short time scales ($\gamma t << 1$) : $\langle x(t) \rangle \approx x_0 + v_0 \cdot t$
+\item long time scales ($\tfrac{1}{\gamma t} << 1$) : $\langle x(t) \rangle \approx x_0 + \frac{v_0}{\gamma}$
+\end{itemize} \vspace{2em}
+
+In addition, equation \ref{eqn:x} results in the following mean-square displacement:
+\begin{align}
+\langle \Delta x(t)^2 \rangle &= \langle \left( x(t) - \langle x(t) \rangle \right)^2 \rangle = \langle x(t)^2 \rangle - \left( \langle x(t)\rangle \right)^2 \\
+&= \left(\frac{\Gamma}{m \gamma} \right)^2 \int_0^t \int_0^t \left(1-\text{e}^{-\gamma (t-s_1)} \right) \left(1-\text{e}^{-\gamma (t-s_2)} \right) \langle ~\text{d}W(s_1) ~\text{d}W(s_2) \rangle \\
+&= \left( \frac{\Gamma}{m \gamma} \right)^2 \int_0^t \left(1-\text{e}^{-\gamma (t-s)} \right)^2 ~\text{d}s \\
+&= \frac{2 k_B T}{m \gamma} \int_0^t 1+\text{e}^{-2\gamma (t-s)}-2\text{e}^{-\gamma (t-s)} ~\text{d}s \\
+&= \frac{2 k_B T}{m \gamma} \left( t + \frac{4\text{e}^{-\gamma t}-\text{e}^{-2\gamma t}}{2 \gamma} - \frac{3}{2g}\right)
+%&= \frac{2 k_B T}{m \gamma} \left( t + \frac{1}{2 \gamma} (1-\text{e}^{-2 \gamma t}) - \frac{2}{\gamma} (1-\text{e}^{-\gamma t} ) \right)
+%&\approx \frac{2 k_B T}{m \gamma} \left( t + \frac{1}{2 \gamma} (2 \gamma t + \frac{(2 \gamma t)^2}{2}) - \frac{2}{\gamma} (-\gamma t+ \frac{(\gamma t)^2}{2}) \right) \\
+%&=\frac{2 k_B T}{m \gamma} \left( t + \frac{1}{2 \gamma} (2 \gamma t - \frac{(2 \gamma t)^2}{2}) - \frac{2}{\gamma} (\gamma t- \frac{(\gamma t)^2}{2}) \right)
+\end{align}
+
+%This results in the limit of ...
+%\begin{itemize}
+%\item short time scales: $\langle \Delta x(t)^2 \rangle  \varpropto \frac{k_B T}{m} t^2$
+%\item long time scales: $\langle \Delta x(t)^2 \rangle \varpropto \frac{2 k_B T}{m \gamma} t$
+%\end{itemize}
+
+For long time scales the exponential functions approx zero. It results in:
+\begin{equation}
+\langle \Delta x(t)^2 \rangle \varpropto \frac{2 k_B T}{m \gamma} t
+\end{equation}
+
+With the equation  $\langle \Delta x(t)^2 \rangle = 2 D t$ (for three dimensions $6 D t$) you get the following diffusion constant:
+\begin{equation}
+D = \frac{k_B T}{m \gamma}
+\end{equation}
+
 
 \section{Computational Task: Atomistic water simulations with GROMACS}
 
@@ -152,7 +202,7 @@ Therefore the velocity of one particle can is given by
     \caption{Radial distribution function. The peaks are marked with stars.} \label{fig:rdf}
 \end{figure}
 
-All water models give similar distances for the peaks. The height and viability of the peaks is very different, however. \textit{SPC/E} produce the highest and \textit{TIP3P} the lowest maxima. \textit{SPC} is in between. 
+All water models give similar distances for the peaks. The height and visibility of the peaks is very different, however. \textit{SPC/E} produce the highest and \textit{TIP3P} the lowest maxima. \textit{SPC} is in between. 
 
 \subsection{Hydrogen bond analysis}
 \begin{figure}[H]

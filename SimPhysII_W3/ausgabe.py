@@ -82,19 +82,19 @@ for medium, values in sorted(datadict['msd'].iteritems()):
 
 # diffusion
 print "=== diffusion ==="
-p.new(xlabel=r'time [ps]', ylabel=r'diffusion coefficient [m$^2$/s]',name='diffusion')
+p.new(xlabel=r'time [ps]', ylabel=r'diffusion coefficient [10$^{-5}$ cm$^2$/s]',name='diffusion')
 n = 0
 for medium, values in sorted(datadict['msd'].iteritems()):
     t = values[1][1:]
-    D = values[2][1:]/values[1][1:]/6
+    D = values[2][1:]/values[1][1:]/6*1e-6*1e4*1e5
 
     i = np.array(t > 100) & np.array(t < 400)
-    m = [np.mean(D[i]), np.mean(D[i])]
+    m = np.array([np.mean(D[i]), np.mean(D[i])])
     x = [t[i][0],t[i][-1]]
 
-    print medium+": %g"%(m[0]*1e-6)
+    print medium+": %g"%(m[0])
 
-    p.plot(t, D, c[n]+'-', label=medium+', mean: %g'%(m[0]*1e-6))
+    p.plot(t, D, c[n]+'-', label=medium+', mean: %g'%(m[0]))
     p.plot(x, m, c[n]+'-',lw=2)
     n += 1
 

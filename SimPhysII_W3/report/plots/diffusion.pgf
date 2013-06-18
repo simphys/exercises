@@ -7312,7 +7312,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=0.236971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0020}}
+\pgftext[left,bottom,x=0.679389in,y=0.236971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 2.0}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7367,7 +7367,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=0.503638in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0025}}
+\pgftext[left,bottom,x=0.679389in,y=0.503638in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 2.5}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7422,7 +7422,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=0.770305in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0030}}
+\pgftext[left,bottom,x=0.679389in,y=0.770305in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 3.0}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7477,7 +7477,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=1.036971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0035}}
+\pgftext[left,bottom,x=0.679389in,y=1.036971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 3.5}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7532,7 +7532,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=1.303638in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0040}}
+\pgftext[left,bottom,x=0.679389in,y=1.303638in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 4.0}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7587,7 +7587,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=1.570305in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0045}}
+\pgftext[left,bottom,x=0.679389in,y=1.571403in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 4.5}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7642,7 +7642,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=1.836971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0050}}
+\pgftext[left,bottom,x=0.679389in,y=1.836971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 5.0}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7697,7 +7697,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=2.103638in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0055}}
+\pgftext[left,bottom,x=0.679389in,y=2.104736in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 5.5}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7752,7 +7752,7 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=2.370305in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0060}}
+\pgftext[left,bottom,x=0.679389in,y=2.370305in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 6.0}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7807,11 +7807,11 @@
 \end{pgfscope}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.361274in,y=2.636971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 0.0065}}
+\pgftext[left,bottom,x=0.679389in,y=2.636971in,rotate=0.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont 6.5}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=0.291829in,y=0.405327in,rotate=90.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont diffusion coefficient [m\(\displaystyle ^2\)/s]}}
+\pgftext[left,bottom,x=0.609945in,y=0.148085in,rotate=90.000000]{{\sffamily\fontsize{12.000000}{14.400000}\selectfont diffusion coefficient [10\(\displaystyle ^{-5}\) cm\(\displaystyle ^2\)/s]}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7868,8 +7868,8 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{1.069417in}{1.977606in}}%
-\pgfpathlineto{\pgfqpoint{3.400692in}{1.977606in}}%
-\pgfpathlineto{\pgfqpoint{3.400692in}{2.630583in}}%
+\pgfpathlineto{\pgfqpoint{3.088520in}{1.977606in}}%
+\pgfpathlineto{\pgfqpoint{3.088520in}{2.630583in}}%
 \pgfpathlineto{\pgfqpoint{1.069417in}{2.630583in}}%
 \pgfpathlineto{\pgfqpoint{1.069417in}{1.977606in}}%
 \pgfpathclose%
@@ -7887,7 +7887,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=2.440691in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spc, mean: 3.49418e-09}}
+\pgftext[left,bottom,x=1.513683in,y=2.440691in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spc, mean: 3.49418}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7902,7 +7902,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=2.236915in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spce, mean: 2.48515e-09}}
+\pgftext[left,bottom,x=1.513683in,y=2.236915in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont spce, mean: 2.48515}}
 %
 \end{pgfscope}%
 \begin{pgfscope}%
@@ -7917,7 +7917,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[left,bottom,x=1.513683in,y=2.033139in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont tip3p, mean: 5.06974e-09}}
+\pgftext[left,bottom,x=1.513683in,y=2.033139in,rotate=0.000000]{{\sffamily\fontsize{9.996000}{11.995200}\selectfont tip3p, mean: 5.06974}}
 %
 \end{pgfscope}%
 \end{pgfpicture}%
