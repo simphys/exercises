@@ -1,0 +1,50 @@
+#!/bin/bash
+# Patrick Kreiisl
+# 15.05.13
+
+# set variables
+NP=4
+
+# make backup-directory
+mkdir sim
+mkdir sim/log
+cp "./src/alaninedipeptide.pdb" sim/"ala.pdb" 
+cd sim
+
+echo "pdb2gmx..."
+pdb2gmx_mpi -f ala.pdb -o ala.gro -water tip3p -ff amber94 -ignh >& log/1_pdb2gmx.log
+# define box
+echo "... generating box"
+editconf_mpi -f ala.gro -o ala_box.gro -c -d 1.0 -bt cubic >& log/2_editconf.log
+# solvate
+echo "... adding the water"
+genbox_mpi -cp ala_box.gro -cs -o ala_sol.gro -p topol.top >& log/3_genbox.log
+
+# minimize energy
+echo "... grompping"
+grompp_mpi -f ../mdp/em.mdp -c ala_sol.gro -p topol.top -o minim_input.tpr >& log/6_minim_input.log
+echo "... minimizing"
+mdrun_mpi -s minim_input.tpr -deffnm ala_minim -v >& log/7_minim.log
+# make energy diagram (potential)
+echo "... producing control plot"
+echo 11 | g_energy_mpi -f ala_minim.edr -o potential_minimization.xvg >& log/8_xmg_pot.log
+
+# warm up simulation
+echo "... grompping again"
+grompp_mpi -f ../mdp/warmup.mdp -c ala_minim.gro -p topol.top -o warmup_input.tpr -maxwarn 10 >& log/9_warmup_input.log
+echo "... warming up!"
+mpirun -np "$NP" mdrun_mpi -v -s warmup_input.tpr -append -cpi warmup.cpt -deffnm warmup >& mpirun_warmup.log
+
+# real simulation
+echo "... once again the grompp thing"
+grompp_mpi -f ../mdp/full.mdp -c warmup.gro -p topol.top -o run_input.tpr -maxwarn 10 >& log/10_run_input.log
+echo "... now running for real"
+mpirun -np "$NP" mdrun_mpi -v -s run_input.tpr -append -cpi alaninedipeptide.cpt -deffnm alaninedipeptide >& mpirun.log
+
+# dihedral angles
+echo " ... producing ramachandran plot"
+g_rama_mpi -f alaninedipeptide.trr -s run_input.tpr -o ../rama_alaninedipeptide.xvg >& log/11_rama.log
+
+echo "... done!"
+
+

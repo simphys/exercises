@@ -1,0 +1,33 @@
+;
+;	User spoel (236)
+;	Wed Nov  3 17:12:44 1993
+;	Input file
+;
+title               =  Yo
+cpp                 =  /lib/cpp
+constraints         =  none
+integrator          =  md
+dt                  =  0.002
+nsteps              =  1000000
+nstxout             =  1000
+nstvout             =  1000
+nstfout             =  0
+nstlog              =  1000
+nstenergy           =  1000
+nstlist             =  10
+ns_type             =  grid
+coulombtype         =  Cut-off
+rlist               =  1.0
+rvdw                =  1.0
+rcoulomb            =  1.0
+; Berendsen temperature coupling is on in two groups
+Tcoupl              =  berendsen
+tc-grps		    =  system
+tau_t               =  0.1      
+ref_t               =  300
+; Energy monitoring
+energygrps          =  Protein SOL
+; Isotropic pressure coupling is now on
+; Generate velocites is off at 300 K.
+gen_vel             =  no
+
