@@ -1,0 +1,9 @@
+espresso-3.2.0
+poiseuilleflow/particle_positions_velocities.out
+singleparticle/particle_diffusion.out
+
+#IDE files to ignore (Netbeans, Eclipse)
+nbproject/private/
+.classpath
+.project
+.settings

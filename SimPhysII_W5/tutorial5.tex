@@ -1,0 +1,364 @@
+% Literaturbersicht
+% basiert auf KOMA-Script scrbook-Klasse
+\documentclass[11pt,a4paper,% BCOR8mm,
+	       %twoside, onecolumn, openright, cleardoubleempty, %
+	       %parindent,
+	       headsepline=false, footsepline=false, notitlepage, %
+	       %onelinecaption,
+	       bigheadings, %
+	       bibtotoc, %tocindent, listsindent, %
+	       %chapterprefix, noappendixprefix,
+	       %tablecaptionbelow,
+	       %pointlessnumbers, % macht Probleme (Anhang ohne Punkt, aber sonst Kapitel mit Punkt
+	       % abstractoff, fleqn, leqno,
+	       % openbib, origlongtable,
+	       final]{scrartcl}
+
+% Satzspiegel 
+
+% wenn keine KOMA-Klasse verwendet wird, kann so der Satzspiegel
+% berechnet werden
+%\usepackage[DIV15,BCOR12mm,pagesize]{typearea}
+
+% Hier knnen Seitenhoehe und -breite individuell angepasst werden
+%\areaset[BCOR]{Breite}{Hohe}
+% oder 
+%\usepackage[a4paper,body={15.6cm,23cm},left=3cm]{geometry}
+
+% ============================================================================
+
+%% Grafikpakete
+% Fr einfache Einbingung von Grafiken
+\usepackage{graphicx}%
+
+% Wenn man direkt mit dem pdflatex eine PDF-Datei erzeugt, sollten diese beiden
+% Pakete eingebunden werden (Hyperlinks, bessere Bildschirmschriftarten usw.)
+\usepackage{color}
+\definecolor{mylinkcolor}{rgb}{0.5812,0.0665,0.0659} % IndianRed
+\definecolor{mycitecolor}{rgb}{0.075,0.31,0.0431} % MossGreen
+\definecolor{myurlcolor}{rgb}{0.0118,0.098,0.7412} % DarkBlue
+
+% Druckversion
+% für reine pdf-Dateien noch Option colorlinks hinzufgen, um Links farbig zumachen
+%\usepackage[pdftex,bookmarks,bookmarksopen,citecolor={mycitecolor},%
+%linkcolor={mylinkcolor},urlcolor={myurlcolor},breaklinks=true,%
+%hypertexnames=false,hyperindex=true,encap,colorlinks]{hyperref} %
+
+
+%\usepackage{ae,aecompl}
+
+% ============================================================================
+
+%% Sprachliche Pakete
+\usepackage[english]{babel}
+% Neue Deutsche Rechtschreibung
+%\usepackage[ngerman]{babel}
+%\usepackage{ngerman} 
+
+% Paket zur einfacheren Eingabe deutscher Umlaute
+\usepackage[applemac]{inputenc} %Mac
+%\usepackage[latin1]{inputenc}   %UNIX/LINUX
+% \usepackage[ansinew]{inputenc}  % Windows
+\usepackage[T1]{fontenc}
+
+% ============================================================================
+
+% Literaturverzeichnis
+\usepackage[square,numbers,sort&compress]{natbib}
+%\usepackage{bibmods}
+%\bibpunct{(}{)}{,}{a}{}{,}
+%\bibpunct{(}{)}{,}{a}{,}{;}
+\setlength{\bibsep}{1ex}
+
+% ============================================================================
+
+% Stichwortverzeichnis
+% \usepackage{makeidx}
+% \makeindex
+
+% ============================================================================
+
+% Deutsche Zahlenkonvention (1 (Komma) 0 statt 1 (Punkt) 0)
+% \usepackage{ziffer}
+
+%% Schriftarten
+\usepackage{times} % times is used to avoid bitmap fonts in PDF
+
+%% Mathematische Packages
+% Dieses Pakete definiert viele ntzliche mathematische Befehele und
+% Zeichens�ze und sollte in jedem mathematischen Dokument eingebunden werden.
+% Die Option "intlimits" bewirkt, dass beim Integral die Grenzenangaben oben
+% und unten erscheinen und nicht seitlich.
+\usepackage[intlimits]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+
+
+% Diese Schriftarten ermglichen schne Mengensymbole fr natrliche Zahlen, usw.
+% siehe Definition von \N, \Z usw. Dies ist Geschmackssache.
+%\usepackage{bbm}
+%\usepackage{dsfont}
+
+% Subfigures
+\usepackage{subfigure}
+
+% Needed for Tabular-Umgebung
+\usepackage{array}
+
+% Diese Befehle bewirken, dass Abs�ze  bei Seitenumbrchen sauberer getrennt
+% werden (sog. Schusterjungen und Hurenkinder vermeiden)
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% Ein Paket um "kommutative Diagramme" zu erstellen. Fuer einfhrende Beispiele
+% siehe xymanual.ps und xyreference.ps
+%\usepackage[all]{xy}
+
+%%%%%%%%%%%%%%%%%%% Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\N}{\mathbbm{N}}	% Natuerliche Zahlen
+%\newcommand{\Z}{\mathbbm{Z}}	% Ganze Zahlen
+%\newcommand{\Q}{\mathbbm{Q}}	% Rationale Zahlen
+%\newcommand{\R}{\mathbbm{R}}	% Reelle Zahlen
+%\newcommand{\C}{\mathbbm{C}}	% Komplexe Zahlen
+%\newcommand{\one}{\mathbbm{1}}	% Einheits Eins
+%
+%\newcommand{\toinf}{\to\infty}				% --> oo
+%\newcommand{\tozero}{\to 0}				% --> 0
+%\newcommand{\ontop}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}	% Aufeinander
+%\newcommand{\abs}[1]{\left|#1\right|}
+%\newcommand{\argmax}{\mathop{\rm arg\,max}}
+
+% Ein Befehl, um Abbildungen einfach einheitlich zu gestalten
+% Bsp: \abb{f}{\R}{\R}{x}{x^2}
+
+%\newcommand{\abb}[5]{%
+%\setlength{\arraycolsep}{0.4ex}%
+%\begin{array}{rcccc}%
+%#1 &:\,& #2 & \,\,\longrightarrow\,\, & #3 \\[0.5ex]%
+%     & & #4 & \longmapsto & #5%
+%\end{array}%
+%}
+
+%%%%%%%%%%%%%%%%%%% Theorem definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\theoremstyle{plain}
+%\newtheorem{theorem}{Theorem}[chapter]
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{satz}[theorem]{Satz}
+%\newtheorem{korollar}[theorem]{Korollar}
+%
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}[chapter]
+%\newtheorem{beispiel}[theorem]{Beispiel}
+%\newtheorem{bemerkung}[theorem]{Bemerkung}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ============================================================================
+% \renewcommand*{\partpagestyle}{empty}
+% \renewcommand*{\partformat}{\partname~\thepart:}
+% Kopf- und Fu�eilen
+%\usepackage{fancyhdr}
+%%\pagestyle{headings}
+%\pagestyle{fancyplain}
+%%\addtolength{\headwidth}{\marginparsep}
+%%\addtolength{\headwidth}{\marginparwidth}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%%\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+%\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\rightmark}}
+%%\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+%\rhead[\fancyplain{}{\leftmark}]{\fancyplain{}{\thepage}}
+%%\chead{}
+%%\rhead{\thepage}
+%%\lfoot{Schnellste Pfade in geometrischen Netzwerken}
+%\cfoot{}
+%%\rfoot{}
+%%\setlength{\headrulewidth}{0.4pt}
+%%\setlength{\footrulewidth}{0.4pt}
+
+% Kopf- und Fu�eilen (nach KOMA Style)
+%\usepackage[automark]{scrpage2}
+%\pagestyle{scrheadings}
+%\automark[section){chapter}
+%\lehead[scrplain-links-gerade]{scrheadings-links-gerade}
+%\cehead[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+%\rehead[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+%\lefoot[scrplain-links-gerade]{scrheadings-links-gerade}
+%\cefoot[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+%\refoot[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+%\lohead[scrplain-links-ungerade]{scrheadings-links-ungerade}
+%\cohead[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+%\rohead[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+%\lofoot[scrplain-links-ungerade]{scrheadings-links-ungerade}
+%\cofoot[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+%\rofoot[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+%\ihead[scrplain-innen]{scrheadings-innen}
+%\chead[scrplain-zentriert]{scrheadings-zentriert}
+%\ohead[scrplain-au�n]{scrheadings-au�n}
+%\ifoot[scrplain-innen]{scrheadings-innen}
+%\cfoot[scrplain-zentriert]{scrheadings-zentriert}
+%\ofoot[scrplain-au�n]{scrheadings-au�n}
+% Markierungen: \leftmark, \rightmark, \pagemark \headmark
+% \manualmark \automark
+
+% ============================================================================  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Schriftsatz in KOMA
+%\setkomafont{Element}{Befehle}
+%\addtokomafont{Element}{Befehle}
+%\usekomafont{Element}
+
+%\includeonly{kapitel/sinterkeramiken, kapitel/statisch, kapitel/dynamisch, kapitel/ergebnisse, kapitel/abbildungen,
+% kapitel/literatur}
+%\includeonly{kapitel/titelseite2}
+% ============================================================================
+
+% fr komplette Zitate im Text
+% \usepackage{bibentry}
+
+\newbox{\taskbox}
+\usepackage{ifthen}
+\newenvironment{task}[1][]{%
+  \bigskip
+  \noindent%
+  \begin{lrbox}{\taskbox}
+    \begin{minipage}{0.9\textwidth}
+      \textbf{Task:} \ifthenelse{\equal{#1}{1}}{\hfill(#1 point)}{\hfill(#1 points)}%
+      \par\itshape%
+    }{%
+    \end{minipage}
+  \end{lrbox}
+  \smallskip
+  \fbox{\usebox{\taskbox}}
+  \bigskip \noindent%
+
+}
+
+\newenvironment{otask}[1][]{%
+  \bigskip
+  \noindent%
+  \begin{lrbox}{\taskbox}
+    \begin{minipage}{0.9\textwidth}
+      \textbf{Optional task:} \ifthenelse{\equal{#1}{1}}{\hfill(#1 bonus point)}{\hfill(#1 bonus points)}%
+      \par\itshape%
+    }{%
+    \end{minipage}
+  \end{lrbox}
+  \smallskip
+  \fbox{\usebox{\taskbox}}
+  \bigskip\noindent%
+
+}
+
+
+
+\begin{document}
+
+\titlehead{Simulation Methods in Physics II (SS 2013)}
+\title{Worksheet 5\\Coarse-grained simulations with ESPResSo}
+\author{Jens Smiatek\thanks{smiatek@icp.uni-stuttgart.de} and Maria Fyta\thanks{mfyta@icp.uni-stuttgart.de}}
+%\date{October 28, 2009}
+\publishers{ICP, Uni Stuttgart}
+
+
+\maketitle
+
+%\tableofcontents
+\section*{Important remarks}
+\begin{itemize}
+\item Due date: {\bf Tuesday, July 16$^{th}$, 2013, 8:00}  
+\item You can either send a PDF file to Jens Smiatek (smiatek@icp.uni-stuttgart.de) or submit a hand-written copy.
+\item If you have further questions, contact Jens Smiatek (smiatek@icp.uni-stuttgart.de) 
+\end{itemize}
+
+\section*{The program package ESPResSo}
+The program package ESPResSo is developed and maintained at the Institute for Computational Physics and 
+is mainly intended to perform coarse-grained simulations with Lattice-Boltzmann, Dissipative Particle Dynamics and Langevin Dynamics.
+It consists of a broad variety of electrostatic algorithms, analysis tools and various other features like the support of massively parallelized hardware architectures or GPU-platforms.
+In the following you will conduct coarse-grained simulations with the Lattice-Boltzmann and Dissipative Particle Dynamics method to learn how to work with ESPResSo.
+The package can be downloaded at
+\begin{itemize}
+\item ESPResSo-Homepage: http://espressomd.org/
+\item ESPResSo-Download: http://espressomd.org/wordpress/download/
+\item ESPResSo-Manual: http://espressomd.org/jenkins/job/ESPResSo/lastSuccessfulBuild/artifact/doc/ug/ug.pdf
+\end{itemize}
+{\bf Important Remark:} It is good to have a look inside the manual to understand how it works. This tutorial is mainly intended to understand how the coarse-grained methods and the simulation package works.
+
+\section*{Coarse-grained simulations (20 points)}
+\section*{Download and install ESPResSo}
+Download the ESPResSo package version 3.2.0 (espresso-3.2.0.tar.gz) and install it in your home directory. 
+You can follow the commands as given in the manual on p. 14.
+Before compilation and after using "./configure", please uncomment the macros in "myconfig-sample.h" for
+\begin{itemize}
+\item EXTERNAL\_FORCES
+\item CONSTRAINTS
+\item DPD
+\item TUNABLE\_SLIP
+\item LB
+\item LENNARD\_JONES
+\end{itemize}
+and rename it to myconfig.h.
+
+\section*{Lattice-Boltzmann simulations of a single particle in a fluid}
+Attached to this tutorial you will find the TCL-Script "lb\_particle.tcl" which is intended to perform a Lattice-Boltzmann simulation of a single particle in a fluid. 
+Have a look at the parameters in the script. What is their meaning?
+You can run the simulation with the command
+\begin{itemize}
+\item ./Espresso lb\_particle.tcl
+\end{itemize}
+if your installation has been correctly conducted. Otherwise ask the tutors.
+\section{Single particle in a fluid}
+In the following the motion of a single particle in a Lattice-Boltzmann fluid will be considered. The coupling of the particle to the fluid will be performed by the scheme that was introduced in the lecture.
+Have look into the script file. Try to interpret the parameters of most importance.
+How is the system simulated? What are the interactions? Have a look into the manual to understand how it works.
+Visualize the corresponding trajectory.\\
+Run the simulation.
+Calculate the mean square displacement of the particle by the equation
+\begin{equation}
+<(\vec{r}(t)-\vec{r}(t_0))^2> = MSD
+\end{equation}
+and determine the Diffusion coefficient. \\
+Hint: Remember Simulation Methods I how to calculate it.
+
+\section*{Plane Poiseuille flow with Dissipative Particle Dynamics (DPD)}
+In the following, we will simulate a Plane Poiseuille Flow (PPF) in a confined microgeometry with Dissipative Particle Dynamics (DPD).
+The Poiseuille flow occurs for low Reynolds-numbers such that the Navier-Stokes equation can be reduced to the Stokes equation
+\begin{equation}
+\eta\frac{\partial^2}{\partial z^2}v_x(z) = -\rho F_x
+\end{equation}
+with the shear viscosity $\eta$, the fluid density $\rho$, the fluid velocity $v_x(z)$ and the external force in x-direction $F_x$.
+\subsection*{Plane Poiseuille flow equation}
+Solve the Stokes equation to get $v_x(z)$ with the boundary conditions
+\begin{itemize}
+\item $v_x(z_B) = 0$ where $z_B$ denotes the position of the channel walls
+\item $\partial_zv_x(z)|_{z=0} = 0$ for the velocity derivative in the middle of the channel
+\end{itemize}
+\section*{DPD simulations}
+Look at the script "PPF.tcl". Try to interpret the parameters of most importance.
+How is the system simulated? What are the interactions? Have a look into the manual to understand how it works.
+Run the simulation with the command {\em ./Espresso PPF.tcl}.
+Some parameters in the script are missing.
+\begin{itemize}
+\item We need a solvent density of $3.75 \sigma^{-3}$. The effective box lengths are given by $(10\times 10\times 8)\sigma^{-3}$. To insert $\rho=3.75 \sigma^{-3}$ is therefore not correct. Have a look into the file!
+\item The DPD friction coefficient is given by $\gamma_{DPD}=5.0$.
+\end{itemize}
+Run the warm up and the simulation.
+\section*{Analysis of the Plane Poiseuille flow}
+After the simulations have finished, have a look at the output file. Try to understand the meaning of the different rows by having a look into the tcl-file.
+In order to analyze the flow profile, we have to calculate a histogram for several z-positions.
+Therefore we sort the particles according to their z-position to equidistant bins and sum up their velocities in x-direction. Having sorted all the particles, we average the summed velocities of the bin by taking into account 
+the particle number within the bin
+to get the 
+average velocity. Finally the average velocities will printed out according to their z-position which gives you the flow profile.
+Fit the corresponding flow profile and estimate the shear viscosity. Have a look at the PPF.tcl-file to estimate the external forces.
+
+\end{document}
+
